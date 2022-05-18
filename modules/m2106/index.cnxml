@@ -1,0 +1,1265 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+
+  
+  <title>Matrix Representation of Systems</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>3d06063f-b4ec-4b6e-bd94-ffef73d74498</md:uuid>
+</metadata>
+
+  <!-- End Header ******************************* -->
+  <!-- ****************************************** -->
+  
+  <content>
+    <section id="state_eqns"><title>State Equations</title>
+      
+      <para id="p0">Knowing that a system's state describes its dynamics, or memory, it is also useful to examine how the state of a system evolves over time.  A system's state will vary based on the current values of the state as well as the inputs to the system:</para>
+      
+      <equation id="eqeq1">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <para id="p1">Looking at an example will help to see why calculating the time-varying behavior of the state is important.</para>
+      
+      <example id="ex1">
+	
+	<para id="p2">A system is described by the following differential equation:</para>
+	
+	<equation id="eqeq2">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:diff/>
+		  <m:bvar><m:ci>t</m:ci><m:degree><m:cn>2</m:cn></m:degree></m:bvar>
+		  <m:apply>
+		    <m:ci type="fn">y</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>3</m:cn>
+		  <m:apply>
+		    <m:diff/>
+		    <m:bvar><m:ci>t</m:ci><m:degree><m:cn>2</m:cn></m:degree></m:bvar>
+		    <m:apply>
+		      <m:ci type="fn">y</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:apply>
+		    <m:ci type="fn">y</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p3">The state of this system is</para>
+	
+	<equation id="eqeq3">
+
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:apply><m:ci type="fn">
+<m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:matrixrow>
+	      </m:matrix>
+	      
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:ci type="fn">y</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:diff/>
+		    <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		    <m:apply>
+		      <m:ci type="fn">y</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:matrixrow>
+	      </m:matrix>
+	      
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p4">The state
+	  <m:math><m:apply><m:ci type="fn">x</m:ci><m:ci>t</m:ci></m:apply></m:math>
+	  (a vector) is composed of two state variables
+	  <m:math>
+	    <m:apply><m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci><m:ci>t</m:ci></m:apply>
+	  </m:math>
+	  and
+	  <m:math>
+	    <m:apply><m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci><m:ci>t</m:ci></m:apply>
+	  </m:math>.
+	  We would like to be able to talk about the time-varying state in terms of these state variables.  That is, we'd like an expression where
+	  <m:math>
+	    <m:apply>
+	      <m:diff/>
+	      <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  can be written in terms of
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>
+	  and
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  From
+	  <link target-id="eqeq3" strength="2">state equation</link>
+	  above, we see that
+	  <m:math>
+	    <m:apply>
+	      <m:diff/>
+	      <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	      <m:apply>
+		<m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mi>1</m:mi></m:msub></m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  simply equals
+	  <m:math>
+	    <m:apply>
+	      <m:diff/>
+	      <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	  In the same equation we also notice that
+	  <m:math>
+	    <m:apply>
+	      <m:diff/>
+	      <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  equals
+	  <m:math>
+	    <m:apply>
+	      <m:diff/>
+	      <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	      <m:apply>
+		<m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	  Therefore, the derivative of the first state variable exactly equals the second state variable.
+	</para>
+	
+	<equation id="eqeq4">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		<m:apply>
+		  <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p5">We can follow the same process for
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  Again from
+	  <link target-id="eqeq3" strength="2">state equation</link>,
+	  we see that the first derivative of
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>
+	  equals the second derivative of
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  At this stage, we can bring in information from the system's differential equation.  That equation (the first one in this example) also contains the second derivative of
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  If we solve for it we get </para>
+	
+	<equation id="eqeq5">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:cn>2</m:cn></m:degree></m:bvar>
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>-3</m:cn>
+		    <m:apply>
+		      <m:diff/>
+		      <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		      <m:apply>
+			<m:ci type="fn">y</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:apply>
+		      <m:ci type="fn">y</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">u</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	  </m:math>
+	</equation>
+
+	<para id="p6">We already know that
+	  <m:math>
+	    <m:apply>
+	      <m:diff/>
+	      <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+equals
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>
+	  and that
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>
+	  equals
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  Putting all of this together, we can get an expression for
+	  <m:math>
+	    <m:apply>
+	      <m:diff/>
+	      <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	      <m:apply>
+		<m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  in terms of the state variables and the input variable.</para>
+	
+	<equation id="eqeq6">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		<m:apply>
+		  <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:cn>2</m:cn></m:degree></m:bvar>
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>-3</m:cn>
+		    <m:apply>
+		      <m:diff/>
+		      <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		      <m:apply>
+			<m:ci type="fn">y</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:apply>
+		      <m:ci type="fn">y</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">u</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>-3</m:cn>
+		    <m:apply>
+		      <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:apply>
+		      <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">u</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p7">The important thing to notice here is that by looking at the time-varying behavior of the state, we have been able to reduce the complexity of the problem.  Instead of one second-order differential equation we now have two first-order differential equations.</para>
+	
+	<para id="p8">Think about a case where we might have 5, 10, or even 20 state variables.  In such an instance, it would be difficult to work with so many equations.  For this reason (and in order to have a more compact notation), we represent these state variable equations in terms of matrices.  The set of equations above can be written as:</para>
+	
+	<equation id="eqeq7">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:apply>
+		      <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:apply>
+		      <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:plus/>
+		
+		<m:apply>
+		  <m:times/>
+		  <m:matrix>
+		    <m:matrixrow><m:cn>0</m:cn><m:cn>1</m:cn></m:matrixrow>
+		    <m:matrixrow><m:cn>-2</m:cn><m:cn>-3</m:cn></m:matrixrow>
+		  </m:matrix>
+		  <m:matrix>
+		    <m:matrixrow>
+		      <m:apply>
+			<m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:matrixrow>
+		    <m:matrixrow>
+		      <m:apply>
+			<m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:matrixrow>
+		  </m:matrix>
+		</m:apply>
+		
+		<m:apply>
+		  <m:times/>
+		  <m:matrix>
+		    <m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		    <m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+		  </m:matrix>
+		  <m:apply>
+		    <m:ci type="fn">u</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p9">By letting
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply><m:ci type="fn">x</m:ci><m:ci>t</m:ci></m:apply>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:apply><m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci><m:ci>t</m:ci></m:apply>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:apply><m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci><m:ci>t</m:ci></m:apply>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:math>,
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:matrix>
+		<m:matrixrow><m:cn>0</m:cn><m:cn>1</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>-2</m:cn><m:cn>-3</m:cn></m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:math>,
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="matrix">B</m:ci>
+	      <m:matrix>
+		<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:math>,
+	  we can rewrite this equation as:</para>
+	
+	<equation id="eqeq11">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		<m:apply>
+		  <m:ci type="fn">x</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:apply>
+		    <m:ci type="fn">x</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci type="matrix">B</m:ci>
+		  <m:apply>
+		    <m:ci type="fn">u</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p10">This is called a <term>state equation</term>.</para>
+	
+      </example>
+      
+      <para id="p11">State equations are <emphasis>always</emphasis>
+	first-order differential equations.  All of the dynamics and
+	memory of the system are characterized in the state equations.
+	In general, in a system with <m:math><m:ci>n</m:ci></m:math> 
+	state variables and <m:math><m:ci>m</m:ci></m:math> inputs, <m:math><m:ci type="matrix">A</m:ci></m:math> is <m:math><m:ci>n</m:ci></m:math> x <m:math><m:ci>n</m:ci></m:math>, <m:math><m:apply><m:ci type="fn">x</m:ci><m:ci>t</m:ci></m:apply></m:math> is <m:math><m:ci>n</m:ci></m:math> x <m:math><m:cn>1</m:cn></m:math>, <m:math><m:ci type="matrix">B</m:ci></m:math> is
+	<m:math><m:ci>n</m:ci></m:math> x <m:math><m:ci>m</m:ci></m:math>, and <m:math><m:apply><m:ci type="fn">u</m:ci><m:ci>t</m:ci></m:apply></m:math> is <m:math><m:ci>m</m:ci></m:math> x <m:math><m:cn>1</m:cn></m:math>. </para>
+      
+      <figure id="state_eq_pictorially" orient="horizontal">
+	<title>State Equation Matrices</title>
+	<media id="idp4656784" alt=""><image src="../../media/mr_fig1.png" mime-type="image/png"/></media>
+	<caption>State Equation Matrices</caption>
+      </figure>
+      
+    </section>
+    
+<section id="output_eqns"><title>Output Equations</title>
+      
+      <para id="p12">Now that we've seen how to examine a system with respect to its state equations, we can move on to equations defining the relationships between the outputs of the system and the state and input variables.  The outputs of a system can be written as sums of linear combinations of state variables and input variables.  If in the example above the output
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">y</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:math>
+	depended only on the first state variable, we could write
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">y</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:math>
+	in matrix form:</para>
+      
+      <equation id="eqeq12">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:times/>
+	      <m:matrix>
+		<m:matrixrow><m:cn>1</m:cn><m:cn>0</m:cn></m:matrixrow>
+	      </m:matrix>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <para id="p13">More generally, we can express the output (or outputs) as:</para>
+      
+      <equation id="eqeq13">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:ci type="matrix">A</m:ci>
+		<m:apply>
+		  <m:ci type="fn">x</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:ci type="matrix">D</m:ci>
+		<m:apply>
+		  <m:ci type="fn">u</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <para id="p14">In a system with <m:math><m:ci>m</m:ci></m:math> inputs, <m:math><m:ci>n</m:ci></m:math> state variables, and
+	<m:math><m:ci>p</m:ci></m:math> outputs, <m:math><m:apply><m:ci type="fn">y</m:ci><m:ci>t</m:ci></m:apply></m:math> is <m:math><m:ci>p</m:ci></m:math> x <m:math><m:cn>1</m:cn></m:math>, <m:math><m:ci type="matrix">C</m:ci></m:math> is <m:math><m:ci>p</m:ci></m:math> x <m:math><m:ci>n</m:ci></m:math>, <m:math><m:apply><m:ci type="fn">x</m:ci><m:ci>t</m:ci></m:apply></m:math> is <m:math><m:ci>n</m:ci></m:math> x <m:math><m:cn>1</m:cn></m:math>, <m:math><m:ci type="matrix">D</m:ci></m:math> is <m:math><m:ci>p</m:ci></m:math> x <m:math><m:ci>m</m:ci></m:math>, and <m:math><m:apply><m:ci type="fn">u</m:ci><m:ci>t</m:ci></m:apply></m:math> is <m:math><m:ci>n</m:ci></m:math> x <m:math><m:cn>1</m:cn></m:math>.
+	Output equations are only algebraic equations; there are no differential equations and therefore, there is no memory component.</para>
+      
+      <para id="p15">If we assume that <m:math><m:apply><m:eq/><m:apply><m:eq/><m:ci>m</m:ci><m:ci>p</m:ci><m:cn>1</m:cn></m:apply></m:apply></m:math> and <m:math><m:apply><m:eq/><m:ci type="matrix">D</m:ci><m:cn>0</m:cn></m:apply></m:math>, we can
+	elininate <m:math><m:apply><m:ci type="fn">x</m:ci><m:ci>t</m:ci></m:apply></m:math>
+	in a combination of the state equations and output equations to get the input/output relation
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    
+	    <m:apply>
+	      <m:times/>
+	      
+	      <m:apply>
+		<m:ci type="fn">q</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>ⅆ</m:ci>
+		  <m:apply>
+		    <m:mo>ⅆ</m:mo>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:ci type="gn">y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      
+	    </m:apply> <!-- end of LHS -->
+	    
+	    <m:apply>
+	      <m:times/>
+	      
+	      <m:apply>
+		<m:ci type="fn">p</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>ⅆ</m:ci>
+		  <m:apply>
+		    <m:mo>ⅆ</m:mo>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:ci type="fn">u</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      
+		</m:apply>  <!-- end of RHS -->
+	    
+	  </m:apply> <!-- end of eq/ -->
+	</m:math>.
+
+Here the degree of <m:math><m:ci>q</m:ci></m:math> equals the degree of <m:math><m:ci>p</m:ci></m:math>.
+      </para>
+
+      <example id="ex2">
+	
+	<para id="p16">Let's develop state and output equations for the following circuit diagram:</para>
+	
+	<figure id="circuit1" orient="horizontal">
+	  <title>Example Circuit 1</title>
+	  <media id="idp4363360" alt=""><image src="../../media/mr_fig2.png" mime-type="image/png"/></media>
+	  <caption>Example Circuit 1</caption>
+	</figure>
+	
+	<para id="p17">There are two energy-storage elements in this diagram: the inductor and the capacitor.  As we know that energy-storage elements give systems memory, it makes sense that the state variables should be the current
+	  <m:math><m:ci><m:msub><m:mi>i</m:mi><m:mi>L</m:mi></m:msub></m:ci></m:math>
+	  flowing through the inductor and the voltage
+	  <m:math><m:ci><m:msub><m:mi>v</m:mi><m:mi>C</m:mi></m:msub></m:ci></m:math>
+	  across the capacitor.  By using Kirchoff's laws around the left and center loops, respectively, we can find the following two equations:</para>
+	
+	<equation id="eqeq14">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>u</m:ci>
+	      <m:apply>
+		<m:plus/>
+		<m:ci><m:msub><m:mi>i</m:mi><m:mi>L</m:mi></m:msub></m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply><m:minus/><m:cn>1</m:cn><m:cn>2</m:cn></m:apply>
+		  <m:apply>
+		    <m:diff/>
+		    <m:bvar><m:ci>t</m:ci></m:bvar>
+		    <m:ci><m:msub><m:mi>i</m:mi><m:mi>L</m:mi></m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci><m:msub><m:mi>v</m:mi><m:mi>C</m:mi></m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<equation id="eqeq15">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci><m:msub><m:mi>i</m:mi><m:mi>L</m:mi></m:msub></m:ci>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci><m:msub><m:mi>v</m:mi><m:mi>C</m:mi></m:msub></m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:diff/>
+		    <m:bvar><m:ci>t</m:ci></m:bvar>
+		    <m:ci><m:msub><m:mi>v</m:mi><m:mi>C</m:mi></m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p18">These equations can easily be rearranged to
+	  have the derivatives on the left-hand side equaling linear
+	  combinations of state variables and inputs on the right.
+	  These are the state equations.  The figure also quickly
+	  tells us that the output <m:math><m:ci>y</m:ci></m:math> 
+	  is equal to the voltage across the capacitor,
+	  <m:math><m:ci><m:msub><m:mi>v</m:mi><m:mi>C</m:mi></m:msub></m:ci></m:math>.
+	</para>
+	
+	<para id="p19">We can now rewrite the state and output equations in matrix form:</para>
+	
+	<equation id="eqeq16">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:diff/>
+		    <m:bvar><m:ci>t</m:ci></m:bvar>
+		    <m:ci><m:msub><m:mi>i</m:mi><m:mi>L</m:mi></m:msub></m:ci>
+		  </m:apply>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:diff/>
+		    <m:bvar><m:ci>t</m:ci></m:bvar>
+		    <m:ci><m:msub><m:mi>v</m:mi><m:mi>C</m:mi></m:msub></m:ci>
+		  </m:apply>
+		</m:matrixrow>
+	      </m:matrix>
+	      
+	      <m:apply>
+		<m:plus/>
+		
+		<m:apply>
+		  <m:times/>
+		  <m:matrix>
+		    <m:matrixrow><m:cn>-2</m:cn><m:cn>-2</m:cn></m:matrixrow>
+		    <m:matrixrow>
+		      <m:cn>3</m:cn><m:apply><m:minus/><m:cn>-3</m:cn><m:cn>2</m:cn></m:apply>
+		    </m:matrixrow>
+		  </m:matrix>
+		  <m:matrix>
+		    <m:matrixrow><m:ci><m:msub><m:mi>i</m:mi><m:mi>L</m:mi></m:msub></m:ci></m:matrixrow>
+		    <m:matrixrow><m:ci><m:msub><m:mi>v</m:mi><m:mi>C</m:mi></m:msub></m:ci></m:matrixrow>
+		  </m:matrix>
+		</m:apply>
+		
+		<m:apply>
+		  <m:times/>
+		  <m:matrix>
+		    <m:matrixrow><m:cn>2</m:cn></m:matrixrow>
+		    <m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		  </m:matrix>
+		</m:apply>
+		
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<equation id="eqeq17">
+ 	<m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>y</m:ci>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:matrix><m:matrixrow><m:cn>0</m:cn><m:cn>1</m:cn></m:matrixrow></m:matrix>
+		  <m:matrix>
+		    <m:matrixrow><m:ci><m:msub><m:mi>i</m:mi><m:mi>L</m:mi></m:msub></m:ci></m:matrixrow>
+		    <m:matrixrow><m:ci><m:msub><m:mi>v</m:mi><m:mi>C</m:mi></m:msub></m:ci></m:matrixrow>
+		  </m:matrix>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:matrix><m:matrixrow><m:cn>0</m:cn></m:matrixrow></m:matrix>
+		  <m:ci>u</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	
+      </example>
+      
+    </section>
+    
+    <section id="compact_system_notation"><title>Compact System Notation</title>
+      
+      <para id="p20">We now introduce one more simple way to simplify
+	the representation of systems.  Basically, to better use the
+	tools of linear algebra, we will put all four of the matrices
+	from the state and output equations (i.e., 
+<m:math><m:ci type="matrix">A</m:ci></m:math>, <m:math><m:ci type="matrix">B</m:ci></m:math>, <m:math><m:ci type="matrix">C</m:ci></m:math>, and <m:math><m:ci type="matrix">D</m:ci></m:math>)
+	into one large partitioned matrix:</para>
+      
+      <figure id="compact_system_ABCD" orient="horizontal"><title>Compact System Matrix Notation</title>
+	<media id="idp4419728" alt=""><image src="../../media/mr_fig3.png" mime-type="image/png"/></media>
+	<caption>Compacty System Matrix Notation</caption>
+      </figure>
+      
+      <example id="ex3">
+	
+	<para id="p21">In this example we'll find the state and output equations for the following circuit, as well as represent the system using the compact notation described above.</para>
+	
+	<figure id="circuit2" orient="horizontal"><title>Example Circuit 2</title>
+	  <media id="idp4424160" alt=""><image src="../../media/mr_fig4.png" mime-type="image/png"/></media>
+	  <caption>Example Circuit 2</caption>
+	</figure>
+	
+	<para id="p22">Here, <m:math><m:ci>u</m:ci></m:math> and <m:math><m:ci>y</m:ci></m:math> 
+	  are the input and output currents, respectively.
+	  <m:math><m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:math>
+	  and
+	  <m:math><m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci></m:math>
+	  are the state variables.  Using Kirchoff's laws and the <m:math><m:ci>i</m:ci></m:math>-<m:math><m:ci>v</m:ci></m:math> relation of a capacitor, we can find the following three equations:</para>
+	
+	<equation id="eqeq18">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>u</m:ci>
+	      <m:apply>
+		<m:plus/>
+		<m:ci>y</m:ci>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	<equation id="eqeq19">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:ci type="matrix">A</m:ci>
+		<m:apply>
+		  <m:diff/>
+		  <m:bvar><m:ci>t</m:ci></m:bvar>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<equation id="eqeq20">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>R</m:ci>
+		<m:ci>y</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+             <m:ci type="fn" class="discrete">ℒ</m:ci>
+		  <m:apply>
+		    <m:diff/>
+		    <m:bvar><m:ci>t</m:ci></m:bvar>
+		    <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	</m:math>
+	</equation>
+	
+	
+	<para id="p23">Through simple rearranging and substitution of the terms, we find the state and output equations:</para>
+
+	<para id="sp1"> </para>
+	
+	<para id="p24">State equations:</para>
+	
+	<equation id="eqeq21">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci></m:bvar>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply><m:minus/><m:cn>-1</m:cn><m:ci>L</m:ci></m:apply>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		</m:apply>
+
+		<m:apply>
+		  <m:times/>
+		  <m:apply><m:minus/><m:ci>R</m:ci><m:ci>L</m:ci></m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>u</m:ci>
+		    <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	<equation id="eqeq22">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci></m:bvar>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:apply><m:minus/><m:cn>1</m:cn><m:ci type="matrix">A</m:ci></m:apply>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p25">Output equation:</para>
+	
+	<equation id="eqeq23">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>y</m:ci>
+	      <m:apply>
+		<m:plus/>
+		<m:apply><m:minus/><m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:apply>
+		<m:ci>u</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p26">This equations can be more compactly written as:</para>
+	
+	<equation id="eqeq24">
+	  <m:math>
+	    <m:apply>
+		<m:eq/>
+	      <m:matrix>
+		<m:matrixrow><m:ci type="matrix">A</m:ci><m:ci type="matrix">B</m:ci></m:matrixrow>
+		<m:matrixrow><m:ci type="matrix">A</m:ci><m:ci type="matrix">D</m:ci></m:matrixrow>
+	      </m:matrix>
+	      
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:matrix>
+		    <m:matrixrow>
+		      <m:apply><m:minus/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>R</m:ci></m:apply><m:ci>L</m:ci></m:apply>
+		      <m:apply><m:minus/><m:cn>-1</m:cn><m:ci>L</m:ci></m:apply>
+		    </m:matrixrow>
+		    <m:matrixrow>
+		      <m:apply><m:minus/><m:cn>1</m:cn><m:ci type="matrix">A</m:ci></m:apply>
+		      <m:cn>0</m:cn>
+		    </m:matrixrow>
+		  </m:matrix>
+		  <m:matrix>
+		    <m:matrixrow><m:apply><m:minus/><m:ci>R</m:ci><m:ci>L</m:ci></m:apply></m:matrixrow>
+		    <m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		  </m:matrix>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:matrix>
+		    <m:matrixrow><m:cn>1</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  </m:matrix>
+		  <m:matrix>
+		    <m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		  </m:matrix>
+		</m:matrixrow>
+	      </m:matrix>
+		</m:apply>
+	  </m:math>
+	</equation>
+	
+      </example>
+      
+      
+      <example id="ex4">
+	
+	<para id="p27">The simple oscillator is defined by the following differential equation:</para>
+	
+	<equation id="eqeq25">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:diff/>
+		  <m:bvar><m:ci>t</m:ci><m:degree><m:cn>2</m:cn></m:degree></m:bvar>
+		  <m:ci>y</m:ci>
+		</m:apply>
+		<m:ci>y</m:ci>
+	      </m:apply>
+	      
+	      <m:ci>u</m:ci>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p28">The states are
+	  <m:math>
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      <m:ci>y</m:ci>
+	    </m:apply>
+	  </m:math>
+	  (which is also the output equation) and
+	  <m:math>
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		<m:ci>y</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	  These can be rewritten in state equation form as:</para>
+	
+	<equation id="eqeq26">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci></m:bvar>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      </m:apply>
+	      <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<equation id="eqeq27">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci></m:bvar>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply><m:minus/><m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:apply>
+		<m:ci>u</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p29">The compact matrix notation is:</para>
+	
+	<equation id="eqeq28">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:matrix>
+		<m:matrixrow><m:ci type="matrix">A</m:ci><m:ci type="matrix">B</m:ci></m:matrixrow>
+		<m:matrixrow><m:ci type="matrix">A</m:ci><m:ci type="matrix">D</m:ci></m:matrixrow>
+	      </m:matrix>
+	      
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:matrix>
+		    <m:matrixrow>
+		      <m:cn>0</m:cn>
+		      <m:cn>1</m:cn>
+		    </m:matrixrow>
+		    <m:matrixrow>
+		      <m:cn>-1</m:cn>
+		      <m:cn>0</m:cn>
+		    </m:matrixrow>
+		  </m:matrix>
+		  <m:matrix>
+		    <m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		    <m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+		  </m:matrix>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:matrix>
+		    <m:matrixrow><m:cn>1</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  </m:matrix>
+		  <m:matrix>
+		    <m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		  </m:matrix>
+		</m:matrixrow>
+			</m:matrix>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+      </example>
+      
+      
+    </section>
+  </content>
+</document>

@@ -1,0 +1,1739 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Linear Systems with Constant Coefficients</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>f88c1d87-e51b-4b25-b0d1-31576455cc69</md:uuid>
+</metadata>
+
+  
+  
+  <content>
+    <section id="analyzing"><title>Analyzing Linear Constant Coefficient Systems</title>
+      
+      <para id="p0">Constant coefficient linear systems describe LTI
+	systems and form the beginnings of the study of state-space
+	systems.  In general, an <m:math><m:ci>n</m:ci></m:math>-th 
+	order system such as this can be described by the following
+	differential equation, where <m:math><m:ci>u</m:ci></m:math> and <m:math><m:ci>y</m:ci></m:math> 
+	represent the input and output variables, respectively:</para>
+      
+      <equation id="eqgeneral_nth_order_system_diffeq">  
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    
+	    <m:apply>
+	      <m:plus/>
+	      
+	      <m:apply>
+		<m:diff/>
+		<m:bvar>
+		  <m:ci>t</m:ci>
+		  <m:degree><m:ci>n</m:ci></m:degree>
+		</m:bvar>
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>α</m:mi>
+		    <m:mrow>
+		      <m:mi>n</m:mi>
+		      <m:mo>-</m:mo>
+		      <m:mn>1</m:mn>
+		    </m:mrow>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:diff/>
+		  <m:bvar>
+		    <m:ci>t</m:ci>
+		    <m:degree><m:apply><m:minus/><m:ci>n</m:ci><m:cn>1</m:cn></m:apply></m:degree>
+		  </m:bvar>
+		  <m:apply>
+		    <m:ci type="fn">y</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:ci> … </m:ci>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>α</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		<m:apply>
+		  <m:diff/>
+		  <m:bvar>
+		    <m:ci>t</m:ci>
+		    <m:degree><m:cn>1</m:cn></m:degree>
+		  </m:bvar>
+		  <m:apply>
+		    <m:ci type="fn">y</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>α</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:apply>		<!-- start of RHS -->
+	      <m:plus/>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>β</m:mi><m:mi>m</m:mi></m:msub></m:ci>
+		<m:apply>
+		  <m:diff/>
+		  <m:bvar>
+		    <m:ci>t</m:ci>
+		    <m:degree><m:ci>m</m:ci></m:degree>
+		  </m:bvar>
+		  <m:apply>
+		    <m:ci type="fn">u</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub>
+		    <m:mi>β</m:mi>
+		    <m:mrow>
+		      <m:mi>m</m:mi>
+		      <m:mo>-</m:mo>
+		      <m:mn>1</m:mn>
+		    </m:mrow>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:diff/>
+		  <m:bvar>
+		    <m:ci>t</m:ci>
+		    <m:degree><m:apply><m:minus/><m:ci>m</m:ci><m:cn>1</m:cn></m:apply></m:degree>
+		  </m:bvar>
+		  <m:apply>
+		    <m:ci type="fn">u</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:ci> … </m:ci>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>β</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		<m:apply>
+		  <m:diff/>
+		  <m:bvar>
+		    <m:ci>t</m:ci>
+		    <m:degree><m:cn>1</m:cn></m:degree>
+		  </m:bvar>
+		  <m:apply>
+		    <m:ci type="fn">u</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>β</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+		<m:apply>
+		  <m:ci type="fn">u</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply> 	
+	    
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+      
+      <para id="p1">This is a linear differential equation with real-valued constant coefficients
+	<m:math><m:ci><m:msub><m:mi>α</m:mi><m:mi>i</m:mi></m:msub></m:ci></m:math>
+	and
+	<m:math><m:ci><m:msub><m:mi>β</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:math>.
+	We can represent this equation with a much more compact
+	notation by thinking of the differential operator as a
+	variable <m:math><m:ci>s</m:ci></m:math>, 
+	where the degree of the derivative corresponds to the power of
+	<m:math><m:ci>s</m:ci></m:math>. We will define
+	<m:math><m:apply><m:ci type="fn">q</m:ci><m:ci>s</m:ci></m:apply></m:math>
+	and
+	<m:math><m:apply><m:ci type="fn">p</m:ci> <m:ci>s</m:ci></m:apply> </m:math>
+	as <m:math><m:ci>n</m:ci></m:math>-th and <m:math><m:ci>m</m:ci></m:math>-th order polynomials in <m:math><m:ci>s</m:ci></m:math>.</para>
+      
+      <equation id="eqqofs">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    
+	    <m:apply>  <!-- start of RHS -->
+	      <m:plus/>
+	      
+	      <m:apply>
+		<m:power/>
+		<m:ci>s</m:ci>
+		<m:ci>n</m:ci>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub>
+		    <m:mi>α</m:mi>
+		    <m:mrow>
+		      <m:mi>n</m:mi>
+		      <m:mo>-</m:mo>
+		      <m:mn>1</m:mn>
+		    </m:mrow>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>s</m:ci>
+		  <m:apply><m:minus/><m:ci>n</m:ci><m:cn>1</m:cn></m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:ci>…</m:ci>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>α</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      
+	      <m:ci><m:msub><m:mi>α</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+	      
+	    </m:apply> <!-- end of RHS -->
+	    
+	  </m:apply> <!-- end of eq/ -->
+	</m:math>
+      </equation>  <!-- end of q(s) -->
+      
+      <equation id="eqpofs">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    
+	    <m:apply>
+	      <m:ci type="fn">p</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    
+	    <m:apply>  <!-- start of RHS -->
+	      <m:plus/>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>β</m:mi><m:mi>m</m:mi></m:msub></m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>s</m:ci>
+		  <m:ci>m</m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub>
+		    <m:mi>β</m:mi>
+		    <m:mrow>
+		      <m:mi>m</m:mi>
+		      <m:mo>-</m:mo>
+		      <m:mn>1</m:mn>
+		    </m:mrow>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>s</m:ci>
+		  <m:apply><m:minus/><m:ci>m</m:ci><m:cn>1</m:cn></m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:ci>…</m:ci>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>β</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      
+	      <m:ci><m:msub><m:mi>β</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+	      
+	    </m:apply> <!-- end of RHS -->
+	    
+	  </m:apply> <!-- end of eq/ -->
+	</m:math>
+      </equation> <!-- end of p(s) -->
+      
+      
+      <para id="p2">If we go ahead and say that
+	<m:math><m:apply><m:ci type="fn">q</m:ci> <m:ci>s</m:ci></m:apply></m:math>
+	and
+	<m:math><m:apply><m:ci type="fn">p</m:ci> <m:ci>s</m:ci></m:apply></m:math>
+	will take the differential operator as arguments, we can rewrite <link target-id="eqgeneral_nth_order_system_diffeq"/> as</para>
+
+      <equation id="eqq_y_p_u_time">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>   
+		<m:ci type="fn">q</m:ci>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>ⅆ</m:ci>
+		  <m:apply>
+		    <m:mo>ⅆ</m:mo>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>  
+		<m:ci type="fn">p</m:ci>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>ⅆ</m:ci>
+		  <m:apply>
+		    <m:mo>ⅆ</m:mo>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">u</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    
+	  </m:apply> <!-- end of eq/ -->
+	</m:math>
+      </equation>
+      
+      
+      
+      <para id="p3">Looking at differential equations in terms of polynomials such as
+	<m:math><m:apply><m:ci type="fn">q</m:ci> <m:ci>s</m:ci></m:apply></m:math>
+	and
+	<m:math><m:apply><m:ci type="fn">p</m:ci> <m:ci>s</m:ci></m:apply></m:math>
+	right away reminds us the Laplace transform.  Using the Laplace transform can often simplify the calculations involved in system analysis.</para>
+      
+      <example id="rlc_circuit">
+	
+	<para id="p4">By using Laplace domain tools to examine the RLC circuit seen before, the differential equation describing the behavior of this system is easy to deduce.</para>
+	
+	<figure id="rlc_imp" orient="horizontal">
+	  <title>RLC circuit: 2nd order (Impedances Labeled)</title>
+	  <media id="idm1189824" alt=""><image src="../../media/rlc_imp.png" mime-type="image/png"/></media>
+	  <caption>The resistor and inductor in series are combined in the impedance
+	    <m:math>
+	      <m:apply><m:ci type="fn"><m:msub><m:mi>Z</m:mi><m:mn>1</m:mn></m:msub></m:ci> <m:ci>s</m:ci></m:apply>
+	    </m:math>,
+	    and the resistor and capacitor in parallel form the impedance
+	    <m:math>
+	      <m:apply><m:ci type="fn"><m:msub><m:mi>Z</m:mi><m:mn>2</m:mn></m:msub></m:ci> <m:ci>s</m:ci></m:apply>
+	    </m:math>.
+	  </caption>
+	</figure>
+	
+	<equation id="eqex_transfer_func">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      
+	      <m:apply>
+		<m:divide/>
+		
+		<m:apply>
+		  <m:ci type="fn">Y</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		
+		<m:apply>
+		  <m:ci type="fn">U</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		
+	      </m:apply>  <!-- end of LHS -->
+	      
+	      <m:apply>
+		<m:divide/>
+		
+		<m:apply>
+		  <m:ci type="fn"><m:msub><m:mi>Z</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:ci type="fn"><m:msub><m:mi>Z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn"><m:msub><m:mi>Z</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		</m:apply>
+
+	      </m:apply>
+	      
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p5">where</para>
+	
+	<equation id="eqz1">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      
+	      <m:apply>
+		<m:ci type="fn"><m:msub><m:mi>Z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:plus/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>s</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p6">and</para>
+	
+	<equation id="eqz2">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      
+	      <m:apply>
+		<m:ci type="fn"><m:msub><m:mi>Z</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>s</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p7">This yields</para>
+	
+	<equation id="eqio_eq">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      
+	      <m:apply>
+		<m:ci type="fn">Y</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>6</m:cn>
+		  <m:apply>
+		    <m:plus/>
+		    
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>s</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    
+		    <m:apply>
+		      <m:times/>
+		      
+		      <m:apply>
+			<m:divide/>
+			<m:cn>7</m:cn>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      
+		      <m:ci>s</m:ci>
+		      
+		    </m:apply>
+		    
+		    <m:cn>9</m:cn>
+		  </m:apply>
+		</m:apply>
+		
+		<m:apply>
+		  <m:ci type="fn">U</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p8">By multiplying both sides by the denominator of the fraction and taking the inverse Laplace transform, the final differential equation describing the system is determined:</para>
+	
+	<equation id="eqrlc_diffeq">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      
+	      <m:apply>
+		<m:plus/>
+		
+		<m:apply>
+		  <m:diff/>
+		  <m:bvar>
+		    <m:ci>t</m:ci>
+		    <m:degree><m:cn>2</m:cn></m:degree>
+		  </m:bvar>
+		  <m:apply>
+		    <m:ci type="fn">y</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>7</m:cn><m:cn>2</m:cn>
+		  </m:apply>
+		  
+		  <m:apply>
+		    <m:diff/>
+		    <m:bvar>
+		      <m:ci>t</m:ci>
+		      <m:degree><m:cn>1</m:cn></m:degree>
+		    </m:bvar>
+		    <m:apply>
+		      <m:ci type="fn">y</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+
+		<m:apply>
+		  <m:times/>
+		  <m:cn>9</m:cn>
+		  <m:apply>
+		    <m:ci type="fn">y</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:cn>6</m:cn>
+		<m:apply>
+		  <m:ci type="fn">u</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	
+      </example>
+      
+      <para id="p9">The results from this example encourage us to apply Laplace techniques to earlier equations in this section.  By taking the Laplace transform of <link target-id="eqq_y_p_u_time"/>, we find that the transfer function of this system is simply the ratio of the two polynomials
+	<m:math><m:apply><m:ci type="fn">p</m:ci> <m:ci>s</m:ci></m:apply></m:math>
+	and
+	<m:math><m:apply><m:ci type="fn">q</m:ci> <m:ci>s</m:ci></m:apply></m:math>.</para>
+      
+
+
+      <section id="non_zero_init_cond"><title>Non-zero Initial Conditions</title>
+	
+	<para id="p10">By saying above that the Laplace transform of
+	  <m:math>
+	    <m:apply>
+	      <m:diff/>
+	      <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  is
+	  <m:math>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>s</m:ci>
+	      <m:apply>
+		<m:ci type="fn">Y</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  we are assuming that the system has zero initial conditions <!--CNXN-->.  Taking a more general approach, a factor to characterize the initial conditions must be included:</para>
+	
+	<equation id="eqlaplace_init_cond">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      
+	      <m:apply>
+            <m:ci type="fn" class="discrete">ℒ</m:ci>
+		<m:apply>
+		  <m:diff/>
+		  <m:bvar><m:ci>t</m:ci></m:bvar>
+		  <m:apply>
+		    <m:ci type="fn">y</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:minus/>
+		
+		<m:apply>
+		  <m:times/>
+		  <m:ci>s</m:ci>
+		  <m:apply>
+		    <m:ci type="fn">Y</m:ci>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		</m:apply>
+		
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+		</m:apply>
+
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p11">Note:
+	  <m:math><m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci></m:math>
+	  here means the instant immediately preceding time
+	  <m:math><m:apply><m:eq/><m:ci>t</m:ci><m:cn>0</m:cn></m:apply></m:math>;
+	  it represents the time right before we start paying attention to the system.  Also, some readers may be worried that by using
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+	    </m:apply>
+	  </m:math>
+	  in this equation, we are mixing frequency domain and time domain variables here.  However, as
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+	    </m:apply>
+	  </m:math>
+	  is simply a constant, there is no time domain component involved.</para>
+	
+	<example id="non_zero_init_cond_1">
+	  
+	  <para id="p12">Let's look at an example to see how these non-zero initial conditions come into play.  A first order system is described by the following differential equation:</para>
+	  
+	  <equation id="eqnon_zero_eq_1">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		
+		<m:apply>
+		  <m:plus/>
+		  
+		  <m:apply>
+		    <m:diff/>
+		    <m:bvar>
+		      <m:ci>t</m:ci>
+		      <m:degree><m:cn>1</m:cn></m:degree>
+		    </m:bvar>
+		    <m:apply>
+		      <m:ci type="fn">y</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msub><m:mi>α</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+		    <m:apply>
+		      <m:ci type="fn">y</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  
+		</m:apply>	<!-- end plus -->
+		
+		<m:apply>
+		  <m:ci type="fn">u</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  <para id="p13">When we take the Laplace transform of the derivative of
+	    <m:math><m:apply><m:ci type="fn">y</m:ci><m:ci>t</m:ci></m:apply></m:math>,
+	    we must remember to include a term that represents the initial values of the system output.</para>
+	  
+	  <equation id="eqnon_zero_eq_2">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		
+		<m:apply>
+		  <m:plus/>
+		  
+		  <m:apply>
+		    <m:minus/>
+		    
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>s</m:ci>
+		      <m:apply>
+			<m:ci type="fn">Y</m:ci>
+			<m:ci>s</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    
+		    <m:apply>
+		      <m:ci type="fn">y</m:ci>
+		      <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+		    </m:apply>
+		    
+		  </m:apply>
+		  
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msub><m:mi>α</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+		    <m:apply>
+		      <m:ci type="fn">Y</m:ci>
+		      <m:ci>s</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  
+		</m:apply>
+		
+		<m:apply>
+		  <m:ci type="fn">U</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  <para id="p14">By combining the
+	    <m:math><m:apply><m:ci type="fn">Y</m:ci><m:ci>s</m:ci></m:apply></m:math>
+	    terms we get </para>
+	  
+	  <equation id="eqnon_zero_eq_3">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		
+		<m:apply>
+		  <m:minus/>
+		  
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>s</m:ci>
+		      <m:ci><m:msub><m:mi>α</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">Y</m:ci>
+		      <m:ci>s</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  
+		  <m:apply>
+		    <m:ci>y</m:ci>
+		    <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+		  </m:apply>
+		  
+		</m:apply>
+		
+		<m:apply>
+		  <m:ci type="fn">U</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  <para id="p15">If we say that
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply><m:ci type="fn">q</m:ci><m:ci>s</m:ci></m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>s</m:ci>
+		  <m:ci><m:msub><m:mi>α</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	    and
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply><m:ci type="fn">p</m:ci><m:ci>s</m:ci></m:apply>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:math>,
+	    and define
+	    <m:math>
+	      <m:apply><m:ci type="fn">r</m:ci><m:ci>s</m:ci></m:apply>
+	    </m:math>
+	    as
+	    <m:math>
+	      <m:apply>
+		<m:ci>y</m:ci>
+		<m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+	      </m:apply>
+	    </m:math>,
+	    we can rearrange terms to get an expression relating
+	    <m:math>
+	      <m:apply>
+		<m:ci type="fn">Y</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:math>
+	    to
+	    <m:math>
+	      <m:apply>
+		<m:ci type="fn">U</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:math>
+	    that takes the initial conditions into account:</para>
+	  
+	  <equation id="eqio_eqn_with_init_cond">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		
+		<m:apply>
+		  <m:ci type="fn">Y</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		
+		<m:apply>
+		  <m:plus/>
+		  
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:ci type="fn">p</m:ci>
+			<m:ci>s</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">q</m:ci>
+			<m:ci>s</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">U</m:ci>
+		      <m:ci>s</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:ci type="fn">r</m:ci>
+		      <m:ci>s</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">q</m:ci>
+		      <m:ci>s</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  <para id="p16">What we have here is the Laplace domain solution to a differential equation describing a dynamical system.  There are two terms in this solution: one that relies on the input and one that does not.  These parts correspond to the particular and homogeneous solutions, respectively.  Taking the inverse Laplace transform, we can write (14) as:</para>
+	  
+	  <equation id="eqgen_diffeq_soln">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:ci type="fn"><m:msub><m:mi>y</m:mi><m:mi>part</m:mi></m:msub></m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn"><m:msub><m:mi>y</m:mi><m:mi>homo</m:mi></m:msub></m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  <para id="p17">Here,
+	    <m:math>
+	<m:apply>
+		<m:ci type="fn"><m:msub><m:mi>y</m:mi><m:mi>part</m:mi></m:msub></m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:math>
+	    corresponds to
+	    <m:math>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		<m:divide/>
+		  <m:apply>
+		    <m:ci type="fn">p</m:ci>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">q</m:ci>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">U</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	    and
+	    <m:math>
+	      <m:apply>
+		<m:ci type="fn"><m:msub><m:mi>y</m:mi><m:mi>homo</m:mi></m:msub></m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:math>
+	    corresponds to
+	    <m:math>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:ci type="fn">r</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">q</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>.
+	    This makes a lot of sense.  The particular solution (forced response) depends on a combination of
+	    <m:math>
+	      <m:apply>
+		<m:ci type="fn">q</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:math>,
+	    which describes how the system behaves independently, and
+	    <m:math>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:ci type="fn">p</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">U</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>,
+	    which describes how the system reacts to the input
+	    <m:math><m:ci>U</m:ci></m:math>.
+	    The homogeneous solution (natural response) depends on a combination of
+	    <m:math>
+	      <m:apply>
+		<m:ci type="fn">q</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:math>
+	    and
+	    <m:math>
+	      <m:apply>
+		<m:ci type="fn">r</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:math>,
+	    the latter of which contains information about the initial conditions of the system.</para>
+	  
+	</example>
+      </section> <!-- end non-zero initial conditions -->
+      
+      <example id="finding_diffeq_given_homo_soln">
+	
+	<para id="p18">Let's say that we know the homogeneous solution,
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>,
+	  to a differential equation describing a system.</para>
+	
+	<equation id="eqex3_eq1">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:exp/>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p19">Goal:  Using this solution, we want to try and figure out the system's
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>ⅆ</m:ci>
+		<m:apply>
+		  <m:mo>ⅆ</m:mo>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  function given zero initial conditions.</para>
+	
+	<para id="p20">Solution:</para>
+	
+	<para id="p21">From above, we know that for a homogeneous solution</para>
+	
+	<equation id="eqex3_eq_2">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:ci type="fn">r</m:ci>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>ⅆ</m:ci>
+		    <m:apply>
+		      <m:mo>ⅆ</m:mo>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">q</m:ci>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>ⅆ</m:ci>
+		    <m:apply>
+		      <m:mo>ⅆ</m:mo>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	
+	<para id="p22">We can clear the denominator by moving the
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>ⅆ</m:ci>
+		<m:apply>
+		  <m:mo>ⅆ</m:mo>
+		  <m:mi>t</m:mi>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  to the left-hand side.  And since we have zero initial conditions,
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">r</m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>ⅆ</m:ci>
+		<m:apply>
+		  <m:mo>ⅆ</m:mo>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  goes to 0: 
+	  
+	  <equation id="eqex3_eq_3">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:ci type="fn">q</m:ci>
+		    <m:apply>
+		      <m:divide/>
+		      <m:ci>ⅆ</m:ci>
+		      <m:apply>
+			<m:mo>ⅆ</m:mo>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">y</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		
+		<m:cn>0</m:cn>
+	      
+	    </m:apply>
+	  </m:math>
+	</equation>
+	</para>
+	
+	<para id="p23">The solution can quickly be determined by inspection because we know that the derivative of
+	  <m:math>
+	    <m:apply>
+	      <m:exp/>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>
+	  is
+	  <m:math>
+	    <m:apply>
+	      <m:exp/>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  Therefore a solution of
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      
+	      <m:apply>
+		<m:ci type="fn">q</m:ci>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>ⅆ</m:ci>
+		  <m:apply>
+		    <m:mo>ⅆ</m:mo>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>ⅆ</m:ci>
+		  <m:apply>
+		    <m:mo>ⅆ</m:mo>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:cn>1</m:cn>
+		</m:apply>
+	      
+	    </m:apply>
+	  </m:math>
+	  would work.  However, a more systematic approach will be necessary for more difficult situations.  We will investigate this approach here.</para>
+	
+	<para id="p24">Again, we will do our work in the Laplace domain.  By equating the Laplace transform of our homogeneous solution with the ratio of
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">r</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	  </m:math>
+	  and
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	  </m:math>
+as discussed above, we have:</para>
+	
+	<equation id="eqex3_eq_4">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      
+	      <m:apply>
+		<m:ci type="fn">Y</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      
+	      <m:apply>
+	       <m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>s</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:ci type="fn">r</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">q</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p25">Directly, we can see the solution for
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	  </m:math>:
+	  by simply setting the denominators equal to each other,
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">q</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>s</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	  This, of course, is the Laplace transform of the solution of
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>ⅆ</m:ci>
+		<m:apply>
+		  <m:mo>ⅆ</m:mo>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  that we found by inspection above.</para>
+	
+      </example>
+      
+      <example id="ex4">
+	
+	<para id="p26">Now that we have the basics down, we'll look at a more complicated example.  We are given</para>
+	
+	<equation id="eqex4_eq1">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>A</m:ci>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>a</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>B</m:ci>
+		  <m:ci>t</m:ci>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>b</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="p27">Goal:  We would like to find the differential equation whose homogeneous solution is
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>.
+	</para>
+	
+<para id="p28">Solution:</para>
+	
+	<para id="p29">Again, we take the Laplace transform of
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>,
+	  and then combine the two resultant fractions into one ratio of polynomials:</para>
+	
+	<equation id="eqex4_eq2">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      
+	      <m:apply>
+		<m:ci type="fn">Y</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+
+	      <m:apply>
+		<m:plus/>
+		
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>A</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>s</m:ci>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		</m:apply>
+		
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>B</m:ci>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>s</m:ci>
+		      <m:ci>b</m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:divide/>
+		
+		<m:apply>
+		  <m:plus/>
+		  
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>A</m:ci>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>s</m:ci>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>B</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>s</m:ci>
+		      <m:ci>a</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  
+		</m:apply>
+		
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>s</m:ci>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>s</m:ci>
+		      <m:ci>b</m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+		
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:ci type="fn">r</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">q</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	<para id="p30">Next, we equate the denominators of the last two fractions to find
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	  </m:math>:
+	</para>
+	
+	<equation id="eqex4_eq3">
+	  <m:math>
+	    <m:apply>
+		<m:eq/>
+	      
+	      <m:apply>
+		<m:ci type="fn">q</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>s</m:ci>
+		  <m:ci>a</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>s</m:ci>
+		    <m:ci>b</m:ci>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:plus/>
+		
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		      <m:ci>a</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>s</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>b</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:ci>a</m:ci>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>b</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		
+	      </m:apply>
+	      
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	
+	<para id="p31">Recalling the start of this module, multiplying
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	  </m:math>
+	  by
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">Y</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	  </m:math>
+	  and taking the inverse Laplace transform will yield the differential equation whose homogeneous solution is
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>:
+	</para>
+	
+	<equation id="eqex4_eq4">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      
+	      <m:apply>
+		<m:plus/>
+		
+		<m:apply>
+		  <m:minus/>
+		  
+		  <m:apply>
+		    <m:diff/>
+		    <m:bvar>
+		      <m:ci>t</m:ci>
+		      <m:degree><m:cn>3</m:cn></m:degree>
+		    </m:bvar>
+		    <m:apply>
+		      <m:ci type="fn">y</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		      <m:ci>a</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:diff/>
+		      <m:bvar>
+			<m:ci>t</m:ci>
+			<m:degree><m:cn>2</m:cn></m:degree>
+		      </m:bvar>
+		      <m:apply>
+			<m:ci type="fn">y</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  
+		</m:apply>
+		
+		<m:apply>
+		  <m:minus/>
+		  
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>b</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:ci>a</m:ci>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:diff/>
+		      <m:bvar>
+			<m:ci>t</m:ci>
+			<m:degree><m:cn>1</m:cn></m:degree>
+		      </m:bvar>
+		      <m:apply>
+			<m:ci type="fn">y</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>b</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">y</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  
+		</m:apply>
+		
+	      </m:apply>  <!-- end of plus -->
+	      
+	      <m:cn>0</m:cn>
+	      
+	    </m:apply>
+	    
+	  </m:math>
+	</equation>
+	
+	
+      </example>
+    </section>
+  </content>
+</document>

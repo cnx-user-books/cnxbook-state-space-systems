@@ -1,0 +1,333 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>The Concept of State</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>41b552cf-fbdb-4c81-8131-1641a95f736c</md:uuid>
+</metadata>
+
+  <!-- End Header ******************************* -->
+  <!-- ****************************************** -->
+  <content>
+    
+    <para id="p0">In order to characterize the memory of a dynamical system, we use a concept known as <term>state</term>.  <note type="Important!" id="idm7335344"><label>Important!</label>A system's state is defined as the minimal set of variables evaluated at
+      <m:math><m:apply><m:eq/><m:ci>t</m:ci><m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:apply></m:math>
+      needed to determine the future evolution of the system for
+      <m:math><m:apply><m:gt/><m:ci>t</m:ci><m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:apply></m:math>,
+      given the excitation
+<m:math><m:apply><m:ci type="fn">u</m:ci><m:ci>t</m:ci></m:apply></m:math>
+      for
+      <m:math><m:apply><m:gt/><m:ci>t</m:ci><m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:apply></m:math></note>.
+    </para>
+    
+    <example id="state_ex1">
+      
+      <para id="p1">We are given the following differential equation describing a system.  Note that
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:apply><m:ci type="fn">u</m:ci><m:ci>t</m:ci></m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>.
+      </para>
+      
+      <equation id="eqeq1">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    
+	    <m:apply>
+	      <m:plus/>
+	      
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      
+	    </m:apply>
+	    
+	    <m:cn>0</m:cn>
+
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      
+      
+      <para id="p2">Using the Laplace transform techniques described in the module on <link document="m2103">Linear Systems with Constant Coefficients</link>, we can find a solution for
+	<m:math><m:apply><m:ci type="fn">y</m:ci><m:ci>t</m:ci></m:apply></m:math>:</para>
+      
+      <equation id="eqeq2">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      
+      <para id="p3">As we need the information contained in
+	<m:math><m:apply><m:ci type="fn">y</m:ci><m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:apply></m:math>
+	for this solution,
+	<m:math><m:apply><m:ci type="fn">y</m:ci><m:ci>t</m:ci></m:apply></m:math>
+	defines the state.</para>
+      
+    </example>
+    
+    <example id="state_ex2">
+      
+      <para id="p4">The differential equation describing an unforced system is:</para>
+      
+      <equation id="eqeq3">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    
+	    <m:apply>
+	      <m:plus/>
+	      
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:cn>2</m:cn></m:degree></m:bvar>
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:cn>3</m:cn>
+		<m:apply>
+		  <m:diff/>
+		  <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		  <m:apply>
+		    <m:ci type="fn">y</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	    </m:apply>
+	    
+	    <m:cn>0</m:cn>
+	    
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      
+      
+      <para id="p5">Finding the
+	<m:math><m:apply><m:ci type="fn">q</m:ci><m:ci>s</m:ci></m:apply></m:math>
+	function, we have</para>
+      
+      <equation id="eqeq4">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:plus/>
+
+	      <m:apply>
+		<m:power/>
+		<m:ci>s</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:cn>3</m:cn>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      
+	      <m:cn>2</m:cn>
+	      
+	    </m:apply>
+	    
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <para id="p6">The roots of this function are
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	    <m:cn>-1</m:cn>
+	  </m:apply>
+	</m:math>
+	and
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub><m:mi>λ</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	    <m:cn>-2</m:cn>
+	  </m:apply>
+	</m:math>.
+	These values are used in the solution to the differential equation as the exponents of the exponential functions:</para>
+      
+      <equation id="eqeq5">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>c</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>c</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>-2</m:cn>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      
+      <para id="p7">where
+	<m:math><m:ci><m:msub><m:mi>c</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:math>
+	and
+	<m:math><m:ci><m:msub><m:mi>c</m:mi><m:mn>2</m:mn></m:msub></m:ci></m:math>
+	are constants.  To determine the values of these constants we would need two equations (with two equations and two unknowns, we can find the unknowns).  If we knew
+	<m:math><m:apply><m:ci type="fn">y</m:ci><m:cn>0</m:cn></m:apply></m:math>
+	and
+	<m:math>
+	  <m:apply>
+	    <m:diff/>
+	    <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	we could find two equations, and we could then solve for
+	<m:math><m:apply><m:ci type="fn">y</m:ci><m:ci>t</m:ci></m:apply></m:math>.
+	Therefore the system's state,
+	<m:math><m:apply><m:ci type="fn">x</m:ci><m:ci>t</m:ci></m:apply></m:math>,
+	is</para>
+      
+      <equation id="eqeq6">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:diff/>
+		  <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		  <m:apply>
+		    <m:ci type="fn">y</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:matrixrow>
+	    </m:matrix>
+	    
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      
+      <para id="p8">In fact, the state can also be defined as any two non-trivial (i.e. independent) linear combinations of
+	<m:math><m:apply><m:ci type="fn">y</m:ci><m:ci>t</m:ci></m:apply></m:math>
+	and
+	<m:math>
+	  <m:apply>
+	    <m:diff/>
+	    <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	.</para>
+      
+    </example>
+    
+    <para id="p9"><note type="Important!" id="idp4551872"><label>Important!</label><emphasis>Basically, a system's state summarizes its entire past.  It describes the memory-side of dynamical systems.</emphasis></note></para>
+    
+    
+  </content>
+</document>

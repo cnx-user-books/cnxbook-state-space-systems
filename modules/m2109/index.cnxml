@@ -1,0 +1,964 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Laplace Example</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>a6be952c-55dd-4361-88a4-0cd69dbc28e8</md:uuid>
+</metadata>
+
+
+  
+  <content>
+    <example id="ex1">
+      
+      <figure id="fig1" orient="horizontal">
+	<title>RLC circuit</title>
+	<media id="idm7718432" alt=""><image src="../../media/le_fig1.png" mime-type="image/png"/></media>
+	<caption>RLC circuit</caption>
+      </figure>
+      
+      <equation id="eqeq01">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+	    </m:apply>
+	    <m:cn>-1</m:cn>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <equation id="eqeq02">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:diff/>
+	      <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <equation id="eqeq03">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:diff/>
+	      <m:bvar><m:ci>t</m:ci><m:degree><m:cn>2</m:cn></m:degree></m:bvar>
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>-4</m:cn>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      
+      <para id="p1">Find the step response for the system above, when
+	<m:math><m:apply><m:ci type="fn">u</m:ci><m:ci>t</m:ci></m:apply></m:math>
+	is the input and
+	<m:math><m:apply><m:ci type="fn">y</m:ci><m:ci>t</m:ci></m:apply></m:math>
+	is the output (i.e. find
+	<m:math><m:apply><m:ci type="fn">y</m:ci><m:ci>t</m:ci></m:apply></m:math>
+	for
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">u</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">step</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>).
+      </para>
+      
+      <equation id="eqeq1">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">Y</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>Admittance</m:ci>
+	      <m:apply>
+		<m:ci type="fn">U</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <equation id="eqeq2">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>Admittance</m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:cn>1</m:cn>
+	      <m:ci>Impedance</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:minus/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>s</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:plus/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>2</m:cn>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>3</m:cn>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>4</m:cn>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>s</m:ci>
+		  <m:cn>3</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:ci>s</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <equation id="eqeq3">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">Y</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>s</m:ci>
+		      <m:cn>3</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>3</m:cn>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>s</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>4</m:cn>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>s</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>s</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:ci type="fn">U</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <para id="p2">With our previous definition of
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    
+	    <m:apply>
+	      <m:times/>
+	      
+	      <m:apply>
+		<m:ci>q</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>d</m:ci>
+		  <m:apply>
+		    <m:mo>ⅆ</m:mo>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      
+	    </m:apply> <!-- end of LHS -->
+	    
+	    <m:apply>
+	      <m:times/>
+	      
+	      <m:apply>
+		<m:ci>p</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>d</m:ci>
+		  <m:apply>
+		    <m:mo>ⅆ</m:mo>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:ci type="fn">u</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      
+	    </m:apply>  <!-- end of RHS -->
+	    
+	  </m:apply> <!-- end of eq/ -->
+	</m:math>
+	we can define the Laplace domain equivalents of <m:math><m:ci>q</m:ci></m:math> and <m:math><m:ci>p</m:ci></m:math> as:
+	</para>
+      
+      <equation id="eqeq4">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>s</m:ci>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>s</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:ci>s</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <equation id="eqeq5">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">p</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>s</m:ci>
+		  <m:cn>3</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>3</m:cn>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>s</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>4</m:cn>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <para id="p5">When we multiply
+	<m:math><m:apply><m:ci type="fn">q</m:ci><m:ci>s</m:ci></m:apply></m:math>
+	times
+	<m:math><m:apply><m:ci type="fn">Y</m:ci><m:ci>s</m:ci></m:apply></m:math>,
+	we have to remember to include terms relating to the initial conditions of
+	<m:math><m:apply><m:ci type="fn">y</m:ci><m:ci>t</m:ci></m:apply></m:math>.
+	We normally think of the Laplace transform of
+	<m:math>
+	  <m:apply><m:diff/><m:bvar><m:ci>t</m:ci></m:bvar><m:apply><m:ci type="fn">y</m:ci><m:ci>t</m:ci></m:apply></m:apply>
+	</m:math>
+	as
+	<m:math>
+	  <m:apply><m:times/><m:ci>s</m:ci><m:apply><m:ci type="fn">Y</m:ci><m:ci>s</m:ci></m:apply></m:apply>
+	</m:math>.
+	However, in reality, the general transform is as follows:</para>
+      
+      <equation id="eqeq9">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn" class="discrete">ℒ</m:ci>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:ci>n</m:ci></m:degree></m:bvar>
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:apply>						<!-- first minus -->
+	      <m:minus/>
+	      <m:apply>					<!-- 2nd minus -->
+		<m:minus/>
+		<m:apply>			<!-- 3rd minus -->
+		  <m:minus/>
+		  
+		  <m:apply>		<!-- 4th minus -->
+		    <m:minus/>
+		    <m:apply>	<!-- 5th minus -->
+		      <m:minus/>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>s</m:ci>
+			  <m:ci>n</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">Y</m:ci>
+			  <m:ci>s</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>s</m:ci>
+			  <m:apply>
+			    <m:minus/>
+			    <m:ci>n</m:ci>
+			    <m:cn>1</m:cn>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">y</m:ci>
+			  <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>		<!-- end of 5th minus -->
+		    
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>s</m:ci>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>n</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:diff/>
+			<m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+			<m:apply>
+			  <m:ci type="fn">y</m:ci>
+			  <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>				<!-- end 4th minus -->
+
+		  <m:ci>…</m:ci>
+
+		</m:apply>					<!-- end 3rd minus -->
+		
+		<m:apply>
+		  <m:times/>
+		  <m:ci>s</m:ci>
+		  <m:apply>
+		    <m:diff/>
+		    <m:bvar><m:ci>t</m:ci><m:degree><m:apply><m:minus/><m:ci>n</m:ci><m:cn>2</m:cn></m:apply></m:degree></m:bvar>
+		    <m:apply>
+		      <m:ci type="fn">y</m:ci>
+		      <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		
+	      </m:apply>				<!-- end 2nd minus -->
+	      
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:apply><m:minus/><m:ci>n</m:ci><m:cn>1</m:cn></m:apply></m:degree></m:bvar>
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	    </m:apply>					<!-- end 1st minus -->
+	    
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <para id="p6">Therefore, using the initial conditions stated above, we can find the Laplace transforms of the first three derivatives of
+	<m:math><m:apply><m:ci type="fn">y</m:ci><m:ci>t</m:ci></m:apply></m:math>.
+      </para>
+      
+      <equation id="eqeq10">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	  <m:ci type="fn" class="discrete">ℒ</m:ci>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:cn>3</m:cn></m:degree></m:bvar>
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:minus/>
+		
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>s</m:ci>
+		      <m:cn>3</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">Y</m:ci>
+		      <m:ci>s</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+		
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:ci>s</m:ci>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:cn>4</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <equation id="eqeq11">
+
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	  <m:ci type="fn" class="discrete">ℒ</m:ci>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:cn>2</m:cn></m:degree></m:bvar>
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:minus/>
+	      
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">Y</m:ci>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	    
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      
+      <equation id="eqeq12">
+
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	  <m:ci type="fn" class="discrete">ℒ</m:ci>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		<m:apply>
+		  <m:ci type="fn">y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>s</m:ci>
+		<m:apply>
+		  <m:ci type="fn">Y</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>1</m:cn>
+	    </m:apply>
+	    
+	    
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <para id="p8">We can now get a complete <m:math><m:ci>s</m:ci></m:math>-domain equation relating the output to the input by taking the Laplace transform of
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    
+	    <m:apply>
+	      <m:times/>
+	      
+	      <m:apply>
+		<m:ci>q</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>d</m:ci>
+		  <m:apply>
+		    <m:mo>ⅆ</m:mo>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      
+	    </m:apply> <!-- end of LHS -->
+	    
+	    <m:apply>
+	      <m:times/>
+	      
+	      <m:apply>
+		<m:ci>p</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>d</m:ci>
+		  <m:apply>
+		    <m:mo>ⅆ</m:mo>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:ci type="fn">u</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      
+	    </m:apply>  <!-- end of RHS -->
+	    
+	  </m:apply> <!-- end of eq/ -->
+	</m:math>.
+	The transform of the right-hand side of this equation is simple as the initial conditions of
+	<m:math><m:apply><m:ci type="fn">y</m:ci><m:ci>t</m:ci></m:apply></m:math>
+	do not come into play here.  The result is just the product of
+	<m:math><m:apply><m:ci type="fn">p</m:ci><m:ci>s</m:ci></m:apply></m:math> and
+	the transform of the step function <m:math><m:apply><m:apply><m:minus/><m:cn>1</m:cn><m:ci>s</m:ci></m:apply></m:apply></m:math>.
+      </para>
+      
+
+      <para id="p9">The left-hand side is somewhat more complicated because we have to make certain that the initial conditions are accounted for.  To accomplish this, we take a linear combination of <link target-id="eqeq10" strength="2">Laplace transform of the third derivative of y(t)</link>, <link target-id="eqeq11" strength="2">Laplace transform of the second derivative of y(t)</link>, and <link target-id="eqeq12" strength="2">Laplace transform of the first derivative of y(t)</link> according to the polynomial
+	<m:math><m:apply><m:ci type="fn">q</m:ci><m:ci>s</m:ci></m:apply></m:math>.
+	That is to say, we use the coefficients of the s terms in
+	<m:math><m:apply><m:ci type="fn">q</m:ci><m:ci>s</m:ci></m:apply></m:math>
+	to determine how to combine these three equations.  We take 1
+	of <link target-id="eqeq10" strength="2">Laplace transform of the
+	third derivative of y(t)</link> plus 2 of 
+	<link target-id="eqeq11" strength="2">Laplace transform of the
+	second derivative of y(t)</link> plus 1 of 
+	<link target-id="eqeq12" strength="2"> Laplace transform of the
+	first derivative of y(t)</link> plus 2. </para>
+      
+      
+      <para id="p10">When we sum these components, collect the
+	<m:math><m:apply><m:ci type="fn">Y</m:ci><m:ci>s</m:ci></m:apply></m:math>
+	terms, and set it equal to the right-hand side, we have:</para>
+      
+      <equation id="eqeq13">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>s</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>s</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">Y</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:power/>
+		<m:ci>s</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:cn>1</m:cn>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>3</m:cn>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>4</m:cn>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:cn>1</m:cn>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      <para id="p14">Rearranging, we can find the solution to
+	<m:math><m:apply><m:ci type="fn">Y</m:ci><m:ci>s</m:ci></m:apply></m:math>:
+      </para>
+
+      <equation id="eqeq14">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">Y</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:minus/>
+
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:minus/>
+
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:apply>
+			<m:power/>
+			<m:ci>s</m:ci>
+			<m:cn>3</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>3</m:cn>
+		      <m:apply>
+			<m:power/>
+			<m:ci>s</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>4</m:cn>
+		      <m:ci>s</m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>s</m:ci>
+		      <m:cn>3</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:apply>
+			<m:power/>
+			<m:ci>s</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci>s</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+
+		</m:apply>
+		
+		<m:apply>
+		  <m:minus/>
+		  <m:cn>1</m:cn>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		
+	      </m:apply>
+
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:cn>1</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>s</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>s</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+
+	    </m:apply>
+	  </m:apply>
+
+	</m:math>
+      </equation>
+
+      <para id="p16">This solution can be looked at in two parts.  The first term on the right-hand side is the particular (or forced) solution.  You can see how it depends on
+	<m:math><m:apply><m:ci type="fn">p</m:ci><m:ci>s</m:ci></m:apply></m:math>
+and
+	<m:math><m:apply><m:ci type="fn">u</m:ci><m:ci>s</m:ci></m:apply></m:math>.
+The second term is the homogeneous (or natural) solution.  The numerator of this term describes how the initial conditions of the system affect the solution (recall that
+	<m:math>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>s</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math>
+was the part of the result of the linear combination of <link target-id="eqeq10" strength="2">Laplace transform of the
+	third derivative of y(t)</link>, <link target-id="eqeq11" strength="2">Laplace transform of the
+	second derivative of y(t)</link>, <link target-id="eqeq12" strength="2">Laplace transform of the
+	first derivative of y(t)</link>).  The denominator of the second term is the
+<m:math><m:apply><m:ci type="fn">q</m:ci><m:ci>s</m:ci></m:apply></m:math>
+polynomial; it serves to describe the system in general.</para>
+
+    </example>
+  </content>
+
+
+
+</document>

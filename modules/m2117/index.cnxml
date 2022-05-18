@@ -1,0 +1,279 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Diagonalizability</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>43fefe51-f2bf-4fef-9439-e41bbb3ff381</md:uuid>
+</metadata>
+
+  
+  <content>
+    <para id="p0">
+      A diagonal matrix is one whose elements not on the diagonal are equal to <m:math><m:cn>0</m:cn></m:math>. The following matrix is one example.
+
+      <m:math display="block">
+	<m:matrix>
+	  <m:matrixrow><m:ci>a</m:ci><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+	  <m:matrixrow><m:cn>0</m:cn><m:ci>b</m:ci><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+	  <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:ci>c</m:ci><m:cn>0</m:cn></m:matrixrow>
+	  <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:ci>d</m:ci></m:matrixrow>
+	</m:matrix>
+</m:math>
+    </para>
+    
+    <para id="p1">
+      A matrix <m:math><m:ci type="matrix">A</m:ci></m:math> is diagonalizable if there exists a matrix
+      <m:math>
+	<m:apply>
+	  <m:in/>
+	  <m:ci>V</m:ci>
+	  <m:apply>
+	    <m:power/>
+	    <m:reals/>
+	    <m:apply>
+	      <m:mo>×</m:mo>
+	      <m:ci>n</m:ci>
+	      <m:ci>n</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>,
+      <m:math>
+	<m:apply>
+	  <m:neq/>
+	  <m:apply>
+	    <m:determinant/>
+	    <m:ci>V</m:ci>
+	  </m:apply>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>
+      such that
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>V</m:ci>
+	    <m:ci>A</m:ci>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:ci>V</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:ci>Λ</m:ci>	
+	</m:apply>
+      </m:math>
+      is diagonal. In such a case, the diagonal entries of <m:math><m:ci type="matrix">Λ</m:ci></m:math> are the eigenvalues of <m:math><m:ci type="matrix">A</m:ci></m:math>. 
+      </para>
+    
+    <para id="p2">Let's take an eigenvalue decomposition example to work backwards to this result.</para>
+    
+    <para id="p3">Assume that the matrix <m:math><m:ci type="matrix">A</m:ci></m:math> has eigenvectors <m:math><m:ci type="vector">v</m:ci></m:math> and <m:math><m:ci type="vector">w</m:ci></m:math>
+      and the respective eigenvalues
+      <m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mi>v</m:mi></m:msub></m:ci></m:math>
+      and
+      <m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mi>w</m:mi></m:msub></m:ci></m:math>:
+      
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:ci type="vector">v</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci><m:msub><m:mi>λ</m:mi><m:mi>v</m:mi></m:msub></m:ci>
+	    <m:ci type="vector">v</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:ci type="vector">w</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci><m:msub><m:mi>λ</m:mi><m:mi>w</m:mi></m:msub></m:ci>
+	    <m:ci type="vector">w</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      
+    </para>
+    
+    <para id="p4">We can combine these two equations into an equation of matrices:
+      
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	<m:times/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:matrix>
+	      <m:matrixrow><m:ci type="vector">v</m:ci><m:ci type="vector">w</m:ci></m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	  <m:apply>
+	<m:times/>
+	    <m:matrix>
+	      <m:matrixrow><m:ci type="vector">v</m:ci><m:ci type="vector">w</m:ci></m:matrixrow>
+	    </m:matrix>
+	    <m:matrix>
+	      <m:matrixrow><m:ci><m:msub><m:mi>λ</m:mi><m:mi>v</m:mi></m:msub></m:ci><m:cn>0</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:ci><m:msub><m:mi>λ</m:mi><m:mi>v</m:mi></m:msub></m:ci></m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      
+    </para>
+    
+    <para id="p5">To simplify this equation, we can replace the eigenvector matrix with <m:math><m:ci type="matrix">V</m:ci></m:math> and the eigenvalue matrix with <m:math><m:ci type="matrix">Λ</m:ci></m:math>.
+      
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:ci type="matrix">V</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci type="matrix">V</m:ci>
+	    <m:ci type="matrix">Λ</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      
+    </para>
+    
+    <para id="p6">Now, by multiplying both sides of the equation by
+      <m:math>
+	<m:apply>
+	  <m:inverse/>
+	  <m:ci type="matrix">V</m:ci>
+	</m:apply>
+      </m:math>,
+      we see the diagonalizability equation discussed above.</para>
+    
+    <equation id="eqeq1">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci type="matrix">A</m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci type="matrix">V</m:ci>
+	    <m:ci type="matrix">Λ</m:ci>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:ci type="matrix">V</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+<para id="p7">When is such a diagonalization possible?  The condition is that the algebraic multiplicity equal the geometric multiplicity for each eigenvalue,
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msub><m:mi>α</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+	  <m:ci><m:msub><m:mi>γ</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+	</m:apply>
+      </m:math>.
+      This makes sense; basically, we are saying that there are as many eigenvectors as there are eigenvalues.  If it were not like this, then the <m:math><m:ci type="matrix">V</m:ci></m:math> matrices would not be square, and therefore could not be inverted as is required by <link target-id="eqeq1" strength="3">the diagonalizability equation</link>.  Remember that the eigenspace associated with a certain eigenvalue <m:math><m:ci>λ</m:ci></m:math> is given by
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">ker</m:ci>
+	  <m:apply>
+	    <m:minus/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>λ</m:ci>
+	      <m:ci type="matrix">I</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>.</para>  
+    
+    <para id="p8">This concept of diagonalizability will come in handy in different linear algebra manipulations later.  We can however, see a time-saving application of it now.  If the matrix <m:math><m:ci type="matrix">A</m:ci></m:math> is diagonalizable, and we know its eigenvalues
+      <m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mi>i</m:mi></m:msub></m:ci></m:math>,
+      then we can immediately find the eigenvalues of
+      <m:math>
+	<m:apply>
+	  <m:power/>
+	  <m:ci type="matrix">A</m:ci>
+	  <m:cn>2</m:cn>
+	</m:apply>
+      </m:math>:
+      
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">V</m:ci>
+	      <m:ci type="matrix">Λ</m:ci>
+	      <m:apply>
+		<m:inverse/>
+		<m:ci type="matrix">V</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">V</m:ci>
+	      <m:ci type="matrix">Λ</m:ci>
+	      <m:apply>
+		<m:inverse/>
+		<m:ci type="matrix">V</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci type="matrix">V</m:ci>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci type="matrix">Λ</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:ci type="matrix">V</m:ci>
+	    </m:apply>
+	  </m:apply>			
+	</m:apply>
+      </m:math>
+      
+    </para>
+    
+    <para id="p9">The eigenvalues of
+      <m:math>
+	<m:apply>
+	  <m:power/>
+	  <m:ci type="matrix">A</m:ci>
+	  <m:cn>2</m:cn>
+	</m:apply>
+      </m:math>
+      are simply the eigenvalues of <m:math><m:ci type="matrix">A</m:ci></m:math>,
+      squared.</para>
+    
+  </content>
+</document>

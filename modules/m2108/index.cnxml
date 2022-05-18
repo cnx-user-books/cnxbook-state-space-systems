@@ -1,0 +1,525 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Laplace Domain Solutions to State and Output Equations</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>4fbf3e2e-5975-4106-878b-11576533965b</md:uuid>
+</metadata>
+
+
+  <!-- End Header ******************************* -->
+  <!-- ****************************************** -->
+  
+
+  <content>
+    <para id="p0">As always, it is useful to look at the solutions to the state and output equations from a Laplace domain perspective.  We start with the general forms of the state and output equations.</para>
+    
+    <equation id="eqeq1">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:diff/>
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>A</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>B</m:ci>
+	      <m:ci>u</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <equation id="eqeq2">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>y</m:ci>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>C</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>D</m:ci>
+	      <m:ci>u</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+
+    <para id="p1">Let's take a look at the state equation.  In the time-domain version of this analysis, we had to use a combination of derivatives and integrals to find the solution
+      <m:math><m:apply><m:ci type="function">x</m:ci><m:ci>t</m:ci></m:apply></m:math>.
+Making an analogy to Laplace-domain equations, we know that derivatives and integrals in time equate to multiplies and divides in frequency.  So, we suspect that finding the Laplace-domain solution
+      <m:math><m:apply><m:ci type="function">X</m:ci><m:ci>s</m:ci></m:apply></m:math>
+      might be significantly easier.  We will start by taking the Laplace transform of the state equation.</para>
+    
+    <equation id="eqeq3">
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn" class="discrete">ℒ</m:ci>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:diff/>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>A</m:ci>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:ci>B</m:ci>
+		<m:ci>u</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+
+    <equation id="eqeq4">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>s</m:ci>
+	      <m:apply>
+		<m:ci type="fn">X</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>A</m:ci>
+	      <m:apply>
+		<m:ci type="fn">X</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>B</m:ci>
+	      <m:apply>
+		<m:ci type="fn">U</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+	</m:math>
+    </equation>
+    
+    <para id="p2">If we collect the
+      <m:math><m:apply><m:ci type="fn">X</m:ci><m:ci>s</m:ci></m:apply></m:math>
+      terms on the left-hand side, we can come up with</para>
+    
+    <equation id="eqeq5">
+ 	<m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>s</m:ci>
+		<m:ci>I</m:ci>
+	      </m:apply>
+	      <m:ci>A</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">X</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>B</m:ci>
+	      <m:apply>
+		<m:ci type="fn">U</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p3">We see immediately that we the solution for
+      <m:math><m:apply><m:ci type="function">X</m:ci><m:ci>s</m:ci></m:apply></m:math>
+      is staring us in the face.  All we have to do is get the
+      <m:math><m:apply><m:minus/><m:apply><m:times/><m:ci>s</m:ci><m:ci>I</m:ci></m:apply><m:ci>A</m:ci></m:apply></m:math>
+      to the other side.  Remembering that this term is actually a matrix, we know we can't just divide through by it; instead, we left-multiply both sides of the equation with the inverse of this term.  This yields</para>
+    
+    <equation id="eqeq6">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">X</m:ci>
+	    <m:ci>s</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:inverse/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>s</m:ci>
+		    <m:ci>I</m:ci>
+		  </m:apply>
+		  <m:ci>A</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:inverse/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>s</m:ci>
+		    <m:ci>I</m:ci>
+		  </m:apply>
+		  <m:ci>A</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:ci>B</m:ci>
+	      <m:apply>
+		<m:ci type="fn">U</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p4">If we take the time-domain solution for
+      <m:math><m:apply><m:ci type="function">x</m:ci><m:ci>t</m:ci></m:apply></m:math>
+      found before, we can take its Laplace transform and arrive at this same result.</para>
+    
+    <equation id="eqeq7">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn" class="discrete">ℒ</m:ci>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>A</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">x</m:ci>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar><m:ci>τ</m:ci></m:bvar>
+		  <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		  <m:uplimit><m:ci>t</m:ci></m:uplimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:exp/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>A</m:ci>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>t</m:ci>
+			  <m:ci>τ</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci>B</m:ci>
+		    <m:apply>
+		      <m:ci type="fn">u</m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:ci type="fn">X</m:ci>
+	    <m:ci>s</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p5">You can see how this equation would transform into <link target-id="eq6" strength="3">X(s) result equation</link>.  We know that the Laplace transform of the matrix exponential is
+      <m:math>
+	<m:apply>
+	  <m:inverse/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		<m:times/>
+		  <m:ci>s</m:ci>
+		  <m:ci>I</m:ci>
+		</m:apply>
+		<m:ci>A</m:ci>
+	      </m:apply>
+	</m:apply>
+      </m:math>.
+      The first term is simply this quantity times the scalar
+      <m:math><m:apply><m:ci type="function">x</m:ci><m:cn>0</m:cn></m:apply></m:math>.
+      Since the integral term has the form of a convolution, the Laplace-domain equivalent is simple a multiplication.</para>
+    
+    <para id="p6">Finding the Laplace-domain output equation solution is just as easy.  Again, we start by taking the Laplace transform of the output equation.  This gives us</para>
+    
+    <equation id="eqeq8">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">Y</m:ci>
+	    <m:ci>s</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>C</m:ci>
+	      <m:apply>
+		<m:ci type="fn">X</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>D</m:ci>
+	      <m:apply>
+		<m:ci type="fn">U</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p7">You might be thinking that this is the end result: we have an expression for
+      <m:math><m:apply><m:ci type="fn">Y</m:ci><m:ci>s</m:ci></m:apply></m:math>.
+      However, we must remember that we want these solutions to be in terms of known quantities.  Namely, these quantities are the initial conditions and the inputs.  So what we need to get rid of is the
+      <m:math><m:apply><m:ci type="fn">X</m:ci><m:ci>s</m:ci></m:apply></m:math>
+      term.  Fortunately, we just found an expression for
+      <m:math><m:apply><m:ci type="fn">X</m:ci><m:ci>s</m:ci></m:apply></m:math>
+      in terms of the initial conditions and the inputs.  Plugging in that equation into the output equation solution, we get</para>
+    
+    <equation id="eqeq9">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">Y</m:ci>
+	    <m:ci>s</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>C</m:ci>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:inverse/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>s</m:ci>
+			<m:ci>I</m:ci>
+		      </m:apply>
+		      <m:ci>A</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">x</m:ci>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:inverse/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>s</m:ci>
+			<m:ci>I</m:ci>
+		      </m:apply>
+		      <m:ci>A</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>B</m:ci>
+		  <m:apply>
+		    <m:ci type="fn">U</m:ci>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>D</m:ci>
+	      <m:apply>
+		<m:ci type="fn">U</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p10">When we multiply the <m:math><m:ci>C</m:ci></m:math>
+      through and collect the
+      <m:math><m:apply><m:ci type="function">U</m:ci><m:ci>s</m:ci></m:apply></m:math>
+      terms, we get a final expression for the output equation solution:</para>
+    
+    <equation id="eqeq10">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">Y</m:ci>
+	    <m:ci>s</m:ci>
+	  </m:apply>
+	  
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>C</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:inverse/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>s</m:ci>
+		      <m:ci>I</m:ci>
+		    </m:apply>
+		    <m:ci>A</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">x</m:ci>
+		  <m:cn>0</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>C</m:ci>
+		  <m:apply>
+		    <m:inverse/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>s</m:ci>
+			<m:ci>I</m:ci>
+		      </m:apply>
+		      <m:ci>A</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>B</m:ci>
+		</m:apply>
+		<m:ci>D</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">U</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    
+    <para id="p11">It is interesting to note that the two addends in this equation represent the free response (the initial condition term) and the forced response (the input term) of the system.</para>
+    
+  </content>
+</document>

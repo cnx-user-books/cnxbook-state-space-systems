@@ -1,0 +1,399 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Matrix Inversion</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>8dacdf5a-bcb2-4063-b56a-653a0b3d328c</md:uuid>
+</metadata>
+
+  
+  <content>
+    <para id="p0">
+      Let's say we have the square <m:math><m:ci>n</m:ci></m:math> x <m:math><m:ci>n</m:ci></m:math> matrix <m:math><m:ci type="matrix">A</m:ci></m:math> 
+      composed of real numbers.  By "square", we mean it has the same number 
+      of rows as columns.
+      
+      <equation id="eqn1">
+	<m:math mode="inline">
+	  <m:apply>
+          <m:eq/>
+            <m:ci type="matrix">A</m:ci>
+            <m:matrix>
+              <m:matrixrow>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>1</m:cn><m:cn>1</m:cn></m:apply>
+                <m:ci>…</m:ci>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>1</m:cn><m:ci>n</m:ci></m:apply>
+              </m:matrixrow>
+              <m:matrixrow>
+                <m:ci>⋮</m:ci>
+                <m:ci>⋱</m:ci>
+                <m:ci>⋮</m:ci>
+              </m:matrixrow>
+              <m:matrixrow>
+<m:apply><m:selector/><m:ci>a</m:ci><m:ci>n</m:ci><m:cn>1</m:cn></m:apply>
+                <m:ci>…</m:ci>
+<m:apply><m:selector/><m:ci>a</m:ci><m:ci>n</m:ci><m:ci>n</m:ci></m:apply>
+              </m:matrixrow>
+            </m:matrix>
+        </m:apply>
+	</m:math>
+      </equation>
+    </para>
+    
+    <para id="p1">
+      The subscripts of the real numbers in this matrix denote the row and
+      column numbers, respectively (i.e. 
+      <m:math><m:apply><m:selector/><m:ci>a</m:ci><m:cn>1</m:cn><m:cn>2</m:cn></m:apply></m:math>
+    holds the position at the intersection of the first row and the
+      second column).
+    </para>
+    
+    <para id="p2">
+    We will denote the inverse of this matrix as
+      <m:math mode="inline">
+	<m:apply>
+	  <m:inverse/>
+          <m:ci type="matrix">A</m:ci>
+      </m:apply>
+      </m:math>.
+    A matrix inverse has the property that when it is multiplied by the
+      original matrix (on the left or on the right), the result will be the
+      identity matrix.
+      
+      <equation id="eqn2">
+	<m:math mode="inline">
+	  <m:apply>
+	    <m:eq/>
+            <m:apply>
+              <m:times/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:apply><m:inverse/><m:ci type="matrix">A</m:ci></m:apply>
+            </m:apply>
+            <m:apply>
+              <m:times/>
+	      <m:apply><m:inverse/><m:ci type="matrix">A</m:ci></m:apply>
+	      <m:ci type="matrix">A</m:ci>
+            </m:apply>
+            <m:ci type="matrix">I</m:ci>
+        </m:apply>
+	</m:math>
+      </equation>
+    </para>
+    
+    <para id="p3">
+      To compute the inverse of <m:math><m:ci type="matrix">A</m:ci></m:math>, two steps are required.  Both involve
+      taking determinants (
+      <m:math mode="inline">
+	<m:apply>
+	  <m:determinant/>
+	  <m:ci type="matrix">A</m:ci>
+	</m:apply>
+      </m:math>) 
+    of matrices.  The first step is to find the adjoint (
+      <m:math mode="inline">
+	<m:apply>
+	  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+	  <m:ci type="matrix">A</m:ci>
+	</m:apply>
+      </m:math>) 
+      of the matrix A.  It is computed as follows:
+      
+      <equation id="eqn3">
+	<m:math mode="inline">
+        <m:apply>
+	    <m:eq/>
+            <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/> 
+              <m:ci type="matrix">A</m:ci>
+            </m:apply>
+            <m:matrix>
+              <m:matrixrow>
+<m:apply><m:selector/><m:ci>α</m:ci><m:cn>1</m:cn><m:cn>1</m:cn></m:apply>
+                <m:ci>…</m:ci>
+<m:apply><m:selector/><m:ci>α</m:ci><m:cn>1</m:cn><m:ci>n</m:ci></m:apply>
+              </m:matrixrow>
+              <m:matrixrow>
+                <m:ci>⋮</m:ci>
+                <m:ci>⋱</m:ci>
+                <m:ci>⋮</m:ci>
+              </m:matrixrow>
+              <m:matrixrow>
+<m:apply><m:selector/><m:ci>α</m:ci><m:ci>n</m:ci><m:cn>1</m:cn></m:apply>
+                <m:ci>…</m:ci>
+<m:apply><m:selector/><m:ci>α</m:ci><m:ci>n</m:ci><m:ci>n</m:ci></m:apply>
+              </m:matrixrow>
+            </m:matrix>
+
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      
+      <equation id="eqn4">
+	<m:math mode="inline">
+	  <m:apply>
+	    <m:eq/>
+<m:apply><m:selector/><m:ci>α</m:ci><m:ci>i</m:ci><m:ci>j</m:ci></m:apply>
+            <m:apply>
+              <m:times/>
+	      <m:apply>
+		<m:power/>
+		<m:cn>-1</m:cn>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>i</m:ci>
+		  <m:ci>j</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:determinant/>
+		<m:ci>
+		  <m:msup>
+		    <m:mi>A</m:mi>
+		    <m:mi>ij</m:mi>
+		  </m:msup>
+		</m:ci>
+	      </m:apply>
+            </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+    </para>
+    
+    <para id="p4">
+      where 
+      <m:math mode="inline">
+	<m:ci>
+	  <m:msup>
+	    <m:mi>A</m:mi>
+	    <m:mi>ij</m:mi>
+	  </m:msup>
+	</m:ci>
+      </m:math>
+      is the <m:math><m:apply><m:apply><m:minus/><m:ci>n</m:ci><m:cn>1</m:cn></m:apply></m:apply></m:math> x <m:math><m:apply><m:apply><m:minus/><m:ci>n</m:ci><m:cn>1</m:cn></m:apply></m:apply></m:math>  matrix obtained from <m:math><m:ci type="matrix">A</m:ci></m:math> by eliminating its  <emphasis><m:math><m:ci>i</m:ci></m:math>-th column</emphasis> and <emphasis><m:math><m:ci>j</m:ci></m:math>-th row</emphasis>.  Note that we are not eliminating the <m:math><m:ci>i</m:ci></m:math>-th row and <m:math><m:ci>j</m:ci></m:math>-th column as you might expect.
+    </para>
+    
+    <para id="p5">
+      To finish the process of determining the inverse, simply divide the
+      adjoint by the determinant of the original matrix <m:math><m:ci type="matrix">A</m:ci></m:math> .
+      
+      <equation id="eqn5">
+	<m:math mode="inline">
+	  <m:apply>
+          <m:eq/>
+            <m:apply>
+              <m:inverse/>
+	      <m:ci type="matrix">A</m:ci>
+            </m:apply>
+            <m:apply>
+              <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:determinant/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+            </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+    </para>
+    
+    
+    <example id="ex1">
+      
+      <equation id="eqn6">
+	<m:math mode="inline">
+	  <m:apply>
+	    <m:eq/>
+            <m:ci type="matrix">A</m:ci>
+            <m:matrix>
+              <m:matrixrow>
+                <m:ci>a</m:ci>
+                <m:ci>b</m:ci>
+              </m:matrixrow>
+              <m:matrixrow>
+                <m:ci>c</m:ci>
+                <m:ci>d</m:ci>
+              </m:matrixrow>
+            </m:matrix>
+	  </m:apply>
+	</m:math>
+    </equation>
+      
+      <para id="p6">
+	Find the inverse of the above matrix.
+      </para>
+      
+    <para id="p7">
+	The first step is to compute the terms in the adjoint matrix:
+	
+	<equation id="eqn7">
+	  <m:math mode="inline">
+	    <m:apply>
+	      <m:eq/>
+<m:apply><m:selector/><m:ci>α</m:ci><m:cn>1</m:cn><m:cn>1</m:cn></m:apply>
+              <m:apply>
+                <m:times/>
+		<m:apply>
+		  <m:power/>
+		  <m:cn>-1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:ci>d</m:ci>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+      <equation id="eqn8">
+	  <m:math mode="inline">
+	    <m:apply>
+	      <m:eq/>
+<m:apply><m:selector/><m:ci>α</m:ci><m:cn>1</m:cn><m:cn>2</m:cn></m:apply>
+              <m:apply>
+                <m:times/>
+		<m:apply>
+		  <m:power/>
+		  <m:cn>-1</m:cn>
+		  <m:cn>3</m:cn>
+		</m:apply>
+		<m:ci>b</m:ci>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<equation id="eqn9">
+	  <m:math mode="inline">
+          <m:apply>
+	      <m:eq/>
+<m:apply><m:selector/><m:ci>α</m:ci><m:cn>2</m:cn><m:cn>1</m:cn></m:apply>
+              <m:apply>
+                <m:times/>
+		<m:apply>
+		  <m:power/>
+		  <m:cn>-1</m:cn>
+		  <m:cn>3</m:cn>
+		</m:apply>
+		<m:ci>c</m:ci>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<equation id="eqn10">
+	  <m:math mode="inline">
+	    <m:apply>
+	      <m:eq/>
+<m:apply><m:selector/><m:ci>α</m:ci><m:cn>2</m:cn><m:cn>2</m:cn></m:apply>
+              <m:apply>
+                <m:times/>
+		<m:apply>
+		  <m:power/>
+		  <m:cn>-1</m:cn>
+		  <m:cn>4</m:cn>
+		</m:apply>
+		<m:ci>a</m:ci>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+      
+      <para id="p8">
+	Therefore,
+	
+	<equation id="eqn11">
+	  <m:math mode="inline">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+                <m:ci type="matrix">A</m:ci>
+              </m:apply>
+              <m:matrix>
+                <m:matrixrow>
+                  <m:ci>d</m:ci>
+                  <m:apply><m:minus/><m:ci>b</m:ci></m:apply>
+                </m:matrixrow>
+                <m:matrixrow>
+                  <m:apply><m:minus/><m:ci>c</m:ci></m:apply>
+                  <m:ci>a</m:ci>
+                </m:matrixrow>
+              </m:matrix>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+      <para id="p9">
+	We then compute the determinant to be 
+	<m:math mode="inline">
+        <m:apply>
+          <m:minus/>
+            <m:apply>
+              <m:times/>
+                <m:ci>a</m:ci>
+                <m:ci>d</m:ci>
+            </m:apply>
+            <m:apply>
+              <m:times/>
+                <m:ci>b</m:ci>
+                <m:ci>c</m:ci>
+            </m:apply>
+        </m:apply>
+      </m:math>.
+      Dividing through by this quantity yields the inverse of <m:math><m:ci type="matrix">A</m:ci></m:math>:
+
+      <equation id="eqn12">
+        <m:math mode="inline">
+          <m:apply>
+            <m:eq/>
+              <m:apply>
+                <m:inverse/>
+		<m:ci type="matrix">A</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:times/>
+                  <m:apply>
+                    <m:divide/>
+                      <m:cn>1</m:cn>
+                      <m:apply>
+                        <m:minus/>
+                          <m:apply>
+                            <m:times/>
+                              <m:ci>a</m:ci>
+                              <m:ci>d</m:ci>
+                          </m:apply>
+                          <m:apply>
+                            <m:times/>
+                              <m:ci>b</m:ci>
+                              <m:ci>c</m:ci>
+                          </m:apply>
+                      </m:apply>
+                  </m:apply>
+                  <m:matrix>
+                    <m:matrixrow>
+                      <m:ci>d</m:ci>
+                      <m:apply><m:minus/><m:ci>b</m:ci></m:apply>
+                    </m:matrixrow>
+                    <m:matrixrow>
+                      <m:apply><m:minus/><m:ci>c</m:ci></m:apply>
+                      <m:ci>a</m:ci>
+                    </m:matrixrow>
+                  </m:matrix>
+              </m:apply>
+          </m:apply>
+        </m:math>
+      </equation>
+    </para>
+
+  </example>
+</content>
+</document>

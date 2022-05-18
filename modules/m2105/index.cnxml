@@ -1,0 +1,524 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Defining the State for an n-th Order Differential Equation</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>f25656e3-5c4f-4e09-ae34-b1b30ce7db2f</md:uuid>
+</metadata>
+
+  
+  <!-- End Header ******************************* -->
+  <!-- ****************************************** -->
+
+
+  <content>
+    <para id="p0">Consider the n-th order linear differential equation:
+      
+      <equation id="eqq_y_p_u_time">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    
+	    <m:apply>
+	      <m:times/>
+	      
+	      <m:apply>
+		<m:ci type="fn">q</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      
+	    </m:apply> <!-- end of LHS -->
+	    
+	    <m:apply>
+	      <m:times/>
+	      
+	      <m:apply>
+		<m:ci type="fn">p</m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:ci type="fn">u</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      
+	    </m:apply>  <!-- end of RHS -->
+	    
+	  </m:apply> <!-- end of eq/ -->
+	</m:math>
+      </equation>
+      
+      where
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>s</m:ci>
+	  <m:apply><m:divide/>
+	    <m:ci>ⅆ</m:ci>
+	    <m:apply>
+	      <m:mo>ⅆ</m:mo>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      and where
+      
+      <equation id="eqqofs">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    
+	    <m:apply>  <!-- start of RHS -->
+	      <m:plus/>
+	      
+	      <m:apply>
+		<m:power/>
+		<m:ci>s</m:ci>
+		<m:ci>n</m:ci>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>α</m:mi>
+		    <m:mrow>
+		      <m:mi>n</m:mi>
+		      <m:mo>-</m:mo>
+		      <m:mn>1</m:mn>
+		    </m:mrow>
+		  </m:msub>
+		</m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>s</m:ci>
+		  <m:apply><m:minus/><m:ci>n</m:ci><m:cn>1</m:cn></m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:ci>…</m:ci>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>α</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      
+	      <m:ci><m:msub><m:mi>α</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+	      
+	    </m:apply> <!-- end of RHS -->
+	    
+	  </m:apply> <!-- end of eq/ -->
+	</m:math>
+      </equation>  <!-- end of q(s) -->
+      
+      <equation id="eqpofs">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    
+	    <m:apply>
+	      <m:ci type="fn">p</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    
+	    <m:apply>  <!-- start of RHS -->
+	      <m:plus/>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>β</m:mi>
+		    <m:mrow>
+		      <m:mi>n</m:mi>
+		      <m:mo>-</m:mo>
+		      <m:mn>1</m:mn>
+		    </m:mrow>
+		  </m:msub>
+		</m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>s</m:ci>
+		  <m:apply><m:minus/><m:ci>n</m:ci><m:cn>1</m:cn></m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:ci>…</m:ci>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>β</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      
+	      <m:ci><m:msub><m:mi>β</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+	      
+	    </m:apply> <!-- end of RHS -->
+	    
+	  </m:apply> <!-- end of eq/ -->
+	</m:math>
+      </equation> <!-- end of p(s) -->
+      
+    </para>
+    
+    <para id="p2">One way to define state variables is by introducing
+      the auxiliary variable <m:math><m:ci>w</m:ci></m:math> 
+      which satisfies the differential
+      equation:</para>
+    
+    <equation id="eqeq1">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">w</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:ci type="fn">u</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>			
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p3">The state variables can then be chosen as
+      derivatives of <m:math><m:ci>w</m:ci></m:math> . Furthermore the output is related to this auxiliary
+      variable as follows:</para>
+
+    <equation id="eqeq2">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">y</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>					
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:ci type="fn">p</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">w</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p4">The proof in the next three equations shows that the
+      introduction of this variable <m:math><m:ci>w</m:ci></m:math>  
+      does not change the system in any way.  The first equation uses a simple substition based on <link target-id="eqeq1" strength="3">the differential equation</link>.  Then the order of
+      <m:math><m:apply><m:ci type="fn">p</m:ci><m:ci>s</m:ci></m:apply></m:math>
+      and
+      <m:math><m:apply><m:ci type="fn">q</m:ci><m:ci>s</m:ci></m:apply></m:math>
+      are interchanged.  Lastly, <m:math><m:ci>y</m:ci></m:math>  
+      is substituted in place of
+      <m:math>
+	<m:apply>
+	  <m:times/>
+	  <m:apply>
+	    <m:ci type="fn">p</m:ci>
+	    <m:ci>s</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:ci type="fn">w</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      (using <link target-id="eqeq2" strength="3">output equation</link>).  The result is the original equation describing our system.</para>
+    
+    <equation id="eqeq4">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:ci type="fn">p</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">w</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:ci type="fn">p</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">u</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>		
+      </m:math>
+    </equation>
+    
+    <equation id="eqeq5">
+ 	<m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">p</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">w</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:ci type="fn">p</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">u</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>		
+      </m:math>
+    </equation>
+    
+    <equation id="eqeq6">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:ci type="fn">p</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">u</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>		
+      </m:math>
+    </equation>
+    
+    <para id="p5">Using this auxillary variable, we can directly write
+      the <m:math><m:ci type="matrix">A</m:ci></m:math>, <m:math><m:ci type="matrix">B</m:ci></m:math> and <m:math><m:ci type="matrix">C</m:ci></m:math> matrices. <m:math><m:ci type="matrix">A</m:ci></m:math> is the companion-form matrix; its last row (except for a <m:math><m:cn>0</m:cn></m:math> in
+      the first position) contains the alpha coefficients from the
+      <m:math><m:apply><m:ci type="fn">q</m:ci><m:ci>s</m:ci></m:apply></m:math>:</para>
+    
+    <equation id="eqeq10">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci type="matrix">A</m:ci>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:ci>…</m:ci><m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:ci>…</m:ci><m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:ci>⋱</m:ci><m:ci>…</m:ci><m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:ci>⋮</m:ci><m:ci>⋮</m:ci><m:ci>⋮</m:ci><m:ci>⋮</m:ci><m:ci>⋱</m:ci>
+	      <m:ci>⋮</m:ci>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:ci>…</m:ci><m:cn>1</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+<m:apply><m:minus/>
+	      <m:ci><m:msub>
+		    <m:mi>α</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+</m:apply>
+<m:apply><m:minus/>
+	      <m:ci><m:msub>
+		    <m:mi>α</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+</m:apply>
+<m:apply><m:minus/>
+	      <m:ci><m:msub>
+		    <m:mi>α</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+</m:apply>
+<m:apply><m:minus/>
+	      <m:ci><m:msub>
+		    <m:mi>α</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+</m:apply>
+	      <m:ci>…</m:ci>
+<m:apply><m:minus/>
+	      <m:ci><m:msub>
+		    <m:mi>α</m:mi>
+		  <m:mrow>
+		    <m:mi>n</m:mi>
+		    <m:mo>-</m:mo>
+		    <m:mn>1</m:mn>
+		  </m:mrow>
+		</m:msub></m:ci>
+</m:apply>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p7">The <m:math><m:ci type="matrix">B</m:ci></m:math>  
+      vector has zeros except for the <m:math><m:ci>n</m:ci></m:math>-th row which is a <m:math><m:cn>1</m:cn></m:math>.
+    </para>
+    
+    <equation id="eqeq22">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci type="matrix">B</m:ci>
+	  <m:vector>
+	    <m:cn>0</m:cn>
+	    <m:cn>0</m:cn>
+	    <m:ci>⋮</m:ci>
+	    <m:cn>1</m:cn>
+	  </m:vector>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p8">
+      <m:math><m:ci type="matrix">C</m:ci></m:math> can be expressed as 
+      <equation id="eqeq23">
+ 	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="matrix">C</m:ci>
+	    <m:vector>
+	      <m:ci><m:msub><m:mi>β</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+	      <m:ci><m:msub><m:mi>β</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      <m:ci><m:msub><m:mi>β</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      <m:ci>⋮</m:ci>
+	      
+		<m:ci><m:msub>
+		    <m:mi>β</m:mi>
+		    <m:mrow>
+		      <m:mi>n</m:mi>
+		      <m:mo>-</m:mo>
+		      <m:mn>1</m:mn>
+		    </m:mrow>
+		  </m:msub></m:ci>
+	     
+	    </m:vector>
+	  </m:apply>	
+	</m:math>
+      </equation>
+    </para>
+    
+    <para id="p8half">
+      When all of these conditions are met, the state is
+    </para>
+    
+    <equation id="eqeq24">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>x</m:ci>
+	  <m:vector>
+	    <m:ci>w</m:ci>
+
+	      <m:apply>
+		<m:times/>
+		<m:ci>s</m:ci>
+		<m:ci>w</m:ci>
+	      </m:apply>
+
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>s</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:ci>w</m:ci>
+	      </m:apply>
+		
+	      <m:ci>⋮</m:ci>
+			
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>s</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>n</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:ci>w</m:ci>
+	      </m:apply>
+
+	  </m:vector>
+	</m:apply>
+      </m:math>
+    </equation>
+
+
+    <para id="p9">In conclusion, if the degree of <m:math><m:ci>p</m:ci></m:math> is less than that of <m:math><m:ci>q</m:ci></m:math>, 
+      we can obtain a state-space representation by inserting
+      the coefficcients of <m:math><m:ci>p</m:ci></m:math> and <m:math><m:ci>q</m:ci></m:math>  
+      in the matrices <m:math><m:ci type="matrix">A</m:ci></m:math>, <m:math><m:ci type="matrix">B</m:ci></m:math> and <m:math><m:ci type="matrix">C</m:ci></m:math>
+      as shown above.</para>
+    
+  </content>
+</document>

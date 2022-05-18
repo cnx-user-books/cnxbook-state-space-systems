@@ -1,0 +1,674 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Eigenvalue Decomposition</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>779e3556-c02e-4174-9318-0c48671eb952</md:uuid>
+</metadata>
+
+
+  <content>
+    <para id="p0">
+      When we apply a matrix to a vector (i.e. multiply them
+      together), the vector is transformed.  An interesting question
+      to ask ourselves is whether there are any particular
+      combinations of such a matrix and vector whose result is a new
+      vector that is proportional to the original vector.  In math
+      terminology, this question can be posed as follows: if we have a
+      matrix <m:math><m:ci type="matrix">A</m:ci></m:math>: 
+      <m:math>
+<m:apply><m:mo>→</m:mo>
+	<m:apply>
+	  <m:power/>
+	  <m:ci>ℝ</m:ci>
+	  <m:ci>n</m:ci>
+	</m:apply>
+	<m:apply>
+	  <m:power/>
+	  <m:ci>ℝ</m:ci>
+	  <m:ci>n</m:ci>
+	</m:apply>
+</m:apply>
+      </m:math>,
+      does there exist a vector
+      <m:math>
+	<m:apply>
+	<m:in/>
+	  <m:ci type="vector">x</m:ci>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci>ℝ</m:ci>
+	    <m:ci>n</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      and a scalar
+      <m:math>
+	<m:apply>
+	  <m:in/>
+	  <m:ci>λ</m:ci>
+	  <m:complexes/>
+	</m:apply>
+      </m:math>
+      such that
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>λ</m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>?
+      If so, then the complexity of
+      <m:math>
+	<m:apply>
+	  <m:times/>
+	  <m:ci type="matrix">A</m:ci>
+	  <m:ci type="vector">x</m:ci>
+	</m:apply>
+      </m:math>
+      is reduced.  It no longer must be thought of as a matrix
+      multiplication; instead, applying <m:math><m:ci type="matrix">A</m:ci></m:math> to <m:math><m:ci type="vector">x</m:ci></m:math>
+      has the simple effect of linearly scaling <m:math><m:ci type="vector">x</m:ci></m:math> by some scalar
+      factor <m:math><m:ci>λ</m:ci></m:math>.</para>
+    
+    <para id="p1">In this situation, where
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>λ</m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>,
+      <m:math><m:ci>λ</m:ci></m:math> is known as an eigenvalue and <m:math><m:ci type="vector">x</m:ci></m:math>
+      is its associated eigenvector.  For a certain matrix, each one
+      of its eigenvectors is associated with a particular (though not
+      necessarily unique) eigenvalue. The word "eigen" is German and
+      means "same"; this is appropriate because the vector <m:math><m:ci type="vector">x</m:ci></m:math> 
+      after the matrix multiplication is the same as the original
+      vector <m:math><m:ci type="vector">x</m:ci></m:math>, 
+      except for the scaling factor.  The following two examples give actual possible values for the matrices, vectors, and values discussed in general terms above.</para>
+    
+    <equation id="eq1">
+      <m:math mode="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:matrix>
+	      <m:matrixrow><m:cn>1</m:cn><m:cn>-1</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>-1</m:cn><m:cn>1</m:cn></m:matrixrow>
+	    </m:matrix>
+	    <m:vector>
+	      <m:cn>1</m:cn>
+	      <m:cn>1</m:cn>
+	    </m:vector>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn>0</m:cn>
+	    <m:vector>
+	      <m:cn>1</m:cn>
+	      <m:cn>1</m:cn>
+	    </m:vector>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="paraid">Here,
+      <m:math>
+	<m:vector>
+	  <m:cn>1</m:cn>
+	  <m:cn>1</m:cn>
+	</m:vector>
+      </m:math>
+      is the eigenvector and <m:math><m:cn>0</m:cn></m:math>
+      is its associated eigenvalue.</para>
+    
+    <equation id="eq2">
+      <m:math mode="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:matrix>
+	      <m:matrixrow><m:cn>2</m:cn><m:cn>1</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>1</m:cn><m:cn>2</m:cn></m:matrixrow>
+	    </m:matrix>
+	    <m:vector>
+	      <m:cn>1</m:cn>
+	      <m:cn>1</m:cn>
+	    </m:vector>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn>3</m:cn>
+	    <m:vector>
+	      <m:cn>1</m:cn>
+	      <m:cn>1</m:cn>
+	    </m:vector>	
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="paraid2">In this second example,
+      <m:math>
+	<m:vector>
+	  <m:cn>1</m:cn>
+	  <m:cn>1</m:cn>
+	</m:vector>
+      </m:math>
+is again the eigenvector but the eigenvalue is now <m:math><m:cn>3</m:cn></m:math>.</para>
+    
+    <para id="p4">Now we'd like to develop a method of finding the eigenvalues and eigenvectors of a matrix.  We start with what is basically the defining equation behind this whole idea:</para>
+    
+    <equation id="eq3">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>λ</m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p5">Next, we move the
+      <m:math mode="block">
+	<m:apply>
+	<m:times/>
+	  <m:ci>λ</m:ci>
+	  <m:ci type="vector">x</m:ci>
+	</m:apply>
+      </m:math>
+      term to the left-hand side and factor:</para>
+    
+    <equation id="eq4">
+      <m:math mode="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:minus/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:ci>λ</m:ci>
+		<m:ci type="matrix">I</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p6">Here's the important rule to remember:  there exists
+      <m:math>
+	<m:apply>
+	  <m:neq/>
+	  <m:ci type="vector">x</m:ci>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>
+      satisfying the equation if and only if
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:determinant/>
+	    <m:apply>
+	      <m:minus/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:ci>λ</m:ci>
+		<m:ci type="matrix">I</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>.
+      So, to find the eigenvalues, we need to solve this determinant equation.  </para>
+    
+    <example id="ex1"> 
+      
+      <para id="p7">Given the matrix <m:math><m:ci type="matrix">A</m:ci></m:math>, 
+	solve for <m:math><m:ci>λ</m:ci></m:math> in 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:determinant/>
+	      <m:apply>
+		<m:minus/>
+		<m:ci type="matrix">A</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>λ</m:ci>
+		  <m:ci type="matrix">I</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>.</para>
+      
+      <equation id="eq5">
+ 	<m:math mode="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:matrix>
+	      <m:matrixrow><m:cn>2</m:cn><m:cn>1</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>1</m:cn><m:cn>2</m:cn></m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <equation id="eq6">
+ 	<m:math mode="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:determinant/>
+	      <m:apply>
+		<m:minus/>
+		<m:ci type="matrix">A</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>λ</m:ci>
+		  <m:ci type="matrix">I</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:determinant/>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>2</m:cn>
+		    <m:ci>λ</m:ci>
+		  </m:apply>
+		  <m:cn>1</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>2</m:cn>
+		    <m:ci>λ</m:ci>
+		  </m:apply>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:power/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>λ</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:cn>1</m:cn>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>λ</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>4</m:cn>
+		  <m:ci>λ</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>3</m:cn>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <equation id="eq7">
+ 	<m:math mode="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>λ</m:ci>
+	    <m:set>
+	      <m:cn>3</m:cn>
+	      <m:cn>1</m:cn>
+	    </m:set>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+    </example>
+    
+    <para id="p8">After finding the eigenvalues, we need to find the
+      associated eigenvectors.  Looking at <link target-id="eq4" strength="3">the defining equation</link>, we see that the
+      eigenvector <m:math><m:ci type="vector">x</m:ci></m:math>
+      is annihilated by the matrix
+      <m:math>
+	<m:apply>
+	  <m:minus/>
+	  <m:ci type="matrix">A</m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>λ</m:ci>
+	    <m:ci type="matrix">I</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>.
+      So to solve for the eigenvectors, we simply find the kernel (nullspace) of
+      <m:math>
+	<m:apply>
+	  <m:minus/>
+	  <m:ci type="matrix">A</m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>λ</m:ci>
+	    <m:ci type="matrix">I</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      using the two eigenvalues we just calculated.  If we did this for the example above, we'd find that the eigenvector associated with
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>λ</m:ci>
+	  <m:cn>3</m:cn>
+	</m:apply>
+      </m:math>
+      is
+      <m:math>
+	<m:vector>
+	  <m:cn>1</m:cn><m:cn>1</m:cn>
+	</m:vector>
+      </m:math>
+      and the eigenvector associated with
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>λ</m:ci>
+	  <m:cn>1</m:cn>
+	</m:apply>
+      </m:math>
+      is
+      <m:math>
+	<m:vector>
+	  <m:cn>1</m:cn><m:cn>-1</m:cn>
+	</m:vector>
+      </m:math>.</para>
+    
+    <para id="p9">You may be wondering why eigenvalue decomposition is useful.  It seems at first glance that it is only helpful in determining the effect a matrix has on a certain small subset of possible vectors (the eigenvectors).  However, the benefits become clear when you think about how many other vectors can be looked at from an eigenvalue perspective by decomposing them into components along the available eigenvectors.  For instance, in the above example, let's say we wanted to apply
+      <m:math><m:ci type="matrix">A</m:ci></m:math>
+      to the vector
+      <m:math>
+	<m:vector>
+	  <m:cn>2</m:cn><m:cn>0</m:cn>
+	</m:vector>
+	
+      </m:math>.
+      Instead of doing the matrix multiply (admittedly not too difficult in this case), the vector
+      <m:math>
+	<m:vector>
+	  <m:cn>2</m:cn><m:cn>0</m:cn>
+	</m:vector>
+	
+      </m:math>
+      could be split into components in the direction of the eigenvalues: </para>
+
+    <equation id="eq8">
+      <m:math mode="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:vector>
+	    <m:cn>2</m:cn>
+	    <m:cn>0</m:cn>
+	  </m:vector>
+	  <m:apply>
+	    <m:plus/>
+	    <m:vector>
+	      <m:cn>1</m:cn>
+	      <m:cn>1</m:cn>
+	    </m:vector>
+	    <m:vector>
+	      <m:cn>1</m:cn>
+	      <m:cn>-1</m:cn>
+	    </m:vector>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p10">Now, each of these components could be scaled by the appropriate eigenvalue and then added back together to form the net result.</para>
+    
+    <section id="s2">
+      <title>Multiplicity</title>    
+      
+      <para id="p11">Once we have determined the eigenvalues of a particular matrix, we can start to discuss them in terms of their multiplicity.  There are two types of eigenvalue multiplicity: algebraic multiplicity and geometric multiplicity.</para>
+      
+      <definition id="d1">
+	<term>Algebraic Multiplicity</term>
+	<meaning id="idp9126128">The number of repetitions of a certain eigenvalue.  If, for a certain matrix,
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>λ</m:ci>
+	      <m:set>
+		<m:cn>3</m:cn>
+		<m:cn>3</m:cn>
+		<m:cn>4</m:cn>
+	      </m:set>
+	    </m:apply>
+	  </m:math>,
+	  then the algebraic multiplicity of <m:math><m:cn>3</m:cn></m:math> would be <m:math><m:cn>2</m:cn></m:math>
+	  (as it appears twice) and the algebraic multiplicity of <m:math><m:cn>4</m:cn></m:math>
+	  would be <m:math><m:cn>1</m:cn></m:math> 
+	  (as it appears once).  This type of multiplicity is normally
+	  represented by the Greek letter <m:math><m:ci>α</m:ci></m:math>, 
+	  where
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">α</m:ci>
+	      <m:ci><m:msub><m:mi>λ</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+	    </m:apply>
+	  </m:math>
+represents the algebraic multiplicity of
+	  <m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mi>i</m:mi></m:msub></m:ci></m:math>.</meaning>
+      </definition>
+      
+      <definition id="d2">
+	<term>Geometric Multiplicity</term>
+	<meaning id="idp7541584">A particular eigenvalue's geometric multiplicity is defined as the dimension of the nullspace of
+	  <m:math>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>λ</m:ci>
+		<m:ci type="matrix">I</m:ci>
+	      </m:apply>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	  </m:math>.
+This type of multiplicity is normally represented by the Greek letter
+	  <m:math><m:ci>γ</m:ci></m:math>,  where
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">γ</m:ci>
+	      <m:ci><m:msub><m:mi>λ</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+	    </m:apply>
+	  </m:math>
+	  represents the geometric multiplicity of
+	  <m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mi>i</m:mi></m:msub></m:ci></m:math>.</meaning>
+      </definition>
+      
+    </section>
+    
+    <section id="s3">
+      <title>Helpful Facts</title>
+      
+      <para id="p12">Here are some helpful facts about certain special cases of matrices.</para>
+      
+      <section id="s3_1">
+	<title>Rank</title>
+	
+	<para id="p13">A matrix
+	  <m:math><m:ci type="matrix">A</m:ci></m:math>
+	  is full rank if
+	  <m:math>
+	    <m:apply>
+	      <m:neq/>
+	      <m:apply>
+		<m:determinant/>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:math>.
+	  However, if
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>λ</m:ci>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:math>
+	  then
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:determinant/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>λ</m:ci>
+		    <m:ci type="matrix">I</m:ci>
+		  </m:apply>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:math>.
+	  This tells us that
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:determinant/>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:math>.
+	  Therefore, if a matrix has at least one eigenvalue equal to
+	  <m:math><m:cn>0</m:cn></m:math>, then it cannot have full rank.  Specifically, for an
+	  <m:math><m:ci>n</m:ci></m:math>-dimensional square matrix: </para>
+	
+	<list id="l1">
+	  <item>When one eigenvalue equals <m:math><m:cn>0</m:cn></m:math>, 
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">rank</m:ci>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>n</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </item>
+	  <item>When multiple eigenvalues equal <m:math><m:cn>0</m:cn></m:math> 
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">rank</m:ci>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>n</m:ci>
+		  <m:apply>
+		    <m:ci type="function">γ</m:ci>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>.
+	    This property holds even if there are other non-zero eigenvalues</item>
+	</list>
+      </section>
+      
+      <section id="s3_2">
+	<title>Symmetric Matrices</title>
+
+	<para id="p14">A symmetric matrix is one whose transpose is equal to itself
+	  (<m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:apply>
+		<m:transpose/>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>).
+	  These matrices (represented by A 
+	  below) have the following properties:</para>
+
+	<list id="l2" list-type="enumerated">
+	  <item>Its eigenvalues are real.</item>
+	  <item>Its eigenvectors are orthogonal.</item>
+	  <item>They are always diagonalizable.</item>
+	</list>
+
+      </section>
+      
+    </section>
+  </content>
+</document>

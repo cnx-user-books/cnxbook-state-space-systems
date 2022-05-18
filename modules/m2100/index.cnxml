@@ -1,0 +1,93 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>ELEC 302: State Space Systems Overview</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>10a6b87b-c00c-4b86-b735-0bca21daf766</md:uuid>
+</metadata>
+
+  <!-- End Header ******************************* -->
+  <!-- ****************************************** -->
+  <content>
+	<section id="mgs"><title>"The Mars Global Surveyor"</title>
+      <figure id="mgs_pic" orient="horizontal"><title>"Mars Global Surveyor"</title>
+	<media id="idp8203296" alt=""><image src="../../media/mgs.jpg" mime-type="image/jpeg"/></media>
+      </figure>
+      
+      <para id="mgs_description">
+	The Mars Global Surveyor, built by Lockheed Martin and
+	launched by NASA, orbits our nearest planetary neighbor on a
+	mission to map the surface of Mars and catalogue scientific
+	data .  The Surveyor spacecraft left Cape Canaveral, Florida
+	aboard a Delta-7925 rocket, and then spent 300 days traveling
+	approximately 750 million kilometers to reach Mars in
+	September of 1997.  After the Mars Global Surveyor reached
+	Mars, it used its main rocket engine to lower itself into an
+	elliptical orbit around the planet.  The spacecraft then spent
+	the next one and a half years reducing its orbit by using the
+	friction between itself and the atmosphere of Mars to slow
+	down and thus lose 55,000 km of altitude.  In March of 1999,
+	the Surveyor spacecraft began its mapping of the Martian
+	surface.  The motion of this spacecraft is managed by a
+	propulsion system that consists of a main engine and 8
+	"attitude-control" thrusters.  How do these propulsion devices
+	work together to safely control the movement of the Surveyor
+	spacecraft?  In the initial phases of this spacecraft's
+	design, engineers probably asked themselves the following
+	questions to better understand this problem:
+      </para>
+      
+      
+      <list id="engineering_questions">
+	<item>How do we guarantee that the satellite stays in its orbit and doesn't wonder off into space?</item>
+	
+	<item>How do we characterize the relationship between the available thrust controls and the position of the spacecraft?</item>
+	
+	<item>Can we use the knowledge of the satellite's thruster/position relationship to understand how to efficiently control its movement?</item>
+	
+	<item>By observing the satellite's movement, can we better understand of how the dynamics (memory)  of the system change with respect to the current and past thruster use?</item>
+	
+	<item>Finally, after understanding the dynamics of the system, can we do something to modify them so that the response of the satellite has more desirable properties?</item>
+	
+      </list>
+      
+      <para id="course_developing_tools">
+	In this course, we will develop ways to answer these
+	questions.  In the beginning, we will take a look at linear
+	dynamical systems and determine how to describe their dynamics
+	with a concept known as state. In order to examine these
+	dynamics and see how they form relationships between the
+	inputs and outputs of a system, differential equations and
+	their frequency-domain counterparts will be studied.  After
+	setting this foundation, the course material will then focus
+	on concepts found in linear algebra.  As many systems have
+	multiple inputs and outputs, it makes sense to use matrices
+	and the tools of linear algebra to deal with the computations
+	involved in describing them.
+      </para>
+      <para id="course_using_tools">
+	Once these tools are covered, we can use them along with our
+	knowledge of dynamical systems to analyze the issues mentioned
+	in the example above; specifically, we will examine system
+	stability, controllability, observability, and feedback.  With
+	stability, we can see whether the output of a system will
+	remain bounded or whether it will "blow up".  This is
+	obviously very useful when thinking about the spacecraft
+	above.  As the name implies, controllability of a system tells
+	us whether or not we can control the output of the system
+	without access to the dynamics of the system (i.e. when we can
+	only modify the inputs to the system).  The third idea,
+	observability, gives us a method of monitoring the output of a
+	system to determine its state.  At the end of the course,
+	we'll see how feedback can use this information about a
+	system's state to alter the system's dynamics in such a way as
+	to improve its properties and response.
+      </para>
+      
+      <para id="references">
+	To learn more about the Mars Global Surveyor, visit <link url="http://mars.jpl.nasa.gov/mgs/overvu/slides/00.html">http://mars.jpl.nasa.gov/mgs/overvu/slides/00.html</link>.  The above image of the MGS was found at <link url="http://mars.jpl.nasa.gov/mgs/images/highres.html">http://mars.jpl.nasa.gov/mgs/images/highres.html</link>
+      </para>
+      
+    </section>
+  </content>
+  
+</document>

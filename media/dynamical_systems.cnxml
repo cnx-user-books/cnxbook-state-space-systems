@@ -1,0 +1,508 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE module PUBLIC "-//CNX//DTD CNXML 0.3.5 plus MathML//EN" 
+              "http://cnx.rice.edu/cnxml/0.3.5/DTD/cnxml_mathml.dtd">
+
+
+
+<module 
+id="m2101" 
+levelmask="0"
+created="2000-11-26" 
+revised="2000-10-09"
+version="2.2">
+<name>"Dynamical Systems"</name>
+	
+<metadata>
+  <authorlist>
+    <author id="jps">
+    <firstname>JP</firstname>
+    <surname>Slavinsky</surname>
+    </author>
+    <author id="aca">
+    <firstname>Thanos</firstname>
+    <surname>Antoulas</surname>
+    </author>
+  </authorlist>
+
+  <maintainerlist>
+    <maintainer id="lizychan">
+    <firstname>Elizabeth</firstname>
+    <surname>Chan</surname>
+    <email>lizychan@rice.edu</email>
+    </maintainer>
+  </maintainerlist>
+
+  <keywordlist>
+    <keyword>dynamical</keyword>
+    <keyword>static</keyword>
+    <keyword>memory</keyword>
+  </keywordlist>
+
+  <abstract>Systems with memory</abstract>
+</metadata>
+
+<content>
+  <section name="What is a dynamical system?" id="overview">
+
+    <para id="p0">
+      When we talk about systems in the most general sense, we are
+      talking about anything that takes in a certain number of inputs
+      and produces a certain number of outputs based on those inputs.
+    </para>
+
+	<figure id="generalized_system"
+				orient="horizontal"
+				name="Generalized System">
+   	        <media type="image/gif" src="generalized_system.gif"/>
+  </figure>
+
+    <para id="p1">
+      In the figure above, the
+		<math xmlns="&mmlns;"><apply><ci type="function">u</ci><ci>t</ci></apply></math>
+		inputs could be the jets on a
+      satellite and the
+		<math xmlns="&mmlns;"><apply><ci type="function">y</ci><ci>t</ci></apply></math>
+		outputs could be the gyros describing the
+      "bearing" of the satellite.
+    </para>
+
+    <para id="p2">
+      There are two basic divisions of systems: static and dynamic. In a
+      static system, the current outputs are based solely on the 	instantaneous values of the current inputs.
+		An example of a static 	system is a resistor hooked up to a current source:
+    </para>
+
+	<figure id="simple_res_circuit"
+				orient="horizontal"
+				name="Resistor connected to a current source">
+   	        <media type="image/gif" src="res_currentsource.gif"/>
+  </figure> <!-- [equation v(t) = R*i(t) ] -->
+
+<!--    <equation id="OhmsLaw">
+      <math xmlns="&mmlns;" mode="inline">
+	<apply>
+	  <eq/>
+	    <apply>
+	      <ci>V</ci>
+	      <ci>t</ci>
+	    </apply>
+	    <apply>
+	      <times/>
+	      <ci>R</ci>
+	      <ci>i</ci>
+	    </apply>
+	</apply>
+      </math>
+    </equation> -->
+
+  <equation id="OhmsLaw">
+      <math xmlns="&mmlns;" mode="inline">
+	<apply>
+	  <eq/>
+	    <apply>
+	      <ci>V</ci>
+	      <ci>t</ci>
+	    </apply>
+	    <apply>
+	      <times/>
+	      <ci>R</ci>
+	      <apply>
+		<ci>i</ci>
+		<ci>t</ci>
+	      </apply>
+	    </apply>
+	</apply>
+
+
+
+      </math>
+    </equation>
+
+<!--    <equation id="OhmsLaw">
+      <math xmlns="&mmlns;" mode="inline">
+	<apply>
+	  <eq/>
+	    <apply>
+	      <ci>V</ci>
+	      <ci>t</ci>
+	    </apply>
+	    <apply>
+	      <times/>
+	      <ci>R</ci>
+	      <ci>i</ci>
+	    </apply>
+	</apply>
+      </math>
+    </equation> -->
+
+    <para id="p3">
+      At any given moment, the voltage across the resistor (the
+      output) depends only on the value of the current running through
+      it (the input).  The current at any time
+		<math xmlns="&mmlns;"><ci>t</ci></math>
+		is simply multiplied
+      by the constant value describing the resistance
+		<math xmlns="&mmlns;"><ci>R</ci></math>
+		to give the
+      voltage
+		<math xmlns="&mmlns;"><ci>V</ci></math>.
+		Now, let's see what happens if we replace the resistor
+      with a capacitor.
+    </para>
+
+	<figure id="simple_cap_circuit"
+				orient="horizontal"
+				name="Simple capacitor connected to a current source">
+   	        <media type="image/gif" src="cap_currentsource.gif"/>
+  </figure>
+
+<!-- [ fig of cap hooked up to a current source ]
+[ equation I(t) = C dv(t)/dt ] -->
+
+  <equation id="cap_iv_reln">
+      <math xmlns="&mmlns;" mode="inline">
+				<apply>
+				  <eq/>
+	    		<apply>
+					  <ci>I</ci>
+					  <ci>t</ci>
+				  	</apply>
+	    		<apply>
+						<times/>
+							<ci>C</ci>
+							<apply>
+							  	<diff/>
+							  	<bvar>
+									<ci>t</ci>
+							  	</bvar>
+							  	<apply>
+									<ci>v</ci>
+									<ci>t</ci>
+								</apply>
+							</apply>
+
+	    		</apply>
+				</apply>
+			</math>
+    </equation>
+
+
+    <para id="p4">
+      Solving for the voltage in the current voltage relationship
+      above, we have:
+    </para>
+
+<!-- V(t) - v(to) = 1/C int... -->
+
+  <equation id="cap_iv_reln_solved_for_v">
+      <math xmlns="&mmlns;" mode="inline">
+				<apply>
+				  <eq/>
+
+	    		<apply>
+						<minus/>
+							<apply>
+					  			<ci>v</ci>
+								<ci>t</ci>
+							</apply>
+							<apply>
+								<ci>v</ci>
+								<ci><msub><mi>t</mi><mn>0</mn></msub></ci>
+							</apply>
+				  	</apply>
+
+	    		<apply>
+						<times/>
+							<apply>
+								<divide/>
+									<cn>1</cn>
+									<ci>C</ci>
+							</apply>
+
+                     <apply>
+                       <int/>
+                         <bvar>
+                             <ci>t</ci>
+                         </bvar>
+                         <lowlimit>
+                             <ci><msub><mi>t</mi><mn>0</mn></msub></ci>
+                         </lowlimit>
+                         <uplimit>
+                             <ci>t</ci>
+                         </uplimit>
+                         <apply>
+                            <ci>i</ci>
+                            <ci>t</ci>
+                         </apply>
+                     </apply>
+	    		</apply>
+
+				</apply>
+			</math>
+    </equation>
+
+
+    <para id="p5">
+      So in the case of the capacitor, the output voltage depends on
+      the history of the current flowing through it.  In a sense, this
+      system has memory.  When a system depends on the present and
+      past input, it is said to be a dynamical system.
+    </para>
+
+  </section>
+
+  <section name="Describing dynamical systems" id="describing">
+
+    <para id="p6">
+      As seen in voltage-current relationship of a capacitor,
+      differential equations have memory and can thus be used to
+      describe dynamical systems.  Take the following RLC circuit
+      as an example:
+    </para>
+
+	<figure id="rlc_example_1"
+				orient="horizontal"
+				name="RLC circuit: 2nd order">
+   	        <media type="image/gif" src="rlc_example.gif"/>
+  </figure>
+
+    <para id="p7">
+      In circuits (as well as in other applications), memory elements
+      can be thought of as energy storage elements.  In this circuit
+      diagram, there are two energy-storing components: the capacitor
+      and the inductor.  Since there are two memory elements, it makes
+      sense that the differential equation describing this system is
+      second order.
+    </para>
+
+  <equation id="rlc_diffeq">
+      <math xmlns="&mmlns;" mode="inline">
+				<apply>
+				<eq/>
+
+					<apply>
+					<plus/>
+
+				<apply>
+				<diff/>
+					<bvar>
+						<ci>t</ci>
+						<degree><cn>2</cn></degree>
+					</bvar>
+					<apply>
+						<ci>y</ci>
+						<ci>t</ci>
+					</apply>
+				</apply>
+
+				<apply>
+				<times/>
+					<apply>
+					<divide/>
+						<cn>7</cn><cn>2</cn>
+					</apply>
+
+					<apply>
+					<diff/>
+						<bvar>
+							<ci>t</ci>
+                     <degree><cn>1</cn></degree>
+						</bvar>
+						<apply>
+							<ci>y</ci>
+							<ci>t</ci>
+						</apply>
+					</apply>
+				</apply>
+
+				<apply>
+				<times/>
+					<cn>9</cn>
+					<apply>
+						<ci>y</ci>
+						<ci>t</ci>
+					</apply>
+				</apply>
+
+			</apply>
+
+			<apply>
+				<times/>
+					<cn>6</cn>
+					<apply>
+						<ci>u</ci>
+						<ci>t</ci>
+					</apply>
+			</apply>
+
+				</apply>
+			</math>
+	</equation>
+
+
+<!-- [diff EQ for circuit above ] -->
+
+    <para id="p8">
+      In the most general case of describing a system with
+      differential equations, higher order derivatives of output
+      variables can be described as functions of lower order
+      derivatives of the output variables and some derivatives of the
+      input variables. Note that by saying "function" we make no
+      assumptions about linearity or time-invariance.
+    </para>
+
+<!-- [general equation: dny(t)/dtn = f(...)] -->
+
+    <para id="p9">
+      By simply rearranging the equation for the RLC circuit above, we
+      can show that that system is in fact covered by this general relationship.
+    </para>
+
+<!-- [equation rearranged to have d2y/dt2 = blah ] -->
+
+    <para id="p10">
+      Of course, dynamical systems are not limited to electrical
+      circuits.  Any system whose output depends on current and past
+      inputs is a valid dynamical system.  Take for example, the
+      following scenario of relating a satellite's position to its
+      inputs thrusters.
+    </para>
+
+<section id="dyn_sys_example_1" name="Planar Orbit Satellite">
+	<example id="ex1">
+
+		<para id="p11">Using a simple model of a satellite, we can say that its position is controlled by a radial thruster
+		<math xmlns="&mmlns;" mode="inline"><ci><msub><mi>u</mi><mi>r</mi></msub></ci></math>,
+		which contributes to its vertical motion, and a tangential thruster
+		<math xmlns="&mmlns;" mode="inline"><ci><msub><mi>u</mi><mi> &theta; </mi></msub></ci></math>
+		which contributes to its motion tangential to its orbit.  To simplify the analysis, let's assume that the
+		satellite circles the earth in a planar orbit, and that its position is described by the distance
+		<math xmlns="&mmlns;" mode="inline"><ci>r</ci></math>
+		from the satellite to the center of the Earth and the angle
+		<math xmlns="&mmlns;" mode="inline"><ci>&theta;</ci></math>
+		as shown in the figure.</para>
+
+	<figure id="satellite_example"
+				orient="horizontal"
+				name="Simple planar orbit satellite example">
+   	        <media type="image/gif" src="satellite_sketch_orbit.gif"/>
+  </figure>
+
+<!-- [ drawing of satellite with tan, rad thrusters] 		[ picture of satellite in planar orbit ] -->
+
+		<para id="p12">Using the laws of motion, the following set of differential equations can be deduced:</para>
+
+<!-- [ equations of motion for satellite ] -->
+
+
+   <equation id="satellite_motion_eqn_1">
+      <math xmlns="&mmlns;" mode="inline">
+				<apply>
+				<eq/>
+
+					<apply>
+					<minus/>
+
+						<apply>
+						<diff/>
+							<bvar><ci>t</ci><degree><cn>2</cn></degree></bvar>
+							<apply>
+								<ci type="function">r</ci>
+								<ci>t</ci>
+							</apply>
+						</apply>
+
+						<apply>
+						<times/>
+							<apply>
+							<diff/>
+								<bvar><ci>t</ci><degree><cn>1</cn></degree></bvar>
+								<apply>
+									<ci type="function">r</ci>
+									<ci>t</ci>
+								</apply>
+							</apply>
+							<apply>
+							<power/>
+								<ci>&theta;</ci>
+								<cn>2</cn>
+							</apply>
+						</apply>
+
+					</apply>
+
+					<apply>
+					<minus/>
+
+						<ci><msub><mi>u</mi><mi>r</mi></msub></ci>
+
+						<apply>
+						<divide/>
+							<ci>k</ci>
+							<apply>
+							<power/>
+								<ci>r</ci>
+								<cn>2</cn>
+							</apply>
+						</apply>
+
+					</apply>
+
+				</apply>
+			</math>
+	</equation>
+
+  <equation id="satellite_motion_eqn_2">
+      <math xmlns="&mmlns;" mode="inline">
+			<apply>
+			<eq/>
+
+				<apply>
+				<plus/>
+
+					<apply>
+					<times/>
+						<cn>2</cn>
+						<apply>
+						<diff/>
+							<bvar><ci>t</ci><degree><cn>1</cn></degree></bvar>
+							<apply><ci type="function">r</ci><ci>t</ci></apply>
+						</apply>
+						<apply>
+						<diff/>
+							<bvar><ci>t</ci><degree><cn>1</cn></degree></bvar>
+							<apply><ci type="function">&theta;</ci><ci>t</ci></apply>
+						</apply>
+					</apply>
+
+					<apply>
+					<times/>
+						<ci>r</ci>
+						<apply>
+						<diff/>
+							<bvar><ci>t</ci><degree><cn>1</cn></degree></bvar>
+							<apply><ci type="function">&theta;</ci><ci>t</ci></apply>
+						</apply>
+					</apply>
+
+				</apply>
+
+				<ci><msub><mi>u</mi><mi>&theta;</mi></msub></ci>
+
+			</apply>
+		</math>
+	</equation>
+
+
+	</example>
+	</section>
+
+  </section>
+</content>
+
+</module>
+
+
+
+
+

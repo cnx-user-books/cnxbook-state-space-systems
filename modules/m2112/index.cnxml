@@ -1,0 +1,1387 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Matrix Exponential</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>641b1260-0d3e-46b9-a904-5a36fd37c77c</md:uuid>
+</metadata>
+
+  
+  <content>
+    <para id="p0">
+      Since systems are often represented in terms of matrices and solutions
+      of system equations often make use of the exponential, it makes sense
+      to try and understand how these two concepts can be combined.  In many
+      previous applications, we've seen terms like
+      
+      <m:math>
+      <m:apply>
+	  <m:exp/>
+          <m:apply>
+            <m:times/>
+	    <m:ci>a</m:ci>
+	    <m:ci>t</m:ci>
+          </m:apply>
+	</m:apply>
+    </m:math>
+      
+      come in handy for talking about system behavior.  Here, a 
+      was always a scalar quantity.  However, what would happen if the scalar <m:math><m:ci>a</m:ci></m:math> was replaced by a matrix <m:math><m:ci type="matrix">A</m:ci></m:math>? 
+      The result would be what is known as the <term>matrix exponential</term>.
+    </para>
+    
+    <section id="s2">
+      <title>Definition</title>
+
+      <para id="p1">
+      Recall the definition of the scalar exponential:
+	
+	<equation id="eq1">
+	  <m:math>
+          <m:apply>
+	      <m:eq/>
+              <m:apply>
+                <m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>a</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply> 
+              </m:apply>
+              <m:apply>
+                <m:plus/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>a</m:ci>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>t</m:ci>
+		    <m:apply>
+		      <m:factorial/>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>a</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>t</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:factorial/>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>a</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>t</m:ci>
+		      <m:cn>3</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:factorial/>
+		      <m:cn>3</m:cn>
+		    </m:apply>
+		  </m:apply>
+                  </m:apply>
+		<m:ci>…</m:ci>
+              </m:apply> 
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+      
+      <para id="p2">
+	The definition of the matrix exponential is almost identical:
+	
+	<equation id="eq2">
+	  <m:math>
+	    <m:apply> 
+	      <m:eq/>
+              <m:apply>
+                <m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+              </m:apply>
+              <m:apply>
+                <m:plus/>
+		<m:ci type="matrix">
+		  <m:msub>
+		    <m:mi>I</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>t</m:ci>
+		    <m:apply>
+		      <m:factorial/>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>t</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+                          <m:apply> 
+		      <m:factorial/>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>t</m:ci>
+		      <m:cn>3</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:factorial/>
+		      <m:cn>3</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:ci>…</m:ci>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+      
+      <para id="p3">
+	Where <m:math><m:ci type="matrix">A</m:ci></m:math> is <m:math><m:ci>n</m:ci></m:math> x <m:math><m:ci>n</m:ci></m:math> and 
+	<m:math>
+	  <m:ci type="matrix">
+	    <m:msub>
+	      <m:mi>I</m:mi>
+	      <m:mi>n</m:mi>
+	    </m:msub>
+	  </m:ci>
+	</m:math>
+	is the <m:math><m:ci>n</m:ci></m:math> x <m:math><m:ci>n</m:ci></m:math>
+	identity matrix.  While it is nice to see the resemblance between
+	these two definitions, applying this infinite series does not turn
+	out to be very efficient in practice.  However, it can be useful
+	in certain special cases.
+      </para>
+
+      <example id="ex1">
+
+	<para id="p4">
+	  Compute
+	  <m:math>
+	    <m:apply>
+	      <m:exp/>
+              <m:apply>
+                <m:times/>
+		<m:ci type="matrix">A</m:ci>
+		<m:ci>t</m:ci>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	  where
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+              <m:ci type="matrix">A</m:ci>
+              <m:matrix>
+                <m:matrixrow>
+                  <m:cn>0</m:cn>
+                  <m:cn>1</m:cn>
+                </m:matrixrow>
+                <m:matrixrow>
+                  <m:cn>-1</m:cn>
+                  <m:cn>0</m:cn>
+                </m:matrixrow>
+              </m:matrix>
+	    </m:apply>
+	  </m:math>.
+	  We can start by taking powers of <m:math><m:ci type="matrix">A</m:ci></m:math> 
+	  so that we can use the formal definition.
+	  
+	  <equation id="eq4_0">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:ci type="matrix">A</m:ci>
+                <m:matrix>
+                  <m:matrixrow>
+                    <m:cn>0</m:cn>
+                    <m:cn>1</m:cn>
+                  </m:matrixrow>
+                  <m:matrixrow>
+                    <m:cn>-1</m:cn>
+                    <m:cn>0</m:cn>
+                  </m:matrixrow>
+                </m:matrix>
+	      </m:apply> 
+	    </m:math>
+	  </equation>
+	  
+	  <equation id="eq4_1">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:power/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:cn>2</m:cn>
+                </m:apply>
+                <m:apply>
+                  <m:times/>
+		  <m:matrix>
+		    <m:matrixrow>
+		      <m:cn>0</m:cn>
+		      <m:cn>1</m:cn>
+		    </m:matrixrow>
+		    <m:matrixrow>
+		      <m:cn>-1</m:cn>
+		      <m:cn>0</m:cn>
+		    </m:matrixrow>
+		  </m:matrix>
+		  <m:matrix>
+		    <m:matrixrow>
+		      <m:cn>0</m:cn>
+		      <m:cn>1</m:cn>
+		    </m:matrixrow>
+		    <m:matrixrow>
+		      <m:cn>-1</m:cn>
+		      <m:cn>0</m:cn>
+		    </m:matrixrow>
+		  </m:matrix>
+                </m:apply>
+                <m:matrix>
+                  <m:matrixrow>
+                    <m:cn>-1</m:cn>
+                    <m:cn>0</m:cn>
+                  </m:matrixrow>
+                  <m:matrixrow>
+                    <m:cn>0</m:cn>
+                    <m:cn>-1</m:cn>
+                  </m:matrixrow>
+                </m:matrix>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci type="matrix">I</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  <equation id="eq4_2">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:power/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:cn>3</m:cn>
+                </m:apply>
+                <m:apply>
+                  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:ci type="matrix">A</m:ci>
+                </m:apply>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  <equation id="eq4_3">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:power/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:cn>4</m:cn>
+                </m:apply>
+                <m:apply>
+                  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+                </m:apply>
+                <m:ci type="matrix">I</m:ci>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  <equation id="eq4_4">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:power/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:cn>5</m:cn>
+                </m:apply>
+                <m:apply>
+                  <m:times/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+                </m:apply>
+                <m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	    </m:math>
+	  </equation> 
+	  
+	  <equation id="eq4_5">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:power/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:cn>6</m:cn>
+                </m:apply>
+                <m:apply>
+                  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:cn>4</m:cn>
+                    </m:apply>
+                </m:apply>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci type="matrix">I</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+	
+	<para id="p5">
+	  And so the pattern goes, giving:
+	  
+	  <equation id="eq5_0">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:power/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>4</m:cn>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>n</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+                </m:apply> 
+                <m:cn>A</m:cn>
+            </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  <equation id="eq5_1">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:power/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>4</m:cn>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>n</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+                </m:apply> 
+		<m:apply>
+		  <m:minus/>
+		  <m:ci type="matrix">I</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  <equation id="eq5_2">
+	    <m:math>
+	      <m:apply>
+              <m:eq/>
+                <m:apply>
+                  <m:power/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>4</m:cn>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>n</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:cn>3</m:cn>
+                    </m:apply>
+                </m:apply> 
+		<m:apply>
+		  <m:minus/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  <equation id="eq5_3">
+	    <m:math>
+            <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:power/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>4</m:cn>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>n</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:cn>4</m:cn>
+		  </m:apply>
+                </m:apply> 
+                <m:ci type="matrix">I</m:ci>
+	      </m:apply>
+          </m:math>
+	  </equation> 
+	</para>
+	
+	<para id="p6">
+	  If we fill in the terms in the definition of
+        <m:math>
+	    <m:apply>
+	      <m:exp/>
+              <m:apply>
+                <m:times/>
+		<m:ci>a</m:ci>
+		<m:ci>t</m:ci>
+              </m:apply>
+	    </m:apply>
+	  </m:math>,
+	  we'll get the following matrix:
+	  
+	  <equation id="eq6">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+                </m:apply>
+                <m:matrix>
+                  <m:matrixrow>
+                    <m:apply>
+                      <m:minus/>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:minus/>
+			  <m:cn>1</m:cn>
+			  <m:apply>
+			    <m:divide/>
+			    <m:apply>
+			      <m:power/>
+			      <m:ci>t</m:ci>
+			      <m:cn>2</m:cn>
+			    </m:apply>
+			    <m:apply>
+			      <m:factorial/>
+			      <m:cn>2</m:cn>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:divide/>
+			  <m:apply>
+			    <m:power/>
+			    <m:ci>t</m:ci>
+			    <m:cn>4</m:cn>
+			  </m:apply>
+			  <m:apply>
+			    <m:factorial/>
+			    <m:cn>4</m:cn>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		      <m:ci>…</m:ci>
+                    </m:apply>
+		    
+                    <m:apply>
+                      <m:minus/>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>t</m:ci>
+			  <m:apply>
+			    <m:divide/>
+			    <m:apply>
+			      <m:power/>
+			      <m:ci>t</m:ci>
+			      <m:cn>3</m:cn>
+			    </m:apply>
+			    <m:apply>
+			      <m:factorial/>
+			      <m:cn>3</m:cn>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:divide/>
+			  <m:apply>
+			    <m:power/>
+			    <m:ci>t</m:ci>
+			    <m:cn>5</m:cn>
+			  </m:apply>
+			  <m:apply>
+			    <m:factorial/>
+			    <m:cn>5</m:cn>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		      <m:ci>…</m:ci>
+                    </m:apply>
+                  </m:matrixrow>
+		  
+                  <m:matrixrow>
+                    <m:apply>
+                      <m:plus/>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:plus/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:ci>t</m:ci>
+			  </m:apply>
+			  <m:apply>
+			    <m:divide/>
+			    <m:apply>
+			      <m:power/>
+			      <m:ci>t</m:ci>
+			      <m:cn>3</m:cn>
+			    </m:apply>
+			    <m:apply>
+			      <m:factorial/>
+			      <m:cn>3</m:cn>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:divide/>
+			  <m:apply>
+			    <m:power/>
+			    <m:ci>t</m:ci>
+			    <m:cn>5</m:cn>
+			  </m:apply>
+			  <m:apply>
+			    <m:factorial/>
+			    <m:cn>5</m:cn>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		      <m:ci>…</m:ci>
+                    </m:apply>
+		    
+                    <m:apply>
+                      <m:minus/>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:minus/>
+			  <m:cn>1</m:cn>
+			  <m:apply>
+			    <m:divide/>
+			    <m:apply>
+			      <m:power/>
+			      <m:ci>t</m:ci>
+			      <m:cn>2</m:cn>
+			    </m:apply>
+			    <m:apply>
+			      <m:factorial/>
+			      <m:cn>2</m:cn>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:divide/>
+			  <m:apply>
+			    <m:power/>
+			    <m:ci>t</m:ci>
+			    <m:cn>4</m:cn>
+			  </m:apply>
+			  <m:apply>
+			    <m:factorial/>
+			    <m:cn>4</m:cn>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		      <m:ci>…</m:ci>
+                    </m:apply>	
+                  </m:matrixrow>
+                </m:matrix>
+		
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+	
+	<para id="p7">
+	  We notice that the sums in this matrix look familiar-in fact, 
+	  they are the Taylor Series expansions of the sinusoids.
+	  Therefore, the solution further reduces to:
+	  
+	  <equation id="eq7">
+          <m:math>
+	      <m:apply> 
+		<m:eq/>
+                <m:apply>
+                  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+                </m:apply>
+                <m:matrix>
+                  <m:matrixrow>
+                    <m:apply>
+                      <m:cos/>
+		      <m:ci>t</m:ci>
+                    </m:apply>
+                    <m:apply>
+                      <m:sin/>
+		      <m:ci>t</m:ci>
+                    </m:apply>	
+                  </m:matrixrow>
+                  <m:matrixrow>
+                    <m:apply>
+                      <m:minus/>
+		      <m:apply>
+			<m:sin/>
+			<m:ci>t</m:ci>
+		      </m:apply>
+                    </m:apply>
+                    <m:apply>
+                      <m:cos/>
+		      <m:ci>t</m:ci>
+                    </m:apply>	
+                  </m:matrixrow>
+                </m:matrix>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+
+      </example>
+  </section>
+    
+  <section id="s4">
+      <title>General Method</title>
+      
+      <para id="p8">
+	The example above illustrates how the use of the true definition to
+	simplify matrix exponentials might only be easily applied in cases 
+	with inherent repetition.  There is a more general method involving
+	the Laplace Transform.  In particular,
+	
+	<equation id="eq8">
+	  <m:math>
+          <m:apply> 
+	      <m:eq/>
+              <m:apply>
+		<m:ci type="fn" class="discrete">ℒ</m:ci>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply> 
+              </m:apply>
+              <m:apply>
+                <m:inverse/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>s</m:ci>
+		    <m:ci type="matrix">I</m:ci>
+		  </m:apply>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+      <para id="p10">
+	We can verify that this is true by inserting the formal definition 
+	of the matrix exponential:
+	
+	<equation id="eq9">
+	  <m:math>
+	    <m:apply> 
+	      <m:eq/>
+              <m:apply>
+		<m:ci type="fn" class="discrete">ℒ</m:ci>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply> 
+              </m:apply>
+              <m:apply>
+		<m:ci type="fn" class="discrete">ℒ</m:ci>
+                <m:apply>
+                  <m:plus/>
+		  <m:ci type="matrix">I</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:apply>
+		      <m:divide/>
+		      <m:ci>t</m:ci>
+		      <m:apply>
+			<m:factorial/>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci type="matrix">A</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>t</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:factorial/>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>…</m:ci>
+                </m:apply>
+              </m:apply>
+              <m:apply>
+                <m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		  <m:ci type="matrix">I</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>s</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>s</m:ci>
+		      <m:cn>3</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:ci>…</m:ci>
+              </m:apply>
+	      
+              <m:apply>
+                <m:inverse/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>s</m:ci>
+		    <m:ci type="matrix">I</m:ci>
+		  </m:apply>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation> 
+      </para>
+      
+      <para id="p11">
+	The jump between the third and fourth equations here may be a
+	bit hard to believe, but this equality reduces to
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+            <m:ci type="matrix">I</m:ci>
+            <m:ci type="matrix">I</m:ci>
+	  </m:apply>
+	</m:math>
+	when both sides are multiplied by
+	<m:math>
+	  <m:apply>
+	    <m:minus/>
+            <m:apply>
+              <m:times/>
+	      <m:ci>s</m:ci>
+	      <m:ci type="matrix">I</m:ci>
+            </m:apply>
+            <m:ci type="matrix">A</m:ci>
+	  </m:apply>
+      </m:math>.
+	Taking an inverse Laplace of each side of <link target-id="eq8" strength="3">Laplace Transform of the equation</link> we find an expression for the matrix exponential:
+	
+	<equation id="eq11">
+	  <m:math>
+          <m:apply> 
+	      <m:eq/>
+              <m:apply>
+                <m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+              </m:apply> 
+              <m:apply>
+		<m:apply>
+		  <m:inverse/>
+		  <m:mo>ℒ</m:mo>
+		</m:apply>
+		<m:apply>
+		  <m:inverse/>
+		  <m:apply>
+		    <m:minus/>
+		      <m:apply>
+		      <m:times/>
+		      <m:ci>s</m:ci>
+		      <m:ci type="matrix">I</m:ci>
+		    </m:apply>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation> 
+      </para>
+      
+      <example id="ex2">
+	
+	<para id="p12">
+	  We can do the same example as before, this time using the
+	  Laplace-based method.
+	  
+	  <equation id="eq10">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:ci type="matrix">A</m:ci>
+                <m:matrix>
+                  <m:matrixrow>
+                    <m:cn>0</m:cn>
+                    <m:cn>1</m:cn>
+                  </m:matrixrow>
+                  <m:matrixrow>
+                    <m:cn>-1</m:cn>
+                    <m:cn>0</m:cn>
+                  </m:matrixrow>
+                </m:matrix>
+	      </m:apply> 
+	    </m:math>
+	  </equation> 
+	  
+	  <equation id="eq10b">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:inverse/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>s</m:ci>
+		      <m:ci type="matrix">I</m:ci>
+		    </m:apply>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+                </m:apply>
+                <m:apply>
+                  <m:inverse/>
+		  <m:matrix>
+		    <m:matrixrow>
+		      <m:ci>s</m:ci>
+		      <m:cn>-1</m:cn>
+		    </m:matrixrow>
+		    <m:matrixrow>
+		      <m:cn>1</m:cn>
+		      <m:ci>s</m:ci>
+		    </m:matrixrow>
+		  </m:matrix>
+                </m:apply>
+                <m:apply>
+                  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>s</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:matrix>
+		    <m:matrixrow>
+		      <m:ci>s</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:matrixrow>
+		    <m:matrixrow>
+		      <m:cn>-11</m:cn>
+		      <m:ci>s</m:ci>
+		    </m:matrixrow>
+		  </m:matrix>		
+                </m:apply>
+                <m:matrix>
+                  <m:matrixrow>
+                    <m:apply>
+                      <m:divide/>
+		      <m:ci>s</m:ci>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>s</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+			<m:cn>1</m:cn>
+		      </m:apply>
+                    </m:apply>
+                    <m:apply>
+                      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>s</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+			<m:cn>1</m:cn>
+		      </m:apply>
+                    </m:apply>
+                  </m:matrixrow>
+                  <m:matrixrow>
+                    <m:apply>
+                      <m:divide/>
+		      <m:cn>-1</m:cn>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>s</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+			<m:cn>1</m:cn>
+		      </m:apply>
+                    </m:apply>	
+                    <m:apply>
+                      <m:divide/>
+		      <m:ci>s</m:ci>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>s</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+			<m:cn>1</m:cn>
+		      </m:apply>
+                    </m:apply>
+                  </m:matrixrow> 
+                </m:matrix> 
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+	
+	<para id="p13">
+	  Taking the inverse laplace of this gives us
+	  
+	  <equation id="eq12">
+	    <m:math>
+	      <m:apply> 
+		<m:eq/>
+                <m:apply>
+                  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+                </m:apply>
+                <m:matrix>
+                  <m:matrixrow>
+                    <m:apply>
+                      <m:cos/>
+		      <m:ci>t</m:ci>
+                    </m:apply>
+                    <m:apply>
+                      <m:sin/>
+		      <m:ci>t</m:ci>
+                    </m:apply>	
+                  </m:matrixrow>
+                  <m:matrixrow>
+                    <m:apply>
+                      <m:minus/>
+		      <m:apply>
+			<m:sin/>
+			<m:ci>t</m:ci>
+		      </m:apply>
+                    </m:apply>
+                    <m:apply>
+                      <m:cos/>
+		      <m:ci>t</m:ci>
+                    </m:apply>	
+                  </m:matrixrow>
+                </m:matrix>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+
+      </example>
+      
+    </section>
+    
+    <section id="s5">
+      <title>Properties of the Matrix Exponential</title>
+      
+      <para id="p14">
+	In the scalar case, a product of exponentials
+	<m:math>
+	  <m:apply>
+	    <m:times/>
+            <m:apply>
+              <m:exp/>
+	      <m:ci>a</m:ci>
+            </m:apply>
+            <m:apply>
+              <m:exp/>
+	      <m:ci>b</m:ci>
+            </m:apply>
+	  </m:apply>
+	</m:math>
+	reduces to a single exponential whose power is the sum of the
+	individual exponents' powers,
+      <m:math>
+	  <m:apply>
+	    <m:exp/>
+            <m:apply>
+              <m:plus/>
+	      <m:ci>a</m:ci>
+	      <m:ci>b</m:ci>
+            </m:apply>
+	  </m:apply>
+	</m:math>.
+	However, in the case of the matrix exponential, this is not
+	true.  If <m:math><m:ci type="matrix">A</m:ci></m:math> and <m:math><m:ci type="matrix">B</m:ci></m:math> 
+	are matrices,
+	
+	<equation id="eq13">
+	  <m:math>
+	    <m:apply>
+	      <m:neq/>
+              <m:apply>
+                <m:times/>
+		<m:apply>
+		  <m:exp/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+                  <m:apply>
+		  <m:exp/>
+		  <m:ci>B</m:ci>
+		</m:apply>
+              </m:apply>
+              <m:apply>
+                <m:exp/>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci>B</m:ci>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+      
+      <para id="p15">
+	unless <m:math><m:ci type="matrix">A</m:ci></m:math> and <m:math><m:ci type="matrix">B</m:ci></m:math> 
+	are commutative (i.e.
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+            <m:apply>
+              <m:times/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:ci>B</m:ci>
+            </m:apply>
+            <m:apply>
+              <m:times/>
+	      <m:ci>B</m:ci>
+	      <m:ci type="matrix">A</m:ci>
+            </m:apply>
+	  </m:apply>
+	</m:math>)
+      </para>
+      
+      <para id="end">
+	The derivative operates on the matrix exponential the same as
+	it does on the scalar exponential.
+	
+	<equation id="eq16">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+                <m:diff/>
+		<m:bvar><m:ci>t</m:ci></m:bvar>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+              </m:apply>
+              <m:apply>
+                <m:plus/>
+		<m:cn>0</m:cn>
+		<m:ci type="matrix">A</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>t</m:ci>
+		    <m:apply>
+		      <m:factorial/>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>t</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:factorial/>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:ci>…</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:times/>
+		<m:ci type="matrix">A</m:ci>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci type="matrix">I</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:apply>
+		      <m:divide/>
+		      <m:ci>t</m:ci>
+		      <m:apply>
+			<m:factorial/>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci type="matrix">A</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>t</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:factorial/>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>…</m:ci>
+		</m:apply>
+	      </m:apply>
+              <m:apply>
+                <m:times/>
+                  <m:ci type="matrix">A</m:ci>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply> 
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+      </para>
+    </section>
+    
+  </content>
+  
+</document>

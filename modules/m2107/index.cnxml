@@ -1,0 +1,895 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Time Domain State and Output Equations</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>a89ceca8-69b3-4745-9d97-54a9a6cc0ea6</md:uuid>
+</metadata>
+
+  
+  <!-- End Header ******************************* -->
+  <!-- ****************************************** -->
+  
+  <content>
+    <para id="p0"> <note id="idp4310464"><m:math><m:ci type="fn">x</m:ci></m:math> and <m:math><m:ci type="fn">u</m:ci></m:math> 
+      are functions of time, and the notation
+      <m:math>
+	<m:apply>
+	  <m:diff/>
+	  <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	    <m:ci type="fn">x</m:ci>
+	</m:apply>
+      </m:math>
+      <emphasis>implies</emphasis>
+      <m:math>
+	<m:apply>
+	  <m:diff/>
+	  <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	  <m:apply>
+	    <m:ci type="fn">x</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>.
+    </note></para>
+    
+    <para id="p1">Given the state equations and output equations</para>
+    
+    <equation id="eqeq1">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:diff/>
+	    <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">B</m:ci>
+	      <m:ci>u</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <equation id="eqeq2">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>y</m:ci>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">C</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">D</m:ci>
+	      <m:ci>u</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+
+    <para id="p2">we would like to be able to find solutions for <m:math><m:ci>x</m:ci></m:math> and
+      <m:math><m:ci>y</m:ci></m:math> in terms of the initial state of the system and the system's
+      input.  To find such solutions, we begin with an examination of
+      a scalar (<m:math><m:apply><m:eq/><m:ci>n</m:ci><m:cn>1</m:cn></m:apply></m:math>, <m:math><m:apply><m:eq/><m:ci>m</m:ci><m:cn>1</m:cn></m:apply></m:math>) 
+      state equation:</para>
+    
+    <equation id="eqeq3">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:diff/>
+	    <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>a</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>b</m:ci>
+	      <m:ci>u</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p3">If we looked at a special case of this equation, one
+      where the input <m:math><m:ci>u</m:ci></m:math> was <m:math><m:cn>0</m:cn></m:math>, 
+      we'd have
+      <m:math>
+	<m:apply>
+	<m:eq/>
+	  <m:apply>
+	    <m:diff/>
+	    <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>a</m:ci>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>.
+      We've seen this many times before; to solve this, we need a
+      function whose derivative is directly proportional to itself.
+      This function is the exponential function.  Therefore, in
+      solving the more general case presented by the <link target-id="eqeq3" strength="2">state equation</link>, we expect that the exponential function will also come into play.</para>
+    
+    <para id="p4">Starting with the <link target-id="eqeq3" strength="2">state equation</link>, we can collect like terms, multiply through by
+      <m:math>
+	<m:apply>
+	  <m:exp/>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>a</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  
+	</m:apply>
+      </m:math>,
+      and rewrite the left-hand side of the <link target-id="eqeq4" strength="2">derivative equation</link> in terms of the
+      derivative.  (We take this last step after noticing that the
+      left-hand side of the <link target-id="eqeq4" strength="2">derivation equation</link> looks like the derivative product rule has already been applied to it.)</para>
+
+    <equation id="eqeq4">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		<m:apply>
+		  <m:ci type="fn">x</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>a</m:ci>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+            <m:apply> 
+	      <m:ci type="fn">x</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>b</m:ci>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>a</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	    <m:ci type="fn">u</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <equation id="eqeq5">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:diff/>
+	    <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>a</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:ci>b</m:ci>
+	    <m:apply>
+	      <m:ci>u</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p5">Since we are searching for
+      <m:math><m:apply><m:ci type="fn">x</m:ci><m:ci>t</m:ci></m:apply></m:math>
+      instead of its derivative, we will integrate both sides from
+      <m:math><m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:math>
+      to <m:math><m:ci>t</m:ci></m:math>. 
+    </para>
+    
+    <equation id="eqeq6">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:int/>
+	    <m:bvar><m:ci>t</m:ci></m:bvar>
+	    <m:lowlimit><m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:lowlimit>
+	    <m:uplimit><m:ci>t</m:ci></m:uplimit>
+	    <m:apply>
+	      <m:diff/>
+	      <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>a</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">x</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:int/>
+	    <m:bvar><m:ci>t</m:ci></m:bvar>
+	    <m:lowlimit><m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:lowlimit>
+	    <m:uplimit><m:ci>t</m:ci></m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:ci>b</m:ci>
+	      <m:apply>
+		<m:ci type="fn">u</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    
+    <para id="p6">In the left-hand side of this equation, the integral and the derivative counteract each other and we are left with the difference of the function
+      <m:math>
+	<m:apply>
+	  <m:times/>
+	  <m:apply>
+	    <m:exp/>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>a</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:ci type="fn">x</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      evaluated at the upper and lower integration limits.  To avoid
+      confusion, the variable of integration will be changed from <m:math><m:ci>t</m:ci></m:math>
+      (which is now a constant limit in the integral) to <m:math><m:ci>τ</m:ci></m:math>. </para>
+    
+    <equation id="eqeq7">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:int/>
+	    <m:bvar><m:ci>τ</m:ci></m:bvar>
+	    <m:lowlimit><m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:lowlimit>
+	    <m:uplimit><m:ci>t</m:ci></m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:ci>τ</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:ci>b</m:ci>
+	      <m:apply>
+		<m:ci type="fn">u</m:ci>
+		<m:ci>τ</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p7">We now move the
+      <m:math><m:apply><m:ci type="fn">x</m:ci><m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:apply></m:math>
+      term to the other side and divide through by
+      <m:math><m:apply><m:exp/><m:apply><m:minus/><m:apply><m:times/><m:ci>a</m:ci><m:ci>t</m:ci></m:apply></m:apply></m:apply></m:math>.
+      This leaves us with a solution for the state variable
+      <m:math><m:apply><m:ci type="fn">x</m:ci><m:ci>t</m:ci></m:apply></m:math>
+      in the scalar case:</para>
+    
+    <equation id="eqeq8">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">x</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>a</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>t</m:ci>
+		    <m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>τ</m:ci></m:bvar>
+	      <m:lowlimit><m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:lowlimit>
+	      <m:uplimit><m:ci>t</m:ci></m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>t</m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:ci>b</m:ci>
+		<m:apply>
+		  <m:ci type="fn">u</m:ci>
+		  <m:ci>τ</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    
+    <para id="p8">What happens if we let
+      <m:math><m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:math>
+      go to <m:math><m:apply><m:minus/><m:ci>∞</m:ci></m:apply></m:math>?
+      The first term on the right-hand side will go to zero since
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply><m:ci type="fn">x</m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:infinity/>
+	      </m:apply>
+	  </m:apply>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>.
+      Then, if we say that
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply><m:ci type="fn">h</m:ci><m:ci>t</m:ci></m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>a</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:ci>b</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>,
+      the second term can be rewritten as</para>
+    
+    <equation id="eqeq10">
+      <m:math>
+	<m:apply>
+	  <m:int/>
+	  <m:bvar><m:ci>τ</m:ci></m:bvar>
+	  <m:lowlimit>
+	    <m:apply>
+	      <m:minus/>
+	      <m:infinity/>
+	    </m:apply>
+	  </m:lowlimit>
+	  <m:uplimit><m:ci>t</m:ci></m:uplimit>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:ci type="fn">h</m:ci>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>t</m:ci>
+		<m:ci>τ</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">u</m:ci>
+	      <m:ci>τ</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p9">This is the convolution equation <m:math><m:apply><m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#convolve"/><m:ci>h</m:ci><m:ci>u</m:ci></m:apply></m:math>.
+    </para>
+    
+    <para id="p10">For the scalar case, the solution to the output equation
+      <m:math><m:apply><m:ci type="fn">y</m:ci><m:ci>t</m:ci></m:apply></m:math>
+      has the same basic form as the solution to the state equation:</para>
+    
+    <equation id="eqeq11">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">y</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>c</m:ci>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>a</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>t</m:ci>
+		    <m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>τ</m:ci></m:bvar>
+	      <m:lowlimit><m:ci><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:lowlimit>
+	      <m:uplimit><m:ci>t</m:ci></m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:ci>c</m:ci>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>t</m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:ci>b</m:ci>
+		<m:apply>
+		  <m:ci type="fn">u</m:ci>
+		  <m:ci>τ</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:mo>ⅆ</m:mo>
+	      <m:apply>
+		<m:ci type="fn">u</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p11">Again, we can see the convolution in the second term.</para>
+    
+    <para id="p12">The general matrix forms of the solutions for the
+      state and output equations follow the same pattern.  The only
+      differences are that we use the matrix exponential instead of
+      the scalar exponential, and that we use the matrices 
+<m:math><m:ci type="matrix">A</m:ci></m:math>,
+<m:math><m:ci type="matrix">B</m:ci></m:math>,
+<m:math><m:ci type="matrix">C</m:ci></m:math>, and
+<m:math><m:ci type="matrix">D</m:ci></m:math>
+ instead of the scalars 
+<m:math><m:ci>a</m:ci></m:math>,
+<m:math><m:ci>b</m:ci></m:math>,
+<m:math><m:ci>c</m:ci></m:math>, and
+<m:math><m:ci>d</m:ci></m:math>.</para>
+    
+    <equation id="eqeq12">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">x</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>τ</m:ci></m:bvar>
+	      <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+	      <m:uplimit><m:ci>t</m:ci></m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>t</m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:ci type="matrix">B</m:ci>
+		<m:apply>
+		  <m:ci type="fn">u</m:ci>
+		  <m:ci>τ</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+
+    <equation id="eqeq13">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">y</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">C</m:ci>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>τ</m:ci></m:bvar>
+	      <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+	      <m:uplimit><m:ci>t</m:ci></m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:ci type="matrix">C</m:ci>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>t</m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:ci type="matrix">B</m:ci>
+		<m:apply>
+		  <m:ci type="fn">u</m:ci>
+		  <m:ci>τ</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">D</m:ci>
+	      <m:apply>
+		<m:ci type="fn">u</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p13">The convolution term is easy to see in the solution for
+      <m:math><m:apply><m:ci type="fn">x</m:ci><m:ci>t</m:ci></m:apply></m:math>.
+      However, it takes a little regrouping to find it in the solution for
+      <m:math><m:apply><m:ci type="fn">y</m:ci><m:ci>t</m:ci></m:apply></m:math>.
+      If we pull the <m:math><m:ci type="matrix">D</m:ci></m:math> 
+matrix into the integral (by multiplying it by the impulse function,
+      <m:math><m:ci>δ</m:ci></m:math>, 
+      we once again have the integral of a function of
+      <m:math><m:apply><m:minus/><m:ci>t</m:ci><m:ci>τ</m:ci></m:apply></m:math>
+      being multiplied by the input (convolution).</para>
+    
+    <equation id="eqeq14">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">y</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">C</m:ci>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>τ</m:ci></m:bvar>
+	      <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+	      <m:uplimit><m:ci>t</m:ci></m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci type="matrix">C</m:ci>
+		    <m:apply>
+		      <m:exp/>
+		      <m:apply>
+			<m:times/>
+			<m:ci type="matrix">A</m:ci>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>t</m:ci>
+			  <m:ci>τ</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci type="matrix">B</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci type="matrix">D</m:ci>
+		    <m:apply>
+		      <m:ci type="fn">δ</m:ci>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>t</m:ci>
+			<m:ci>τ</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">u</m:ci>
+		  <m:ci>τ</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+  </content>
+  
+</document>

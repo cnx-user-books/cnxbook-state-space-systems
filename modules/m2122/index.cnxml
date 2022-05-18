@@ -1,0 +1,565 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Controllability and Observability Grammians</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>afc38e0d-22bb-4fbe-8dbb-059af8bf45ea</md:uuid>
+</metadata>
+
+  
+  <content>
+    <section id="s1">
+      <title>Controllability Grammian</title>
+      
+      <para id="p0">The finite controllability grammian at time
+	<m:math><m:apply><m:lt/><m:ci>t</m:ci><m:infinity/></m:apply></m:math>
+	is defined as follows.  </para>
+      
+      <equation id="eq1">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">P</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>τ</m:ci></m:bvar>
+	      <m:uplimit><m:ci>t</m:ci></m:uplimit>
+	      <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:ci>τ</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci type="matrix">B</m:ci>
+		<m:ci><m:msup><m:mi>B</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msup><m:mi>A</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		    <m:ci>τ</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <para id="p1">This grammian has two important properties.  First,
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">P</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+
+	    <m:apply>
+	      <m:geq/>
+	      <m:apply>
+		<m:ci type="fn"><m:msup><m:mi>P</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+
+	Secondly, the columns of
+	<m:math><m:apply><m:ci type="fn">P</m:ci><m:ci>t</m:ci></m:apply></m:math>
+	span the controllable space, i.e.
+	
+	<m:math>
+	<m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">im</m:ci>
+	      <m:apply>
+		<m:ci type="fn">P</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">im</m:ci>
+	      <m:apply>
+		<m:ci type="fn">C</m:ci>
+		<m:ci>A</m:ci>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	It can be shown that the state defined by <m:math><m:ci type="matrix">A</m:ci></m:math> and <m:math><m:ci type="matrix">B</m:ci></m:math> 
+	is controllable if, and only if,
+	<m:math><m:apply><m:ci type="fn">P</m:ci><m:ci>t</m:ci></m:apply></m:math>
+	is positive definite for some 
+<m:math><m:apply><m:gt/><m:ci>t</m:ci><m:cn>0</m:cn></m:apply></m:math>.
+	</para>
+	
+      <para id="p2">Using the controllability grammian, we can determine how to most efficiently take a system from the zero state to a certain state
+	<m:math><m:ci><m:mover accent="true"><m:mi>x</m:mi><m:mo>―</m:mo></m:mover></m:ci></m:math>.
+	Given that
+	<m:math><m:ci><m:mover accent="true"><m:mi>x</m:mi><m:mo>―</m:mo></m:mover></m:ci></m:math>
+	is in the controllable space, there exists <m:math><m:ci>ξ</m:ci></m:math> such that
+	
+	<equation id="eq2">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci><m:mover accent="true"><m:mi>x</m:mi><m:mo>―</m:mo></m:mover></m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:ci type="fn">P</m:ci>
+		  <m:ci><m:mover accent="true"><m:mi>T</m:mi><m:mo>―</m:mo></m:mover></m:ci>
+		</m:apply>
+		<m:ci>ξ</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	for some
+	<m:math><m:apply><m:gt/><m:ci><m:mover accent="true"><m:mi>T</m:mi><m:mo>―</m:mo></m:mover></m:ci><m:cn>0</m:cn></m:apply></m:math>.   In this case, the minimum energy input required to move the system from zero to
+	<m:math><m:ci><m:mover accent="true"><m:mi>x</m:mi><m:mo>―</m:mo></m:mover></m:ci></m:math>
+	is
+	
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:mover accent="true"><m:mi>u</m:mi><m:mo>―</m:mo></m:mover></m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msup><m:mi>B</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msup><m:mi>A</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci><m:mover accent="true"><m:mi>T</m:mi><m:mo>―</m:mo></m:mover></m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:ci><m:mover accent="true"><m:mi>ξ</m:mi><m:mo>―</m:mo></m:mover></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	If the controllability matrix is invertible, we can use <link target-id="eq2" strength="3">the relation equation between ξ and certain state</link> to put
+	<m:math><m:ci><m:mover accent="true"><m:mi>u</m:mi><m:mo>―</m:mo></m:mover></m:ci></m:math>
+in terms of
+	<m:math><m:ci><m:mover accent="true"><m:mi>x</m:mi><m:mo>―</m:mo></m:mover></m:ci></m:math>:
+	
+	<equation id="eq3">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>
+		<m:mover accent="true">
+		  <m:mi>u</m:mi><m:mo>―</m:mo>
+		</m:mover>
+	      </m:ci>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msup><m:mi>B</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msup><m:mi>A</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci><m:mover accent="true"><m:mi>T</m:mi><m:mo>―</m:mo></m:mover></m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:inverse/>
+		  <m:apply>
+		    <m:ci type="fn">P</m:ci>
+		    <m:ci><m:mover accent="true"><m:mi>T</m:mi><m:mo>―</m:mo></m:mover></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci><m:mover accent="true"><m:mi>x</m:mi><m:mo>―</m:mo></m:mover></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>	
+	</equation>
+	
+      </para>
+      
+      <para id="p3">
+In general, this minimal energy is exactly equal to
+	<m:math>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci><m:mover accent="true"><m:mi>ξ</m:mi><m:mo>―</m:mo></m:mover></m:ci>
+	      <m:ci>*</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">P</m:ci>
+	      <m:ci><m:mover accent="true"><m:mi>T</m:mi><m:mo>―</m:mo></m:mover></m:ci>
+	    </m:apply>
+	    <m:ci><m:mover accent="true"><m:mi>ξ</m:mi><m:mo>―</m:mo></m:mover></m:ci>
+	</m:apply>
+	</m:math>.
+	If the system is controllable, then this formula becomes
+	
+	<equation id="eq3_2">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">Energy</m:ci>
+		<m:ci><m:mover accent="true"><m:mi>u</m:mi><m:mo>―</m:mo></m:mover></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci><m:mover><m:mi>x</m:mi><m:mo>―</m:mo></m:mover></m:ci>
+		  <m:ci>*</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:inverse/>
+		  <m:apply>
+		    <m:ci type="fn">P</m:ci>
+		    <m:ci><m:mover><m:mi>T</m:mi><m:mo>―</m:mo></m:mover></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci><m:mover><m:mi>x</m:mi><m:mo>―</m:mo></m:mover></m:ci>
+	      </m:apply>		
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	If you don't want to start at the zero state, the formulas above can still be applied for taking a system at state
+	<m:math><m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:math>
+	to a state
+	<m:math><m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci></m:math>.
+	This holds even if
+	<m:math><m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:math>
+	and
+	<m:math><m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci></m:math>
+	are not controllable; in this case, all that is necessary is for
+	<m:math>
+	  <m:apply>
+	    <m:minus/>
+	    <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	    <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	  </m:apply>
+	</m:math>
+	to be in the controllable space.  (This makes sense if you think of
+	<m:math><m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:math>
+	as being the zero state and
+	<m:math><m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci></m:math>
+	as being the general state we are trying to reach; it is the exact analog of the previous case.  Using
+<m:math><m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:math>
+	and
+	<m:math><m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci></m:math>
+is just like using <m:math><m:cn>0</m:cn></m:math> and <m:math><m:ci>x</m:ci></m:math> 
+	with an appropriate offset.)</para>
+      
+    </section>
+    
+    <section id="s2">
+      <title>Observability Grammian</title>
+      
+      <para id="p4">The finite observability grammian at time
+	<m:math><m:apply><m:lt/><m:ci>t</m:ci><m:infinity/></m:apply></m:math>
+is defined as
+	
+	<equation id="eq4">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">Q</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar><m:ci>τ</m:ci></m:bvar>
+		<m:uplimit><m:ci>t</m:ci></m:uplimit>
+		<m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci><m:msup><m:mi>A</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci><m:msup><m:mi>C</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		  <m:ci>C</m:ci>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci type="matrix">A</m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	Parallel to the finite controllability grammian, the kernel of finite observability grammian is equal to the kernel of the observability matrix.  (This relationship holds for positive time only.)
+	
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">ker</m:ci>
+	      <m:apply>
+		<m:ci type="fn">Q</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">ker</m:ci>
+	      <m:apply>
+		<m:ci type="fn">O</m:ci>
+		<m:ci type="matrix">C</m:ci>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+      </para>
+      
+      <para id="p5">Using this grammian, we can find an expression for
+	the energy of the output <m:math><m:ci>y</m:ci></m:math> at time <m:math><m:ci>T</m:ci></m:math>
+	caused by the system's initial state <m:math><m:ci>x</m:ci></m:math>:
+	
+	<equation id="eq5">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">Energy</m:ci>
+		<m:ci>y</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msup><m:mi>x</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		<m:apply>
+		  <m:ci type="fn">Q</m:ci>
+		  <m:ci>T</m:ci>
+		</m:apply>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+      </para>
+      
+    </section>
+    
+    <section id="s3">
+      <title>Infinite Grammians</title>
+      
+      <para id="p6">Consider a continuous-time linear system defined,
+	as per normal, by the matrices <m:math><m:ci type="matrix">A</m:ci></m:math>, <m:math><m:ci type="matrix">B</m:ci></m:math>, <m:math><m:ci type="matrix">C</m:ci></m:math>, and<m:math><m:ci type="matrix">D</m:ci></m:math>.
+	Assuming that this system is stable (i.e. all of its eigenvalues have negative real parts), both the controllability and observability grammians are defined for
+	<m:math><m:apply><m:eq/><m:ci>t</m:ci><m:infinity/></m:apply></m:math>.
+	
+	<equation id="eq6">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>P</m:ci>
+	      <m:apply>
+		<m:int/>
+		<m:bvar><m:ci>τ</m:ci></m:bvar>
+		<m:uplimit><m:infinity/></m:uplimit>
+		<m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci type="matrix">A</m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci type="matrix">B</m:ci>
+		  <m:ci><m:msup><m:mi>B</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci><m:msup><m:mi>A</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<equation id="eq7">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>Q</m:ci>
+	      <m:apply>
+		<m:int/>
+		<m:bvar><m:ci>τ</m:ci></m:bvar>
+		<m:uplimit><m:infinity/></m:uplimit>
+		<m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci><m:msup><m:mi>A</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci><m:msup><m:mi>C</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		  <m:ci type="matrix">C</m:ci>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>A</m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	These are called the infinite controllability and infinite observability grammians, respectively.  These grammians satisfy the linear matrix equations known as the <term>Lyapunov equations</term>.
+	
+	<equation id="eq8">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci type="matrix">P</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci type="matrix">P</m:ci>
+		  <m:ci><m:msup><m:mi>A</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci type="matrix">B</m:ci>
+		  <m:ci><m:msup><m:mi>B</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<equation id="eq9">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msup><m:mi>A</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		  <m:ci type="matrix">Q</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci type="matrix">Q</m:ci>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>		
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msup><m:mi>C</m:mi><m:mi>*</m:mi></m:msup></m:ci>
+		  <m:ci type="matrix">C</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+      </para>
+      
+      <para id="p7">In the case of infinite grammians, the equations for minimal energy state transfer and observation energy drop their dependence on time. Assuming stability and complete controllability, the minimal energy required to transfer from zero to state
+<m:math><m:ci><m:msub><m:mi>x</m:mi><m:mi>c</m:mi></m:msub></m:ci></m:math>
+	is
+	
+	<equation id="eq10">
+	  <m:math>
+	    <m:apply>
+	      <m:times/>	
+	      <m:apply>
+		<m:power/>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mi>c</m:mi></m:msub></m:ci>
+		<m:ci>*</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:inverse/>
+		<m:ci>P</m:ci>
+	      </m:apply>
+	      <m:ci><m:msub><m:mi>x</m:mi><m:mi>c</m:mi></m:msub></m:ci>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	Similarly, the largest observation energy produced by the state
+	<m:math><m:ci><m:msub><m:mi>x</m:mi><m:mi>o</m:mi></m:msub></m:ci></m:math>
+	is obtained for an infinite observation interval and is equal to:
+	
+	<equation id="eq11">
+	  <m:math>
+	    <m:apply>
+	      <m:times/>	
+	      <m:apply>
+		<m:power/>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mi>o</m:mi></m:msub></m:ci>
+		<m:ci>*</m:ci>
+	      </m:apply>
+	      <m:ci>Q</m:ci>
+	      <m:ci><m:msub><m:mi>x</m:mi><m:mi>o</m:mi></m:msub></m:ci>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+      </para>
+      
+    </section>
+    
+  </content>
+</document>

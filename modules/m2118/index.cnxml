@@ -1,0 +1,337 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Matrix Inversion</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>9935aabf-0d89-40d0-a37f-dda925911ca3</md:uuid>
+</metadata>
+  
+  <content>
+    <para id="p0">
+      Say that we have the following matrix and that we want to find its determinant.
+    </para>
+    
+    <equation id="eqeqn1">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+  	  <m:ci>A</m:ci>
+	  <m:matrix>
+	    <m:matrixrow>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>1</m:cn><m:cn>1</m:cn></m:apply>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>1</m:cn><m:cn>2</m:cn></m:apply>
+	      <m:ci>…</m:ci>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>1</m:cn><m:ci>n</m:ci></m:apply>
+	    </m:matrixrow>
+	    <m:matrixrow>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>2</m:cn><m:cn>1</m:cn></m:apply>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>2</m:cn><m:cn>2</m:cn></m:apply>
+	      <m:ci>…</m:ci>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>2</m:cn><m:ci>n</m:ci></m:apply>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:ci>⋮</m:ci>
+	      <m:ci>⋮</m:ci>
+	      <m:ci>⋱</m:ci>
+	      <m:ci>⋮</m:ci>
+	    </m:matrixrow>
+	    <m:matrixrow>
+<m:apply><m:selector/><m:ci>a</m:ci><m:ci>n</m:ci><m:cn>1</m:cn></m:apply>
+<m:apply><m:selector/><m:ci>a</m:ci><m:ci>n</m:ci><m:cn>2</m:cn></m:apply>
+	      <m:ci>…</m:ci>
+<m:apply><m:selector/><m:ci>a</m:ci><m:ci>n</m:ci><m:ci>n</m:ci></m:apply>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+      </m:math>
+    </equation>
+    
+    <para id="p1">
+      Calculating the determinant of a matrix is a recursive process.  Basically,
+      we start by choosing any one row or column.  The determinant will then be
+      found with respect to this row or column.  What this means is that we will
+      find a sum of the products of this row or column's values and
+      sub-determinants formed by blocking out the row and column of the particular
+      value.
+    </para>
+    
+    <para id="p2">
+      Why is this choice of row or column left to us instead of always being
+      defined as, say, the first row?  The reason is that by choosing this row or
+      column wisely, we can sometimes reduce the amount of work we do.  For
+      example, if a certain row or column contains a few zeros, choosing it as the
+      row/column that we take the determinant with respect to would be a smart
+      move.  As the values of this chosen row or column will be multiplied by
+      sub-determinants of the matrix in question, a value of <m:math><m:cn>0</m:cn></m:math> in one of these
+      products would mean that we have one less matrix whose determinant we need
+      to calculate.
+</para>
+
+<para id="p3">
+In the case of the matrix above, we'll compute the determinant with respect
+to the first column.  The final equation for the determinant is:
+</para>
+
+    <equation id="eqeqn2">
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:determinant/>
+	    <m:ci type="matrix">A</m:ci>
+	  </m:apply>
+	  <m:apply><m:plus/>
+	    <m:apply>
+	      <m:times/>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>1</m:cn><m:cn>1</m:cn></m:apply>
+	      <m:apply><m:power/>
+		  <m:cn>-1</m:cn>
+		<m:apply><m:plus/>
+		  <m:cn>1</m:cn>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:determinant/>
+		<m:ci><m:msup><m:mi>A</m:mi><m:mn>11</m:mn></m:msup></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:times/>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>2</m:cn><m:cn>1</m:cn></m:apply>
+	      <m:apply><m:power/>
+		  <m:cn>-1</m:cn>
+		<m:apply><m:plus/>
+		  <m:cn>2</m:cn>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:determinant/>
+		<m:ci><m:msup><m:mi>A</m:mi><m:mn>12</m:mn></m:msup></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:ci>…</m:ci>
+	    <m:apply><m:times/>
+<m:apply><m:selector/><m:ci>a</m:ci><m:ci>n</m:ci><m:cn>1</m:cn></m:apply>
+	      <m:apply><m:power/>
+		  <m:cn>-1</m:cn>
+		<m:apply><m:plus/>
+		  <m:ci>n</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:determinant/>
+		<m:ci><m:msup><m:mi>A</m:mi><m:mi>1n</m:mi></m:msup></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </equation>
+
+    <para id="p4">Here,
+      <m:math><m:ci><m:msup><m:mi>A</m:mi><m:mi>ij</m:mi></m:msup></m:ci></m:math> means the matrix formed by eliminating the <m:math><m:ci>i</m:ci></m:math>-th column and the <m:math><m:ci>j</m:ci></m:math>-th row of <m:math><m:ci type="matrix">A</m:ci></m:math>.
+    </para>
+
+<para id="p5">Let's just look at the first term in <link target-id="eqeqn2" strength="2">final equation for determinant</link>.  It is basically the first element of <m:math><m:ci type="matrix">A</m:ci></m:math>'s first column times the determinant of the matrix formed by the elimination of the first row and first column of <m:math><m:ci type="matrix">A</m:ci></m:math>.
+There is also a <m:math><m:apply><m:power/><m:apply><m:minus/><m:cn>1</m:cn></m:apply><m:apply><m:plus/><m:ci>r</m:ci><m:ci>c</m:ci></m:apply></m:apply></m:math> term included.  This serves to make the signs of all of the terms in the determinant equation fluctuate back and forth.  The next term is the same, except that we have moved on to the second element in the first column of <m:math><m:ci type="matrix">A</m:ci></m:math>.  As this element holds a position in the second row and first column of <m:math><m:ci type="matrix">A</m:ci></m:math>, the sub-determinant in this term is obtained by hiding
+the second row and first column of <m:math><m:ci type="matrix">A</m:ci></m:math>.
+</para>
+
+<para id="p6">In a generic <m:math><m:cn>3</m:cn></m:math> x <m:math><m:cn>3</m:cn></m:math> example, we would find the following solution for the
+determinant:
+</para>
+
+  <equation id="eqeqn3">
+    <m:math>
+      <m:apply><m:eq/>
+  	<m:apply><m:determinant/>
+          <m:matrix>
+            <m:matrixrow>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>1</m:cn><m:cn>1</m:cn></m:apply>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>1</m:cn><m:cn>2</m:cn></m:apply>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>1</m:cn><m:cn>3</m:cn></m:apply>
+	    </m:matrixrow>
+	    <m:matrixrow>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>2</m:cn><m:cn>1</m:cn></m:apply>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>2</m:cn><m:cn>2</m:cn></m:apply>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>2</m:cn><m:cn>3</m:cn></m:apply>
+	    </m:matrixrow>
+	    <m:matrixrow>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>3</m:cn><m:cn>1</m:cn></m:apply>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>3</m:cn><m:cn>2</m:cn></m:apply>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>3</m:cn><m:cn>3</m:cn></m:apply>
+	    </m:matrixrow>
+	  </m:matrix>
+  	</m:apply>
+	<m:apply><m:minus/>
+          <m:apply><m:times/>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>1</m:cn><m:cn>1</m:cn></m:apply>
+	    <m:apply><m:determinant/>
+	      <m:matrix>
+	        <m:matrixrow>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>2</m:cn><m:cn>2</m:cn></m:apply>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>2</m:cn><m:cn>3</m:cn></m:apply>
+	        </m:matrixrow>
+	        <m:matrixrow>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>3</m:cn><m:cn>2</m:cn></m:apply>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>3</m:cn><m:cn>3</m:cn></m:apply>
+	        </m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:apply>
+          <m:apply><m:plus/>
+            <m:apply><m:times/>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>2</m:cn><m:cn>1</m:cn></m:apply>
+	      <m:apply><m:determinant/>
+	        <m:matrix>
+	          <m:matrixrow>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>1</m:cn><m:cn>2</m:cn></m:apply>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>1</m:cn><m:cn>3</m:cn></m:apply>
+	          </m:matrixrow>
+	          <m:matrixrow>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>3</m:cn><m:cn>2</m:cn></m:apply>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>3</m:cn><m:cn>3</m:cn></m:apply>
+	          </m:matrixrow>
+	        </m:matrix>
+	      </m:apply>
+	    </m:apply>
+            <m:apply><m:times/>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>3</m:cn><m:cn>1</m:cn></m:apply>
+	      <m:apply><m:determinant/>
+	        <m:matrix>
+	          <m:matrixrow>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>1</m:cn><m:cn>2</m:cn></m:apply>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>1</m:cn><m:cn>3</m:cn></m:apply>
+	          </m:matrixrow>
+	          <m:matrixrow>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>2</m:cn><m:cn>2</m:cn></m:apply>
+<m:apply><m:selector/><m:ci>a</m:ci><m:cn>2</m:cn><m:cn>3</m:cn></m:apply>
+	          </m:matrixrow>
+	        </m:matrix>
+	      </m:apply>
+	    </m:apply>
+          </m:apply>
+        </m:apply>
+      </m:apply>
+    </m:math>
+  </equation>
+
+<para id="p7">To find the determinants of the <m:math><m:cn>2</m:cn></m:math> x <m:math><m:cn>2</m:cn></m:math> sub-determinants, we could again apply
+the rule of the <link target-id="eqeqn2" strength="2">final equation for determinant</link>, keeping in mind that the
+determinant of a scalar value is simply that scalar value.  However,  it is
+easier to remember the following solution
+</para>
+
+  <equation id="eqeqn4">
+    <m:math>
+      <m:apply><m:eq/>
+        <m:apply><m:determinant/>
+          <m:matrix>
+            <m:matrixrow>
+              <m:ci>a</m:ci>
+              <m:ci>b</m:ci>
+            </m:matrixrow>
+            <m:matrixrow>
+              <m:ci>c</m:ci>
+              <m:ci>d</m:ci>
+            </m:matrixrow>
+          </m:matrix>
+        </m:apply>
+        <m:apply><m:minus/>
+          <m:apply><m:times/><m:ci>a</m:ci><m:ci>d</m:ci></m:apply>
+          <m:apply><m:times/><m:ci>b</m:ci><m:ci>c</m:ci></m:apply>
+        </m:apply>
+      </m:apply>
+    </m:math>
+  </equation>
+
+<example id="ex1">
+
+<para id="p8">To clarify, take the following example of finding the determinant of a
+numeric <m:math><m:cn>3</m:cn></m:math> x <m:math><m:cn>3</m:cn></m:math> matrix.
+</para>
+
+  <equation id="eqeqn5">
+    <m:math>
+      <m:apply>
+	<m:eq/>
+  	  <m:ci>A</m:ci>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:cn>1</m:cn>
+	      <m:cn>-1</m:cn>
+	      <m:cn>2</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>3</m:cn>
+	      <m:cn>1</m:cn>
+	      <m:cn>1</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>-2</m:cn>
+	      <m:cn>-2</m:cn>
+	      <m:cn>0</m:cn>
+	    </m:matrixrow>
+	  </m:matrix>
+      </m:apply>
+    </m:math>
+  </equation>
+
+<para id="p9">First we need to choose a row or column to take the determinant with respect
+to.  We notice that the element in the third row and third column is a zero.
+Knowing that choosing a row or column that contains a zero will reduce our
+workload, we will choose the third column.  Then, by applying <link target-id="eqeqn2" strength="2">final equation for determinant</link>, we get
+</para>
+      
+      <equation id="eqeqn6">
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:apply><m:determinant/>
+	      <m:ci>A</m:ci>
+	    </m:apply>
+	    <m:apply><m:plus/>
+	      <m:apply><m:times/>
+		<m:cn>2</m:cn>
+		<m:apply><m:power/>
+		    <m:cn>-1</m:cn>
+		  <m:cn>4</m:cn>
+		</m:apply>
+		<m:apply><m:determinant/>
+		  <m:matrix>
+		    <m:matrixrow>
+		      <m:cn>3</m:cn>
+		      <m:cn>1</m:cn>
+		    </m:matrixrow>
+		    <m:matrixrow>
+		      <m:cn>-2</m:cn>
+		      <m:cn>-2</m:cn>
+		    </m:matrixrow>
+		  </m:matrix>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:cn>1</m:cn>
+		<m:apply><m:power/>
+		    <m:cn>-1</m:cn>
+		  <m:cn>5</m:cn>
+		</m:apply>
+		<m:apply><m:determinant/>
+		  <m:matrix>
+		    <m:matrixrow>
+		      <m:cn>1</m:cn>
+		      <m:cn>-1</m:cn>
+		    </m:matrixrow>
+		    <m:matrixrow>
+		      <m:cn>-2</m:cn>
+		      <m:cn>-2</m:cn>
+		    </m:matrixrow>
+		  </m:matrix>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+    </example>
+  </content>
+</document>

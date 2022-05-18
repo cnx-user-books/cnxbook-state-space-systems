@@ -1,0 +1,996 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE module PUBLIC "-//CNX//DTD CNXML 0.3.5 plus MathML//EN" 
+              "http://cnx.rice.edu/cnxml/0.3.5/DTD/cnxml_mathml.dtd">
+
+
+
+<module 
+id="m2109" 
+levelmask="0" 
+created="2001-01-29" 
+revised="2001-10-05"
+version='2'>
+
+<name>Laplace Example</name>
+
+<metadata>
+  <authorlist>
+    <author id="aca">
+    <firstname>Thanos</firstname>
+    <surname>Antoulas</surname>
+    </author>
+    <author id="jps">
+    <firstname>JP</firstname>
+    <surname>Slavinsky</surname>
+    </author>
+  </authorlist>
+
+  <maintainerlist>
+    <maintainer id="lizychan">
+    <firstname>Elizabeth</firstname>
+    <othername></othername>
+    <surname>Chan</surname>
+    <email>lizychan@rice.edu</email>
+    </maintainer>
+  </maintainerlist>
+
+  <keywordlist>
+    <keyword>laplace</keyword>
+    <keyword>homogeneous</keyword>
+    <keyword>forced</keyword>
+  </keywordlist>
+
+  <abstract>Example of a Laplace system</abstract>
+</metadata>
+<content>
+
+<example id="ex1">
+
+
+<figure id="fig1" orient="horizontal">
+	<name>RLC circuit</name>
+	<media type="image/gif" src="le_fig1.gif"/>
+</figure>
+
+<equation id="eq01">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">y</ci>
+				<ci><msup><mi>0</mi><mi>-</mi></msup></ci>
+			</apply>
+			<cn>-1</cn>
+		</apply>
+	</math>
+</equation>
+
+<equation id="eq02">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+			<diff/>
+				<bvar><ci>t</ci><degree><cn>1</cn></degree></bvar>
+				<apply>
+					<ci type="function">y</ci>
+					<ci><msup><mi>0</mi><mi>-</mi></msup></ci>
+				</apply>
+			</apply>
+			<cn>2</cn>
+		</apply>
+	</math>
+</equation>
+
+<equation id="eq03">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+			<diff/>
+				<bvar><ci>t</ci><degree><cn>2</cn></degree></bvar>
+				<apply>
+					<ci type="function">y</ci>
+					<ci><msup><mi>0</mi><mi>-</mi></msup></ci>
+				</apply>
+			</apply>
+			<cn>-4</cn>
+		</apply>
+	</math>
+</equation>
+
+</metadata>
+<content>
+
+
+<para id="p1">Find the step response for the system above, when
+<math xmlns="&mmlns;"><apply><ci type="function">u</ci><ci>t</ci></apply></math>
+is the input and
+<math xmlns="&mmlns;"><apply><ci type="function">y</ci><ci>t</ci></apply></math>
+is the output (i.e. find
+<math xmlns="&mmlns;"><apply><ci type="function">y</ci><ci>t</ci></apply></math>
+for
+<math xmlns="&mmlns;">
+	<apply>
+	<eq/>
+		<apply>
+			<ci type="function">u</ci>
+			<ci>t</ci>
+		</apply>
+		<apply>
+			<ci type="function">step</ci>
+			<ci>t</ci>
+		</apply>
+	</apply>
+</math>).
+</para>
+
+<equation id="eq1">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">Y</ci>
+				<ci>s</ci>
+			</apply>
+			<apply>
+			<times/>
+				<ci>Admittance</ci>
+				<apply>
+					<ci type="function">U</ci>
+					<ci>s</ci>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<equation id="eq2">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<ci>Admittance</ci>
+			<apply>
+			<divide/>
+				<cn>1</cn>
+				<ci>Impedance</ci>
+			</apply>
+			<apply>
+			<plus/>
+				<cn>1</cn>
+				<apply>
+				<divide/>
+					<cn>1</cn>
+					<apply>
+					<plus/>
+						<ci>s</ci>
+						<apply>
+						<divide/>
+							<cn>1</cn>
+							<ci>s</ci>
+						</apply>
+					</apply>
+				</apply>
+				<apply>
+				<divide/>
+					<cn>1</cn>
+					<apply>
+					<plus/>
+						<cn>1</cn>
+						<apply>
+						<divide/>
+							<cn>2</cn>
+							<ci>s</ci>
+						</apply>
+					</apply>
+				</apply>
+			</apply>
+			<apply>
+			<divide/>
+				<apply>
+				<plus/>
+					<apply>
+					<times/>
+						<cn>2</cn>
+						<apply>
+						<power/>
+							<ci>s</ci>
+							<cn>3</cn>
+						</apply>
+					</apply>
+					<apply>
+					<times/>
+						<cn>3</cn>
+						<apply>
+						<power/>
+							<ci>s</ci>
+							<cn>2</cn>
+						</apply>
+					</apply>
+					<apply>
+					<times/>
+						<cn>4</cn>
+						<ci>s</ci>
+					</apply>
+					<cn>2</cn>
+				</apply>
+				<apply>
+				<plus/>
+					<apply>
+					<power/>
+						<ci>s</ci>
+						<cn>3</cn>
+					</apply>
+					<apply>
+					<times/>
+						<cn>2</cn>
+						<apply>
+						<power/>
+							<ci>s</ci>
+							<cn>2</cn>
+						</apply>
+					</apply>
+					<ci>s</ci>
+					<cn>2</cn>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<equation id="eq3">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">Y</ci>
+				<ci>s</ci>
+			</apply>
+			<apply>
+			<times/>
+
+				<apply>
+				<divide/>
+					<apply>
+					<plus/>
+						<apply>
+						<times/>
+							<cn>2</cn>
+							<apply>
+							<power/>
+								<ci>s</ci>
+								<cn>3</cn>
+							</apply>
+						</apply>
+						<apply>
+						<times/>
+							<cn>3</cn>
+							<apply>
+							<power/>
+								<ci>s</ci>
+								<cn>2</cn>
+							</apply>
+						</apply>
+						<apply>
+						<times/>
+							<cn>4</cn>
+							<ci>s</ci>
+						</apply>
+						<cn>2</cn>
+					</apply>
+					<apply>
+					<plus/>
+						<apply>
+						<power/>
+							<ci>s</ci>
+							<cn>3</cn>
+						</apply>
+						<apply>
+						<times/>
+							<cn>2</cn>
+							<apply>
+							<power/>
+								<ci>s</ci>
+								<cn>2</cn>
+							</apply>
+						</apply>
+						<ci>s</ci>
+						<cn>2</cn>
+					</apply>
+				</apply>
+
+				<apply>
+					<ci type="function">U</ci>
+					<ci>s</ci>
+				</apply>
+
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p2">With our previous definition of
+	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+
+			<apply>
+			<times/>
+
+				<apply>
+					<ci type="function">q</ci>
+					<apply>
+					<divide/>
+						<ci>d</ci>
+						<ci>dt</ci>
+					</apply>
+				</apply>
+
+				<apply>
+					<ci type="function">y</ci>
+					<ci>t</ci>
+				</apply>
+
+			</apply> <!-- end of LHS -->
+
+			<apply>
+			<times/>
+
+				<apply>
+					<ci type="function">p</ci>
+					<apply>
+					<divide/>
+						<ci>d</ci>
+						<ci>dt</ci>
+					</apply>
+				</apply>
+
+				<apply>
+					<ci type="function">u</ci>
+					<ci>t</ci>
+				</apply>
+
+			</apply>  <!-- end of RHS -->
+
+		</apply> <!-- end of eq/ -->
+	</math>
+we can define the Laplace domain equivalents of
+<math xmlns="&mmlns;"><ci>q</ci></math>
+and
+<math xmlns="&mmlns;"><ci>p</ci></math>
+as:</para>
+
+<equation id="eq4">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">q</ci>
+				<ci>s</ci>
+			</apply>
+			<apply>
+			<plus/>
+				<apply>
+				<power/>
+					<ci>s</ci>
+					<cn>3</cn>
+				</apply>
+				<apply>
+				<times/>
+					<cn>2</cn>
+					<apply>
+					<power/>
+						<ci>s</ci>
+						<cn>2</cn>
+					</apply>
+				</apply>
+				<ci>s</ci>
+				<cn>2</cn>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<equation id="eq5">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">p</ci>
+				<ci>s</ci>
+			</apply>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<cn>2</cn>
+					<apply>
+					<power/>
+						<ci>s</ci>
+						<cn>3</cn>
+					</apply>
+				</apply>
+				<apply>
+				<times/>
+					<cn>3</cn>
+					<apply>
+					<power/>
+						<ci>s</ci>
+						<cn>2</cn>
+					</apply>
+				</apply>
+				<apply>
+				<times/>
+					<cn>4</cn>
+					<ci>s</ci>
+				</apply>
+				<cn>2</cn>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p5">When we multiply
+<math xmlns="&mmlns;"><apply><ci type="function">q</ci><ci>s</ci></apply></math>
+times
+<math xmlns="&mmlns;"><apply><ci type="function">Y</ci><ci>s</ci></apply></math>,
+we have to remember to include terms relating to the initial conditions of
+<math xmlns="&mmlns;"><apply><ci type="function">y</ci><ci>t</ci></apply></math>.
+We normally think of the Laplace transform of
+<math xmlns="&mmlns;">
+	<apply><diff/><bvar><ci>t</ci></bvar><apply><ci type="function">y</ci><ci>t</ci></apply></apply>
+</math>
+as
+<math xmlns="&mmlns;">
+	<apply><times/><ci>s</ci><apply><ci type="function">Y</ci><ci>s</ci></apply></apply>
+</math>.
+However, in reality, the general transform is as follows:</para>
+
+<equation id="eq9">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">L</ci>
+				<apply>
+				<diff/>
+					<bvar><ci>t</ci><degree><ci>n</ci></degree></bvar>
+					<apply>
+						<ci type="function">y</ci>
+						<ci>t</ci>
+					</apply>
+				</apply>
+			</apply>
+
+			<apply>						<!-- first minus -->
+			<minus/>
+				<apply>					<!-- 2nd minus -->
+				<minus/>
+						<apply>			<!-- 3rd minus -->
+						<minus/>
+
+							<apply>		<!-- 4th minus -->
+							<minus/>
+								<apply>	<!-- 5th minus -->
+								<minus/>
+									<apply>
+									<times/>
+										<apply>
+										<power/>
+											<ci>s</ci>
+											<ci>n</ci>
+										</apply>
+										<apply>
+											<ci type="function">Y</ci>
+											<ci>s</ci>
+										</apply>
+									</apply>
+									<apply>
+									<times/>
+										<apply>
+										<power/>
+											<ci>s</ci>
+											<apply>
+											<minus/>
+												<ci>n</ci>
+												<cn>1</cn>
+											</apply>
+										</apply>
+										<apply>
+											<ci type="function">y</ci>
+											<ci><msup><mi>0</mi><mi>-</mi></msup></ci>
+										</apply>
+									</apply>
+								</apply>		<!-- end of 5th minus -->
+
+								<apply>
+								<times/>
+									<apply>
+									<power/>
+										<ci>s</ci>
+										<apply>
+										<minus/>
+											<ci>n</ci>
+											<cn>2</cn>
+										</apply>
+									</apply>
+									<apply>
+									<diff/>
+										<bvar><ci>t</ci><degree><cn>1</cn></degree></bvar>
+										<apply>
+											<ci type="function">y</ci>
+											<ci><msup><mi>0</mi><mi>-</mi></msup></ci>
+										</apply>
+									</apply>
+								</apply>
+							</apply>				<!-- end 4th minus -->
+
+							<ci>&hellip;</ci>
+
+						</apply>					<!-- end 3rd minus -->
+
+						<apply>
+						<times/>
+							<ci>s</ci>
+							<apply>
+							<diff/>
+								<bvar><ci>t</ci><degree><apply><minus/><ci>n</ci><cn>2</cn></apply></degree></bvar>
+								<apply>
+									<ci type="function">y</ci>
+									<ci><msup><mi>0</mi><mi>-</mi></msup></ci>
+								</apply>
+							</apply>
+						</apply>
+
+					</apply>				<!-- end 2nd minus -->
+
+					<apply>
+					<diff/>
+						<bvar><ci>t</ci><degree><apply><minus/><ci>n</ci><cn>1</cn></apply></degree></bvar>
+						<apply>
+							<ci type="function">y</ci>
+							<ci><msup><mi>0</mi><mi>-</mi></msup></ci>
+						</apply>
+					</apply>
+
+				</apply>					<!-- end 1st minus -->
+
+		</apply>
+	</math>
+</equation>
+
+<para id="p6">Therefore, using the initial conditions stated above, we can find the Laplace transforms of the first three derivatives of
+<math xmlns="&mmlns;"><apply><ci type="function">y</ci><ci>t</ci></apply></math>.
+</para>
+
+<equation id="eq10">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">L</ci>
+				<apply>
+				<diff/>
+					<bvar><ci>t</ci><degree><cn>3</cn></degree></bvar>
+					<apply>
+						<ci type="function">y</ci>
+						<ci>t</ci>
+					</apply>
+				</apply>
+			</apply>
+
+			<apply>
+			<plus/>
+				<apply>
+				<minus/>
+
+					<apply>
+					<plus/>
+						<apply>
+						<times/>
+							<apply>
+							<power/>
+								<ci>s</ci>
+								<cn>3</cn>
+							</apply>
+							<apply>
+								<ci type="function">Y</ci>
+								<ci>s</ci>
+							</apply>
+						</apply>
+						<apply>
+						<power/>
+							<ci>s</ci>
+							<cn>2</cn>
+						</apply>
+					</apply>
+
+					<apply>
+					<times/>
+						<cn>2</cn>
+						<ci>s</ci>
+					</apply>
+				</apply>
+
+				<cn>4</cn>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<equation id="eq11">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">L</ci>
+				<apply>
+				<diff/>
+					<bvar><ci>t</ci><degree><cn>2</cn></degree></bvar>
+					<apply>
+						<ci type="function">y</ci>
+						<ci>t</ci>
+					</apply>
+				</apply>
+			</apply>
+
+			<apply>
+			<minus/>
+
+				<apply>
+				<plus/>
+					<apply>
+					<times/>
+						<apply>
+						<power/>
+							<ci>s</ci>
+							<cn>2</cn>
+						</apply>
+						<apply>
+							<ci type="function">Y</ci>
+							<ci>s</ci>
+						</apply>
+					</apply>
+					<ci>s</ci>
+				</apply>
+
+				<cn>2</cn>
+			</apply>
+
+		</apply>
+	</math>
+</equation>
+
+
+<equation id="eq12">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">L</ci>
+				<apply>
+				<diff/>
+					<bvar><ci>t</ci><degree><cn>1</cn></degree></bvar>
+					<apply>
+						<ci type="function">y</ci>
+						<ci>t</ci>
+					</apply>
+				</apply>
+			</apply>
+
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<ci>s</ci>
+					<apply>
+						<ci type="function">Y</ci>
+						<ci>s</ci>
+					</apply>
+				</apply>
+				<cn>1</cn>
+			</apply>
+
+
+		</apply>
+	</math>
+</equation>
+
+<para id="p8">We can now get a complete s-domain equation relating the output to the input by taking the Laplace transform of
+	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+
+			<apply>
+			<times/>
+
+				<apply>
+					<ci type="function">q</ci>
+					<apply>
+					<divide/>
+						<ci>d</ci>
+						<ci>dt</ci>
+					</apply>
+				</apply>
+
+				<apply>
+					<ci type="function">y</ci>
+					<ci>t</ci>
+				</apply>
+
+			</apply> <!-- end of LHS -->
+
+			<apply>
+			<times/>
+
+				<apply>
+					<ci type="function">p</ci>
+					<apply>
+					<divide/>
+						<ci>d</ci>
+						<ci>dt</ci>
+					</apply>
+				</apply>
+
+				<apply>
+					<ci type="function">u</ci>
+					<ci>t</ci>
+				</apply>
+
+			</apply>  <!-- end of RHS -->
+
+		</apply> <!-- end of eq/ -->
+	</math>.
+The transform of the right-hand side of this equation is simple as the initial conditions of
+<math xmlns="&mmlns;"><apply><ci type="function">y</ci><ci>t</ci></apply></math>
+do not come into play here.  The result is just the product of
+<math xmlns="&mmlns;"><apply><ci type="function">p</ci><ci>s</ci></apply></math>
+and
+the transform of the step function
+(
+<math xmlns="&mmlns;"><apply><divide/><cn>1</cn><ci>s</ci></apply></math>
+).
+</para>
+
+<para id="p9">The left-hand side is somewhat more complicated because we have to make certain that the initial conditions are accounted for.  To accomplish this, we take a linear combination of <cnxn target="eq10"/>, <cnxn target="eq11"/>, and <cnxn target="eq12"/> according to the polynomial
+<math xmlns="&mmlns;"><apply><ci type="function">q</ci><ci>s</ci></apply></math>.
+That is to say, we use the coefficients of the
+<math xmlns="&mmlns;"><ci>s</ci></math>
+terms in
+<math xmlns="&mmlns;"><apply><ci type="function">q</ci><ci>s</ci></apply></math>
+to determine how to combine these three equations.  We take
+<math xmlns="&mmlns;"><cn>1</cn></math>
+of <cnxn target="eq10"/> plus
+<math xmlns="&mmlns;"><cn>2</cn></math>
+of <cnxn target="eq11"/> plus
+<math xmlns="&mmlns;"><cn>1</cn></math>
+of <cnxn target="eq12"/> plus
+<math xmlns="&mmlns;"><cn>2</cn></math>. </para>
+
+<para id="p10">When we sum these components, collect the
+<math xmlns="&mmlns;"><apply><ci type="function">Y</ci><ci>s</ci></apply></math>
+terms, and set it equal to the right-hand side, we have:</para>
+
+<equation id="eq13">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<apply>
+					<plus/>
+						<apply>
+						<power/>
+							<ci>s</ci>
+							<cn>3</cn>
+						</apply>
+						<apply>
+						<times/>
+							<cn>2</cn>
+							<apply>
+							<power/>
+								<ci>s</ci>
+								<cn>2</cn>
+							</apply>
+						</apply>
+						<ci>s</ci>
+						<cn>2</cn>
+					</apply>
+					<apply>
+						<ci type="function">Y</ci>
+						<ci>s</ci>
+					</apply>
+				</apply>
+				<apply>
+				<power/>
+					<ci>s</ci>
+					<cn>2</cn>
+				</apply>
+				<cn>1</cn>
+			</apply>
+			<apply>
+			<times/>
+				<apply>
+				<plus/>
+					<apply>
+					<times/>
+						<cn>2</cn>
+						<apply>
+						<power/>
+							<ci>s</ci>
+							<cn>3</cn>
+						</apply>
+					</apply>
+					<apply>
+					<times/>
+						<cn>3</cn>
+						<apply>
+						<power/>
+							<ci>s</ci>
+							<cn>2</cn>
+						</apply>
+					</apply>
+					<apply>
+					<times/>
+						<cn>4</cn>
+						<ci>s</ci>
+					</apply>
+					<cn>2</cn>
+				</apply>
+				<apply>
+				<divide/>
+					<cn>1</cn>
+					<ci>s</ci>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p14">Rearranging, we can find the solution to
+<math xmlns="&mmlns;"><apply><ci type="function">Y</ci><ci>s</ci></apply></math>:
+</para>
+
+<equation id="eq14">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">Y</ci>
+				<ci>s</ci>
+			</apply>
+
+			<apply>
+			<minus/>
+
+				<apply>
+				<times/>
+					<apply>
+					<divide/>
+
+						<apply>
+						<plus/>
+							<apply>
+							<times/>
+								<cn>2</cn>
+								<apply>
+								<power/>
+									<ci>s</ci>
+									<cn>3</cn>
+								</apply>
+							</apply>
+							<apply>
+							<times/>
+								<cn>3</cn>
+								<apply>
+								<power/>
+									<ci>s</ci>
+									<cn>2</cn>
+								</apply>
+							</apply>
+							<apply>
+							<times/>
+								<cn>4</cn>
+								<ci>s</ci>
+							</apply>
+							<cn>2</cn>
+						</apply>
+
+						<apply>
+						<plus/>
+							<apply>
+							<power/>
+								<ci>s</ci>
+								<cn>3</cn>
+							</apply>
+							<apply>
+							<times/>
+								<cn>2</cn>
+								<apply>
+								<power/>
+									<ci>s</ci>
+									<cn>2</cn>
+								</apply>
+							</apply>
+							<ci>s</ci>
+							<cn>2</cn>
+						</apply>
+
+					</apply>
+
+					<apply>
+					<divide/>
+						<cn>1</cn>
+						<ci>s</ci>
+					</apply>
+
+				</apply>
+
+				<apply>
+				<divide/>
+					<apply>
+					<plus/>
+						<apply>
+						<power/>
+							<ci>s</ci>
+							<cn>2</cn>
+						</apply>
+						<cn>1</cn>
+					</apply>
+					<apply>
+					<plus/>
+						<apply>
+						<power/>
+							<ci>s</ci>
+							<cn>3</cn>
+						</apply>
+						<apply>
+						<times/>
+							<cn>2</cn>
+							<apply>
+							<power/>
+								<ci>s</ci>
+								<cn>2</cn>
+							</apply>
+						</apply>
+						<ci>s</ci>
+						<cn>2</cn>
+					</apply>
+				</apply>
+
+			</apply>
+		</apply>
+
+	</math>
+</equation>
+
+<para id="p16">This solution can be looked at in two parts.  The first term on the right-hand side is the particular (or forced) solution.  You can see how it depends on
+<math xmlns="&mmlns;"><apply><ci type="function">p</ci><ci>s</ci></apply></math>
+and
+<math xmlns="&mmlns;"><apply><ci type="function">u</ci><ci>s</ci></apply></math>.
+The second term is the homogeneous (or natural) solution.  The numerator of this term describes how the initial conditions of the system affect the solution (recall that
+<math xmlns="&mmlns;">
+	<apply>
+	<plus/>
+		<apply>
+		<power/>
+			<ci>s</ci>
+			<cn>2</cn>
+		</apply>
+		<cn>1</cn>
+	</apply>
+</math>
+was the part of the result of the linear combination of <cnxn target="eq10"/>, <cnxn target="eq11"/>, <cnxn target="eq12"/>).  The denominator of the second term is the
+<math xmlns="&mmlns;"><apply><ci type="function">q</ci><ci>s</ci></apply></math>
+polynomial; it serves to describe the system in general.</para>
+
+</example>
+</content>
+
+
+
+</module>
+
+

@@ -1,0 +1,1601 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>I/O and I/S/O Relationships in Time and Frequency</title>
+ 
+ <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>9563f79c-0e2a-45ae-ab34-38718e0e643f</md:uuid>
+</metadata>
+  
+  <content>
+    <section id="sec1">
+      <title>I/O and I/S/O representation of SISO linear systems</title>   
+      <table frame="all" id="t1" summary="">
+	
+	<tgroup cols="2" align="left" colsep="1" rowsep="1">
+
+
+	  <colspec colwidth="20pt"/>
+	  
+	  
+	  <thead valign="top">
+	    <row>
+	      <entry align="center">I/O</entry>
+	      <entry align="center">I/S/O</entry>
+	    </row>
+	  </thead>
+	  <tbody valign="top">
+	    <row>
+	      <entry>variables:
+		<m:math>
+		  <m:mrow>
+		    <m:mo>(</m:mo>
+		    <m:mrow>
+		      <m:mi>u</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mi>y</m:mi>
+		    </m:mrow>
+		    <m:mo>)</m:mo>
+		  </m:mrow>
+		</m:math>
+	      </entry>
+	      
+	      <entry>variables:
+		<m:math>
+		  <m:mrow>
+		    <m:mo>(</m:mo>
+		      <m:mi>u</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mi>x</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mi>y</m:mi>
+		    <m:mo>)</m:mo>
+		  </m:mrow>
+		</m:math>
+	      </entry>
+	    </row>
+	    
+	    <row>
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:diff/>
+			<m:bvar>
+			  <m:ci>t</m:ci>
+			</m:bvar>
+			<m:ci>q</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">y</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:diff/>
+			<m:bvar>
+			  <m:ci>t</m:ci>
+			</m:bvar>
+			<m:ci>p</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">u</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>		
+		  <m:mrow>
+		    <m:mo>,</m:mo>
+		    <m:apply>
+		      <m:eq/>
+		      <m:ci>n</m:ci>
+		      <m:apply>
+			<m:geq/>
+			<m:apply>
+			  <m:ci>deg</m:ci>
+			  <m:ci>q</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:ci>deg</m:ci>
+			  <m:ci>p</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:mrow>
+		</m:math>
+	      </entry>
+	      
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:diff/>
+		      <m:bvar>
+			<m:ci>t</m:ci>
+		      </m:bvar>
+		      <m:apply><m:ci type="fn">x</m:ci><m:ci>t</m:ci></m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:ci type="matrix">A</m:ci>
+			<m:apply>
+			  <m:ci type="fn">x</m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:ci type="matrix">B</m:ci>
+			<m:apply>
+			  <m:ci type="fn">u</m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:mrow>
+		    <m:mo>,</m:mo>
+		    <m:apply>
+		      <m:eq/>
+		      <m:apply>
+			<m:ci type="fn">y</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:times/>
+			  <m:ci type="matrix">C</m:ci>
+			  <m:apply>
+			    <m:ci type="fn">x</m:ci>
+			    <m:ci>t</m:ci>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:times/>
+			  <m:ci type="matrix">D</m:ci>
+			  <m:apply>
+			    <m:ci type="fn">u</m:ci>
+			    <m:ci>t</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:mrow>	  
+		</m:math>
+	      </entry>	
+	    </row>
+	    <row>
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:ci type="fn">u</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		  <m:mrow>
+		    <m:mo>,</m:mo>
+		    <m:apply>
+		      <m:in/>
+		      <m:apply>
+			<m:ci type="fn">y</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:reals/>
+		    </m:apply>
+		  </m:mrow>
+		</m:math>
+	      </entry>
+
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:in/>
+		    <m:apply>
+		      <m:ci type="fn">x</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+<!--reals^n vs. n-space... -->
+		    <m:apply><m:power/><m:reals/><m:ci>n</m:ci></m:apply>
+		  </m:apply>
+		  <m:mrow>
+		    <m:mo>,</m:mo>
+		    <m:apply>
+		      <m:in/>
+		      <m:matrix>
+<m:matrixrow>
+<m:ci type="matrix">A</m:ci>
+<m:ci type="matrix">B</m:ci>
+</m:matrixrow>
+<m:matrixrow>
+<m:ci type="matrix">C</m:ci>
+<m:ci type="matrix">D</m:ci>
+</m:matrixrow>
+</m:matrix>
+		      <m:apply>
+			<m:power/>
+			<m:reals/>
+			<m:apply>
+			  <m:cartesianproduct/>
+			  <m:apply>
+			    <m:plus/>
+			    <m:ci>n</m:ci>
+			    <m:cn>1</m:cn>
+			  </m:apply>
+			  <m:apply>
+			    <m:plus/>
+			    <m:ci>n</m:ci>
+			    <m:cn>1</m:cn>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:mrow>
+		</m:math>
+	      </entry>  
+	    </row>
+	  </tbody>
+	</tgroup>
+	
+	<tgroup cols="2" align="left" colsep="1" rowsep="1">
+	  
+	  <colspec colnum="1" colname="c1"/>
+	  <colspec colnum="2" colname="c2"/>
+	  <thead valign="top">
+	    <row>
+	      <entry namest="c1" nameend="c2" align="center">Impulse Response</entry>
+	    </row>
+	  </thead>
+	  <tbody valign="top">
+	    <row>
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:diff/>
+			<m:bvar>
+			  <m:ci>t</m:ci>
+			</m:bvar>
+			<m:ci>q</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">h</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:diff/>
+			<m:bvar>
+			  <m:ci>t</m:ci>
+			</m:bvar>
+			<m:ci>p</m:ci>
+		      </m:apply>
+		      <m:apply><m:ci type="fn">δ</m:ci><m:ci>t</m:ci></m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </entry>
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">h</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:ci type="matrix">D</m:ci>
+			<m:apply>
+			  <m:ci type="fn">δ</m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:ci type="matrix">C</m:ci>
+		        <m:apply>
+		          <m:exp/>
+			    <m:apply>
+			    <m:times/>
+			      <m:ci type="matrix">A</m:ci>
+			      <m:ci>t</m:ci>
+			    </m:apply>
+		        </m:apply>
+			<m:ci type="matrix">B</m:ci>
+                      </m:apply>
+		    </m:apply>
+                  </m:apply>
+                  <m:mrow><m:mo>,</m:mo></m:mrow>
+		  <m:apply>
+		      <m:geq/>
+		      <m:ci>t</m:ci>
+		      <m:cn>0</m:cn>
+		    </m:apply>
+		</m:math>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">H</m:ci>
+		      <m:ci>s</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn" class="discrete">ℒ</m:ci>
+		      <m:apply>
+			<m:ci type="fn">h</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:ci type="fn">p</m:ci>
+			<m:ci>s</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">q</m:ci>
+			<m:ci>s</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </entry>
+	      
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">H</m:ci>
+		      <m:ci>s</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci type="matrix">D</m:ci>
+		      <m:apply>
+			<m:times/>
+			<m:ci type="matrix">C</m:ci>
+			<m:apply>
+			  <m:inverse/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:apply>
+			      <m:times/>
+			      <m:ci>s</m:ci>
+			      <m:ci type="matrix">I</m:ci>
+			    </m:apply>
+			    <m:ci type="matrix">A</m:ci>
+			  </m:apply>
+			</m:apply>
+			<m:ci type="matrix">B</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+     
+
+	<tgroup cols="2" align="left" colsep="1" rowsep="1">
+	  <colspec colnum="1" colname="c1"/>
+	  <colspec colnum="2" colname="c2"/>
+	  <thead valign="top">
+	    <row>
+	      <entry namest="c1" nameend="c2" align="center">Poles -
+		characteristic roots - eigenfrequencies</entry>
+	    </row>
+	  </thead>
+	  <tbody valign="top">
+	    <row>
+	      <entry>
+		<m:math>
+		  <m:ci><m:msub><m:mi>λ</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		  <m:mrow>
+		    <m:mo>,</m:mo>
+		    <m:apply>
+		      <m:eq/>
+		      <m:apply>
+			<m:ci type="fn">q</m:ci>
+			<m:ci><m:msub><m:mi>λ</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		      </m:apply>
+		      <m:cn>0</m:cn>
+		    </m:apply>
+		    <m:mo>,</m:mo>
+		    <m:apply>
+		      <m:eq/>
+		      <m:ci type="matrix">I</m:ci>
+		      <m:mrow>
+			<m:mn>1</m:mn>
+			<m:mo>,</m:mo>
+			<m:mi>…</m:mi>
+			<m:mo>,</m:mo>
+			<m:mi>n</m:mi>
+		      </m:mrow>
+		    </m:apply>
+		  </m:mrow>
+		</m:math>
+	      </entry>
+
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:determinant/>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:times/>
+			  <m:ci><m:msub><m:mi>λ</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+			  <m:ci type="matrix">I</m:ci>
+			</m:apply>
+			<m:ci type="matrix">A</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		</m:math>
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      
+      
+
+	<tgroup cols="2" align="left" colsep="1" rowsep="1">
+	  <colspec colnum="1" colname="c1"/>
+	  <colspec colnum="2" colname="c2"/>
+	  <thead valign="top">
+	    <row>
+	      <entry namest="c1" nameend="c2" align="center">Zeros</entry>
+	    </row>
+	  </thead>
+	  <tbody valign="top">
+	    <row>
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">H</m:ci>
+		      <m:ci><m:msub><m:mi>z</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		  <m:mrow>
+		    <m:mo>⇔</m:mo>
+		    <m:apply>
+		      <m:ci type="fn">p</m:ci>
+		      <m:ci><m:msub><m:mi>z</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		    </m:apply>
+		    <m:mo>,</m:mo>
+		    <m:apply>
+		      <m:eq/>
+		      <m:mrow>
+			<m:mn>1</m:mn>
+			<m:mo>,</m:mo>
+			<m:mi>…</m:mi>
+			<m:mo>,</m:mo>
+			<m:mi>n</m:mi>
+		      </m:mrow>
+		    </m:apply>
+		  </m:mrow>
+		</m:math>
+	      </entry>
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:determinant/>
+		      <m:matrix>
+			<m:matrixrow>
+			  <m:apply>
+			    <m:minus/>
+			    <m:apply>
+			      <m:times/>
+			      <m:ci><m:msub><m:mi>z</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+			      <m:ci type="matrix">I</m:ci>
+			    </m:apply>
+			    <m:ci type="matrix">A</m:ci>
+			  </m:apply>
+			  <m:ci>-B</m:ci>
+			</m:matrixrow>
+			<m:matrixrow>
+			  <m:ci>-C</m:ci>
+			  <m:ci>-D</m:ci>
+			</m:matrixrow>
+		      </m:matrix>
+		    </m:apply>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		</m:math>
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+     
+  
+	
+	<tgroup cols="1" align="left" colsep="1" rowsep="1">
+	  <thead valign="top">
+	    <row>
+
+	      <entry align="center">Matrix exponential</entry>
+	    </row>
+	  </thead>
+	  <tbody valign="top">
+	    <row>
+	      <entry>
+		<m:math>  
+		  <m:apply>
+		    <m:implies/>  
+		    <m:apply>
+		      <m:eq/>
+		      <m:apply>
+		       <m:exp/>
+			<m:apply>
+			  <m:times/>
+			  <m:ci type="matrix">A</m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:sum/>
+			<m:bvar>
+			  <m:ci>k</m:ci>
+			</m:bvar>
+			<m:lowlimit>
+			  <m:cn>0 </m:cn>
+			</m:lowlimit>
+			<m:uplimit>
+			  <m:infinity/>
+			</m:uplimit>
+			<m:apply>
+			  <m:times/>
+			  <m:apply>
+			  <m:divide/>
+			    <m:apply>
+			      <m:power/>
+			      <m:ci>t</m:ci>
+			      <m:ci>k</m:ci>
+			    </m:apply>
+			    <m:apply>
+			      <m:factorial/>
+			      <m:ci>k</m:ci>
+			    </m:apply>
+			  </m:apply>
+			  <m:apply>
+			    <m:power/>
+			    <m:ci type="matrix">A</m:ci>
+			    <m:ci>k</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:eq/>
+		      <m:apply>
+			<m:diff/>
+			<m:bvar>
+			  <m:ci>t</m:ci>
+			</m:bvar>
+			<m:apply><m:exp/><m:apply><m:times/><m:ci type="matrix">A</m:ci><m:ci>t</m:ci></m:apply></m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:ci type="matrix">A</m:ci>
+			<m:apply>
+			  <m:exp/>
+			  <m:apply>
+			    <m:times/>
+			    <m:ci type="matrix">A</m:ci>
+			    <m:ci>t</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:exp/>
+			  <m:apply>
+			    <m:times/>
+			    <m:ci type="matrix">A</m:ci>
+			    <m:ci>t</m:ci>
+			  </m:apply>
+			</m:apply>
+			<m:ci type="matrix">A</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </entry>
+	    </row>
+	    
+	    <row>
+
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn" class="discrete">ℒ</m:ci>
+		      <m:apply>
+			<m:exp/>
+			<m:apply>
+			  <m:times/>
+			  <m:ci type="matrix">A</m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:inverse/>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:times/>
+			  <m:ci>s</m:ci>
+			  <m:ci type="matrix">I</m:ci>
+			</m:apply>
+			<m:ci type="matrix">A</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+     
+
+
+	<tgroup cols="1" align="left" colsep="1" rowsep="1">
+	  <colspec colnum="1" colname="c1"/>
+	  <thead valign="top">
+	    <row>
+	      <entry namest="c1" nameend="c1" align="center">BIBO stability</entry>
+	    </row>
+	  </thead>
+	  <tbody valign="top">
+	    <row>
+	      <entry>
+		<m:math>  
+		  <m:apply>
+		    <m:eq/>
+		    <m:ci>y</m:ci>
+		    <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#convolve/"/>
+		      <m:ci>h</m:ci>
+		      <m:ci>u</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  
+		</m:math>, requirement
+	      </entry>
+
+	    </row>
+	    <row>
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:exists/>
+		    
+		    <m:bvar>
+		      <m:apply>
+			<m:forall/>
+			<m:bvar>
+			  <m:ci>u</m:ci>
+			</m:bvar>
+		      </m:apply>
+		    </m:bvar>
+		    
+		    <m:apply>
+		      <m:implies/>
+		      
+		      <m:apply>
+			<m:lt/>
+			
+			<m:msub>
+			  <m:apply>
+			    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm">Norm</m:csymbol>
+			    <m:ci>u</m:ci>
+			  </m:apply>
+			  <m:infinity/>
+			</m:msub>
+			
+			<m:infinity/>
+		      </m:apply>
+		      
+		      <m:apply>
+			<m:lt/>
+			
+			<m:msub>
+			  <m:apply>
+			    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm/"/>
+			    <m:ci>u</m:ci>
+			  </m:apply>
+			  <m:infinity/>
+			</m:msub>
+			
+			
+			<m:infinity/>
+		      </m:apply>
+		    </m:apply>
+		    
+		  </m:apply>
+		  
+		</m:math>
+	      </entry>
+	      
+	    </row>
+	    
+	    <row>
+	      <entry>
+		<m:math>
+		  <m:mrow>
+		    <m:mo>⇔</m:mo>
+		    <m:apply>
+		      <m:eq/>
+		      
+		      <m:msub>
+			<m:apply>
+			  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm/"/>
+			  <m:ci>h</m:ci>
+			</m:apply>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		      
+		      <m:apply>
+			<m:lt/>
+			<m:apply>
+			  <m:int/>
+			  <m:bvar>
+			    <m:ci>t</m:ci>
+			  </m:bvar>
+			  <m:lowlimit>
+			    <m:cn>0</m:cn>
+			  </m:lowlimit>
+			  <m:uplimit>
+			    <m:infinity/>
+			  </m:uplimit>
+			  <m:apply>
+			    <m:abs/>
+			    <m:apply>
+			      <m:ci type="fn">h</m:ci>
+			      <m:ci>t</m:ci>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+			
+			<m:infinity/>
+		      </m:apply>
+		    </m:apply>
+		  </m:mrow>
+		</m:math>
+	      </entry>
+	    </row>
+	    
+	    <row>
+	      <entry>
+		<m:math>
+		  <m:mrow>
+		    <m:mi>⇔</m:mi>
+		    <m:apply>
+		      <m:lt/>
+		      <m:apply>
+			<m:real/>
+			<m:ci><m:msub><m:mi>λ</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		      </m:apply>
+		      <m:cn>0</m:cn>
+		    </m:apply>
+		    <m:mo>⇔</m:mo>
+		    <m:apply>
+		      <m:in/>
+		      <m:ci>poles</m:ci>
+		      <m:ci>LHP</m:ci>
+		    </m:apply>
+		  </m:mrow>
+		</m:math>
+	      </entry>
+	      
+	    </row>
+	    
+	    
+	    
+	  </tbody>
+	</tgroup>
+	
+
+	<tgroup cols="2" align="left" colsep="1" rowsep="1">
+	  <colspec colnum="1" colname="c1"/>
+	  <colspec colnum="2" colname="c2"/>
+	  <thead valign="top">
+	    <row>
+	      <entry namest="c1" nameend="c2" align="center">Solution
+		in the time domain</entry>
+	    </row>
+	  </thead>
+	  <tbody valign="top">
+	    <row>
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">y</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:ci type="fn"><m:msub><m:mi>y</m:mi><m:mi>zi</m:mi></m:msub></m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn"><m:msub><m:mi>y</m:mi><m:mi>zs</m:mi></m:msub></m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </entry>
+	      
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">x</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mi>zi</m:mi></m:msub></m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn"><m:msub><m:mi>x</m:mi><m:mi>zs</m:mi></m:msub></m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </entry>
+	      </row>
+
+	    <row>
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">y</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:sum/>
+			<m:bvar>
+			  <m:ci type="matrix">I</m:ci>
+			</m:bvar>
+			<m:lowlimit>
+			  <m:cn>1</m:cn>
+			</m:lowlimit>
+			<m:uplimit>
+			  <m:ci>n</m:ci>
+			</m:uplimit>
+			<m:apply>
+			  <m:times/>
+			  <m:ci><m:msub><m:mi>c</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+			  <m:apply>
+			    <m:exp/>
+			    <m:apply>
+			      <m:times/>
+			      <m:ci><m:msub><m:mi>λ</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+			      <m:ci>t</m:ci>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+
+		      <m:apply>
+			<m:int/>
+			<m:bvar>
+			  <m:ci>τ</m:ci>
+			</m:bvar>
+			<m:lowlimit>
+			  <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+			</m:lowlimit>
+			<m:uplimit>
+			  <m:ci>t</m:ci>
+			</m:uplimit>
+			<m:apply>
+			  <m:times/>
+			  <m:apply>
+			    <m:ci type="fn">h</m:ci>
+			    <m:apply>
+			      <m:minus/>
+			      <m:ci>t</m:ci>
+			      <m:ci>τ</m:ci>
+			    </m:apply>
+			  </m:apply>
+			  <m:apply>
+			    <m:ci type="fn">u</m:ci>
+			    <m:ci>τ</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </entry>
+
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">x</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:exp/>
+			  <m:apply>
+			    <m:times/>
+			    <m:ci type="matrix">A</m:ci>
+			    <m:ci>t</m:ci>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">x</m:ci>
+			  <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:int/>
+			<m:bvar>
+			  <m:ci>τ</m:ci>
+			</m:bvar>
+			<m:lowlimit>
+			  <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+			</m:lowlimit>
+			<m:uplimit>
+			  <m:ci>t</m:ci>
+			</m:uplimit>
+			<m:apply>
+			  <m:times/>
+			  <m:apply>
+			    <m:exp/>
+			    <m:apply>
+			      <m:times/>
+			      <m:ci type="matrix">A</m:ci>
+			      <m:apply>
+				<m:minus/>
+				<m:ci>t</m:ci>
+				<m:ci>τ</m:ci>
+			      </m:apply>
+			      </m:apply>
+			  </m:apply>
+			  <m:ci type="matrix">B</m:ci>			
+			  <m:apply>
+			    <m:ci type="fn">u</m:ci>
+			    <m:ci>τ</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </entry>	      
+	       </row>
+	 
+	    <row>
+	      <entry/>
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">y</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:ci type="matrix">C</m:ci>
+			<m:apply>
+			  <m:exp/>
+			  <m:apply>
+			    <m:times/>
+			    <m:ci type="matrix">A</m:ci>
+			    <m:ci>t</m:ci>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">x</m:ci>
+			  <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+			</m:apply>
+		      </m:apply>
+		       <m:apply>
+			<m:int/>
+			<m:bvar>
+			  <m:ci>τ</m:ci>
+			</m:bvar>
+			<m:lowlimit>
+			  <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+			</m:lowlimit>
+			<m:uplimit>
+			  <m:ci>t</m:ci>
+			</m:uplimit>
+			<m:apply>
+			  <m:times/>
+			  <m:apply>
+			    <m:plus/>
+			    <m:apply>
+			      <m:times/>
+			      <m:ci type="matrix">D</m:ci>
+			      <m:apply>
+				<m:ci type="fn">δ</m:ci>
+				<m:apply>
+				  <m:minus/>
+				  <m:ci>t</m:ci>
+				  <m:ci>τ</m:ci>
+				</m:apply>
+			      </m:apply>
+			    </m:apply>
+			    <m:apply>
+			      <m:times/>
+			      <m:ci type="matrix">C</m:ci>
+			      <m:apply>
+				<m:exp/>
+				<m:apply>
+				  <m:times/>
+				  <m:ci type="matrix">A</m:ci>
+				  <m:apply>
+				    <m:minus/>
+				    <m:ci>t</m:ci>
+				    <m:ci>τ</m:ci>
+				  </m:apply>
+				</m:apply>
+			      </m:apply>
+			      <m:ci type="matrix">B</m:ci>
+			    </m:apply>
+			  </m:apply>
+			  <m:apply>
+			    <m:ci type="fn">u</m:ci>
+			    <m:ci>τ</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  
+		  <m:mrow>
+		    <m:mo>,</m:mo>
+		    <m:apply>
+		      <m:eq/>
+		      <m:apply>
+			<m:ci type="fn">h</m:ci>
+			<m:ci>·</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:times/>
+			  <m:ci type="matrix">D</m:ci>
+			  <m:apply>
+			    <m:ci type="fn">δ</m:ci>
+			    <m:apply>
+			      <m:minus/>
+			      <m:ci>t</m:ci>
+			      <m:ci>τ</m:ci>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:times/>
+			  <m:ci type="matrix">C</m:ci>
+			  <m:apply>
+			    <m:exp/>
+			    <m:apply>
+			      <m:times/>
+			      <m:ci type="matrix">A</m:ci>
+			      <m:apply>
+				<m:minus/>
+				<m:ci>t</m:ci>
+				<m:ci>τ</m:ci>
+			      </m:apply>
+			    </m:apply>
+			  </m:apply>
+			  <m:ci type="matrix">B</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:mrow>
+		</m:math>
+	      </entry>
+	    </row>
+
+	    <row>
+	      <entry/>
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">y</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:ci type="matrix">C</m:ci>
+			<m:apply>
+			  <m:exp/>
+			  <m:apply>
+			    <m:times/>
+			    <m:ci type="matrix">A</m:ci>
+			    <m:ci>t</m:ci>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">x</m:ci>
+			  <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:int/>
+			<m:bvar>
+			  <m:ci>τ</m:ci>
+			</m:bvar>
+			<m:lowlimit>
+			  <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+			</m:lowlimit>
+			<m:uplimit>
+			  <m:ci>t</m:ci>
+			</m:uplimit>
+			<m:apply>
+			  <m:times/>
+			  <m:apply>
+			    <m:ci type="fn">h</m:ci>
+			    <m:apply>
+			      <m:minus/>
+			      <m:ci>t</m:ci>
+			      <m:ci>τ</m:ci>
+			    </m:apply>
+			  </m:apply>	
+			  <m:apply>
+			    <m:ci type="fn">u</m:ci>
+			    <m:ci>τ</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </entry>      
+	    </row>
+	  </tbody>
+	</tgroup>
+	
+	
+	<tgroup cols="2" align="left" colsep="1" rowsep="1">
+	  <colspec colnum="1" colname="c1"/>
+	  <colspec colnum="2" colname="c2"/>
+	  <thead valign="top">
+	    <row>
+	      <entry namest="c1" nameend="c2" align="center">Laplace
+		Transform: Solution in the frequency domain</entry>
+	    </row>
+	  </thead>
+	  <tbody valign="top">
+	    <row>
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">Y</m:ci>
+		      <m:ci>s</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:divide/>
+			<m:apply>
+			  <m:ci type="fn">r</m:ci>
+			  <m:ci>s</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">q</m:ci>
+			  <m:ci>s</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:ci type="fn">H</m:ci>
+			  <m:ci>s</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">U</m:ci>
+			  <m:ci>s</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </entry>
+
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">X</m:ci>
+		      <m:ci>s</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:inverse/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:apply>
+			      <m:times/>
+			      <m:ci>s</m:ci>
+			      <m:ci type="matrix">I</m:ci>
+			    </m:apply>
+			    <m:ci type="matrix">A</m:ci>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">x</m:ci>
+			  <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+			</m:apply>
+		      </m:apply>		
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:inverse/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:apply>
+			      <m:times/>
+			      <m:ci>s</m:ci>
+			      <m:ci type="matrix">I</m:ci>
+			    </m:apply>
+			    <m:ci type="matrix">A</m:ci>
+			  </m:apply>
+			</m:apply>
+			<m:ci type="matrix">B</m:ci>
+			<m:apply>
+			  <m:ci type="fn">U</m:ci>
+			  <m:ci>s</m:ci>
+			</m:apply>
+		      </m:apply>		
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry/>
+	      <entry>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">Y</m:ci>
+		      <m:ci>s</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:ci type="matrix">C</m:ci>
+			<m:apply>
+			  <m:inverse/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:apply>
+			      <m:times/>
+			      <m:ci>s</m:ci>
+			      <m:ci type="matrix">I</m:ci>
+			    </m:apply>
+			    <m:ci type="matrix">A</m:ci>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">x</m:ci>
+			  <m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+			</m:apply>
+		      </m:apply>		
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:plus/>
+			  <m:ci type="matrix">D</m:ci>		
+			  <m:apply>
+			    <m:times/>
+			    <m:ci type="matrix">C</m:ci>			
+			    <m:apply>
+			      <m:inverse/>
+			      <m:apply>
+				<m:minus/>
+				<m:apply>
+				  <m:times/>
+				  <m:ci>s</m:ci>
+				  <m:ci type="matrix">I</m:ci>
+				</m:apply>
+				<m:ci type="matrix">A</m:ci>
+			      </m:apply>
+			    </m:apply>
+			    <m:ci type="matrix">B</m:ci>
+			  </m:apply>	
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">U</m:ci>
+			  <m:ci>s</m:ci>
+			</m:apply>
+		      </m:apply>	
+		    </m:apply>
+		  </m:apply>
+		  <m:mrow>
+		    <m:mo>,</m:mo>
+		    <m:apply>
+		      <m:eq/>
+		      <m:apply>
+			<m:ci type="fn">H</m:ci>
+			<m:ci>s</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:plus/>
+			<m:ci type="matrix">D</m:ci>		
+			<m:apply>
+			  <m:times/>
+			  <m:ci type="matrix">C</m:ci>			
+			  <m:apply>
+			    <m:inverse/>
+			    <m:apply>
+			      <m:minus/>
+			      <m:apply>
+				<m:times/>
+				<m:ci>s</m:ci>
+				<m:ci type="matrix">I</m:ci>
+			      </m:apply>
+			      <m:ci type="matrix">A</m:ci>
+			    </m:apply>
+			  </m:apply>
+			  <m:ci type="matrix">B</m:ci>
+			</m:apply>	
+		      </m:apply>
+		    </m:apply>
+		  </m:mrow>
+		</m:math>
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+      
+
+
+
+    </section>
+    
+    
+    <section id="defofstate">
+      <title>Definition of state from I/O description</title>
+      <para id="p1">     
+	Let 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">H</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:ci type="matrix">D</m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+                 <m:mean/>
+		  <m:apply><m:ci type="fn">p</m:ci>
+		  <m:ci>s</m:ci>
+                 </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">q</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>,
+	<m:math>
+	  <m:apply>
+	    <m:lt/>
+	    <m:apply>
+	      <m:ci>deg</m:ci>
+	      <m:apply><m:mean/><m:ci>p</m:ci></m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci>deg</m:ci>
+	      <m:ci>q</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.  Define
+	<m:math><m:ci>w</m:ci></m:math> so that 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar>
+		  <m:ci>t</m:ci>
+		</m:bvar>
+		<m:ci>q</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">w</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">u</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>,
+	<m:math>
+	  <m:apply>
+	    <m:implies/>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:diff/>
+		    <m:bvar>
+		      <m:ci>t</m:ci>
+		    </m:bvar>
+		    <m:apply><m:mean/><m:ci>p</m:ci></m:apply>
+		  </m:apply>
+		  <m:ci>w</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci type="matrix">D</m:ci>
+		  <m:apply>
+		    <m:ci type="fn">u</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      
+	    </m:apply>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci><m:msup><m:mi>x</m:mi><m:mi>T</m:mi></m:msup></m:ci>
+	      <m:apply>
+		<m:in/>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:ci>w</m:ci>
+		    <m:apply><m:power/><m:ci>w</m:ci><m:cn>1</m:cn></m:apply>
+		    <m:ci>…</m:ci>
+		    <m:apply><m:power/><m:ci>w</m:ci><m:apply><m:minus/><m:ci>n</m:ci><m:cn>1</m:cn></m:apply></m:apply>
+		  </m:matrixrow>
+		</m:matrix>
+		<m:apply><m:power/><m:reals/><m:ci>n</m:ci></m:apply>
+<!-- again with the reals^n -->
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>,
+	<m:math>
+	  <m:ci>n</m:ci>
+	</m:math>
+	: degree of
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">q</m:ci>
+	    <m:ci>s</m:ci>
+	  </m:apply>
+	</m:math>.
+      </para>
+    </section>
+    
+    
+
+    
+    <section id="variousresponses">
+      <title>Various Responses</title>
+      <definition id="zeroinput">
+	<term>Zero-input or free response</term>
+	<meaning id="idp9012208">response due to initial conditions alone.</meaning>
+      </definition>
+      <definition id="zerostate">
+	<term>Zero-state or forced response</term>
+	<meaning id="idp815152">response due to input (forcing function) alone (zero
+	  initial condition).</meaning>
+      </definition>
+      <definition id="homog">
+	<term>Homogeneous solution</term>
+	<meaning id="idp10176256">general form of
+	  free-response (arbitrary initial conditions).</meaning>
+      </definition>
+      <definition id="partic">
+	<term>Particular solution</term>
+	<meaning id="idp1368608">forced response.</meaning>
+      </definition>
+      <definition id="steadystate">
+	<term>Steady-state response</term>
+	<meaning id="idp2245568">response obtained
+	  for large balues of time 
+	  <m:math>
+	    <m:apply>
+	      <m:tendsto/>
+	      <m:ci>T</m:ci>
+	      <m:infinity/>
+	    </m:apply>
+	  </m:math>.</meaning>
+      </definition>
+      <definition id="transient">
+	<term>Transient response</term>
+	<meaning id="idp7321664">full response minus steady
+	  minus state response.</meaning>
+      </definition>
+      
+    </section>    
+    
+    
+    
+    
+    
+  </content>
+  
+</document>

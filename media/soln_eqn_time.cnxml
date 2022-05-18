@@ -1,0 +1,901 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE module SYSTEM "http://cnx.rice.edu/cnxml/0.3.5/DTD/cnxml.dtd">
+
+<module 
+id="m2107" 
+levelmask="0" 
+created="2001-02-12" 
+revised="2001-10-09"
+version="2">
+
+<name>Time Domain State and Output Equations</name>
+
+<metadata>
+  <authorlist>
+    <author id="aca">
+    <firstname>Thanos</firstname>
+    <surname>Antoulas</surname>
+    </author>
+    <author id="jps">
+    <firstname>JP</firstname>
+    <surname>Slavinsky</surname>
+    </author>
+  </authorlist>
+
+  <maintainerlist>
+    <maintainer id="lizychan">
+    <firstname>Elizabeth</firstname>
+    <othername></othername>
+    <surname>Chan</surname>
+    <email>lizychan@rice.edu</email>
+    </maintainer>
+  </maintainerlist>
+
+  <keywordlist>
+    <keyword>time domain</keyword>
+    <keyword>state equation</keyword>
+    <keyword>output equation</keyword>
+	 <keyword>convolution</keyword>
+  </keywordlist>
+
+  <abstract>Time Domain State and Output Equation stuff</abstract>
+
+</metadata>
+
+<content>
+
+<para id="p0"><emphasis>Note:</emphasis>
+<math xmlns="&mmlns;"><ci>x</ci></math>
+<emphasis>and</emphasis>
+<math xmlns="&mmlns;"><ci>u</ci></math>
+<emphasis>are functions of time, and the notation</emphasis>
+<math xmlns="&mmlns;">
+	<apply other="dot">
+	<diff/>
+		<bvar><ci>t</ci><degree><cn>1</cn></degree></bvar>
+		<apply>
+			<ci type="function">x</ci>
+			<ci>t</ci>
+		</apply>
+	</apply>
+</math>
+<emphasis>implies</emphasis>
+<math xmlns="&mmlns;">
+	<apply>
+	<diff/>
+		<bvar><ci>t</ci><degree><cn>1</cn></degree></bvar>
+		<apply>
+			<ci type="function">x</ci>
+			<ci>t</ci>
+		</apply>
+	</apply>
+</math>.
+</para>
+
+<para id="p1">Given the state equations and output equations</para>
+
+<equation id="eq1">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply other="dot">
+			<diff/>
+				<bvar><ci>t</ci><degree><cn>1</cn></degree></bvar>
+				<apply>
+					<ci type="function">x</ci>
+					<ci>t</ci>
+				</apply>
+			</apply>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<ci>A</ci>
+					<ci>x</ci>
+				</apply>
+				<apply>
+				<times/>
+					<ci>B</ci>
+					<ci>u</ci>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<equation id="eq2">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<ci>y</ci>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<ci>C</ci>
+					<ci>x</ci>
+				</apply>
+				<apply>
+				<times/>
+					<ci>D</ci>
+					<ci>u</ci>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p2">we would like to be able to find solutions for
+<math xmlns="&mmlns;"><ci>x</ci></math>
+and
+<math xmlns="&mmlns;"><ci>y</ci></math>
+in terms of the initial state of the system and the system's input.  To find such solutions, we begin with an examination of a scalar (
+<math xmlns="&mmlns;"><apply><eq/><ci>n</ci><cn>1</cn></apply></math>,
+<math xmlns="&mmlns;"><apply><eq/><ci>m</ci><cn>1</cn></apply></math>)
+state equation:</para>
+
+<equation id="eq3">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply other="dot">
+			<diff/>
+				<bvar><ci>t</ci><degree><cn>1</cn></degree></bvar>
+				<apply>
+					<ci type="function">x</ci>
+					<ci>t</ci>
+				</apply>
+			</apply>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<ci>a</ci>
+					<ci>x</ci>
+				</apply>
+				<apply>
+				<times/>
+					<ci>b</ci>
+					<ci>u</ci>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p3">If we looked at a special case of this equation, one where the input
+<math xmlns="&mmlns;"><ci>u</ci></math>
+was
+<math xmlns="&mmlns;"><cn>0</cn></math>,
+we'd have
+<math xmlns="&mmlns;">
+	<apply>
+	<eq/>
+		<apply other="dot">
+		<diff/>
+			<bvar><ci>t</ci><degree><cn>1</cn></degree></bvar>
+			<apply>
+				<ci type="function">x</ci>
+				<ci>t</ci>
+			</apply>
+		</apply>
+		<apply>
+		<times/>
+			<ci>a</ci>
+			<ci>x</ci>
+		</apply>
+	</apply>
+</math>.
+We've seen this many times before; to solve this, we need a function whose derivative is directly proportional to itself.  This function is the exponential function.  Therefore, in solving the more general case presented by <cnxn target="eq3"/>, we expect that the exponential function will also come into play.</para>
+
+<para id="p4">Starting with <cnxn target="eq3"/>, we can collect like terms, multiply through by
+<math xmlns="&mmlns;">
+	<apply>
+	<exp/>
+			<apply>
+			<times/>
+				<ci>-a</ci>
+				<ci>t</ci>
+			</apply>
+
+	</apply>
+</math>,
+and rewrite the left-hand side of <cnxn target="eq4"/> in terms of the derivative.  (We take this last step after noticing that the left-hand side of <cnxn target="eq4"/> looks like the derivative product rule has already been applied to it.)</para>
+
+<equation id="eq4">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+			<minus/>
+				<apply>
+				<times/>
+					<apply>
+					<exp/>
+						<apply>
+						<times/>
+							<ci>-a</ci>
+							<ci>t</ci>
+						</apply>
+					</apply>
+					<apply other="dot">
+					<diff/>
+						<bvar><ci>t</ci><degree><cn>1</cn></degree></bvar>
+						<apply>
+							<ci type="function">x</ci>
+							<ci>t</ci>
+						</apply>
+					</apply>
+				</apply>
+				<apply>
+				<times/>
+					<ci>a</ci>
+					<apply>
+					<exp/>
+						<apply>
+						<times/>
+							<ci>-a</ci>
+							<ci>t</ci>
+						</apply>
+					</apply>
+					<!-- <apply> -->
+						<ci type="function">x</ci>
+					<!--	<ci>t</ci>
+					</apply> -->
+				</apply>
+			</apply>
+			<apply>
+			<times/>
+				<ci>b</ci>
+				<apply>
+				<exp/>
+					<apply>
+					<times/>
+						<ci>-a</ci>
+						<ci>t</ci>
+					</apply>
+				</apply>
+				<!-- <apply> -->
+					<ci type="function">u</ci>
+				<!--	<ci>t</ci>
+				</apply> -->
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<equation id="eq5">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+			<diff/>
+				<bvar><ci>t</ci><degree><cn>1</cn></degree></bvar>
+				<apply>
+				<times/>
+					<apply>
+					<exp/>
+						<apply>
+						<times/>
+							<ci>-a</ci>
+							<ci>t</ci>
+						</apply>
+					</apply>
+					<apply>
+						<ci type="function">x</ci>
+						<ci>t</ci>
+					</apply>
+				</apply>
+			</apply>
+			<apply>
+			<times/>
+				<apply>
+				<exp/>
+					<apply>
+					<times/>
+						<ci>-a</ci>
+						<ci>t</ci>
+					</apply>
+				</apply>
+				<ci>b</ci>
+				<apply>
+					<ci type="function">u</ci>
+				<ci>t</ci>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p5">Since we are searching for
+<math xmlns="&mmlns;"><apply><ci type="function">x</ci><ci>t</ci></apply></math>
+instead of its derivative, we will integrate both sides from
+<math xmlns="&mmlns;"><ci><msub><mi>t</mi><mn>0</mn></msub></ci></math>
+to
+<math xmlns="&mmlns;"><ci>t</ci></math>.
+</para>
+
+<equation id="eq6">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+			<int/>
+				<bvar><ci>t</ci></bvar>
+				<lowlimit><ci><msub><mi>t</mi><mn>0</mn></msub></ci></lowlimit>
+				<uplimit><ci>t</ci></uplimit>
+				<apply>
+				<diff/>
+					<bvar><ci>t</ci><degree><cn>1</cn></degree></bvar>
+					<apply>
+					<times/>
+						<apply>
+						<exp/>
+							<apply>
+							<times/>
+								<ci>-a</ci>
+								<ci>t</ci>
+							</apply>
+						</apply>
+						<apply>
+							<ci type="function">x</ci>
+							<ci>t</ci>
+						</apply>
+					</apply>
+				</apply>
+			</apply>
+			<apply>
+			<int/>
+				<bvar><ci>t</ci></bvar>
+				<lowlimit><ci><msub><mi>t</mi><mn>0</mn></msub></ci></lowlimit>
+				<uplimit><ci>t</ci></uplimit>
+				<apply>
+				<times/>
+					<apply>
+					<exp/>
+						<apply>
+						<times/>
+							<ci>-a</ci>
+							<ci>t</ci>
+						</apply>
+					</apply>
+					<ci>b</ci>
+					<apply>
+						<ci type="function">u</ci>
+					<ci>t</ci>
+					</apply>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+
+<para id="p6">In the left-hand side of this equation, the integral and the derivative counteract each other and we are left with the difference of the function
+<math xmlns="&mmlns;">
+	<apply>
+	<times/>
+		<apply>
+		<exp/>
+			<apply>
+			<times/>
+				<ci>-a</ci>
+				<ci>t</ci>
+			</apply>
+		</apply>
+		<apply>
+			<ci type="function">x</ci>
+			<ci>t</ci>
+		</apply>
+	</apply>
+</math>
+evaluated at the upper and lower integration limits.  To avoid confusion, the variable of integration will be changed from
+<math xmlns="&mmlns;"><ci>t</ci></math>
+(which is now a constant limit in the integral) to
+<math xmlns="&mmlns;"><ci>&tau;</ci></math>.</para>
+
+<equation id="eq7">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+			<minus/>
+				<apply>
+				<times/>
+					<apply>
+					<exp/>
+						<apply>
+						<times/>
+							<ci>-a</ci>
+							<ci>t</ci>
+						</apply>
+					</apply>
+					<apply>
+						<ci type="function">x</ci>
+						<ci>t</ci>
+					</apply>
+				</apply>
+				<apply>
+				<times/>
+					<apply>
+					<exp/>
+						<apply>
+						<times/>
+							<ci>-a</ci>
+							<ci><msub><mi>t</mi><mn>0</mn></msub></ci>
+						</apply>
+					</apply>
+					<apply>
+						<ci type="function">x</ci>
+						<ci><msub><mi>t</mi><mn>0</mn></msub></ci>
+					</apply>
+				</apply>
+			</apply>
+			<apply>
+			<int/>
+				<bvar><ci>&tau;</ci></bvar>
+				<lowlimit><ci><msub><mi>t</mi><mn>0</mn></msub></ci></lowlimit>
+				<uplimit><ci>t</ci></uplimit>
+				<apply>
+				<times/>
+					<apply>
+					<exp/>
+						<apply>
+						<times/>
+							<ci>-a</ci>
+							<ci>&tau;</ci>
+						</apply>
+					</apply>
+					<ci>b</ci>
+					<apply>
+						<ci type="function">u</ci>
+						<ci>&tau;</ci>
+					</apply>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p7">We now move the
+<math xmlns="&mmlns;"><apply><ci type="function">x</ci><ci><msub><mi>t</mi><mn>0</mn></msub></ci></apply></math>
+term to the other side and divide through by
+<math xmlns="&mmlns;"><apply><exp/><apply><times/><ci>-a</ci><ci>t</ci></apply></apply></math>.
+This leaves us with a solution for the state variable
+<math xmlns="&mmlns;"><apply><ci type="function">x</ci><ci>t</ci></apply></math>
+in the scalar case:</para>
+
+<equation id="eq8">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">x</ci>
+				<ci>t</ci>
+			</apply>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<apply>
+					<exp/>
+						<apply>
+						<times/>
+							<ci>a</ci>
+							<apply>
+							<minus/>
+								<ci>t</ci>
+								<ci><msub><mi>t</mi><mn>0</mn></msub></ci>
+							</apply>
+						</apply>
+					</apply>
+					<apply>
+						<ci type="function">x</ci>
+						<ci><msub><mi>t</mi><mn>0</mn></msub></ci>
+					</apply>
+				</apply>
+				<apply>
+				<int/>
+					<bvar><ci>&tau;</ci></bvar>
+					<lowlimit><ci><msub><mi>t</mi><mn>0</mn></msub></ci></lowlimit>
+					<uplimit><ci>t</ci></uplimit>
+					<apply>
+					<times/>
+						<apply>
+						<exp/>
+							<apply>
+							<times/>
+								<ci>a</ci>
+								<apply>
+								<minus/>
+									<ci>t</ci>
+									<ci>&tau;</ci>
+								</apply>
+							</apply>
+						</apply>
+						<ci>b</ci>
+						<apply>
+							<ci type="function">u</ci>
+							<ci>&tau;</ci>
+						</apply>
+					</apply>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+
+<para id="p8">What happens if we let
+<math xmlns="&mmlns;"><ci><msub><mi>t</mi><mn>0</mn></msub></ci></math>
+go to
+<math xmlns="&mmlns;"><ci>-&infin;</ci></math>?
+The first term on the right-hand side will go to zero since
+<math xmlns="&mmlns;">
+	<apply>
+	<eq/>
+		<apply><ci type="function">x</ci><ci>-&infin;</ci></apply>
+		<cn>0</cn>
+	</apply>
+</math>.
+Then, if we say that
+<math xmlns="&mmlns;">
+	<apply>
+	<eq/>
+		<apply><ci type="function">h</ci><ci>t</ci></apply>
+		<apply>
+		<times/>
+			<apply>
+			<exp/>
+				<apply>
+				<times/>
+					<ci>a</ci>
+					<ci>t</ci>
+				</apply>
+			</apply>
+			<ci>b</ci>
+		</apply>
+	</apply>
+</math>,
+the second term can be rewritten as</para>
+
+<equation id="eq10">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<int/>
+			<bvar><ci>&tau;</ci></bvar>
+			<lowlimit><ci>-&infin;</ci></lowlimit>
+			<uplimit><ci>t</ci></uplimit>
+			<apply>
+			<times/>
+				<apply>
+					<ci type="function">h</ci>
+					<apply>
+					<minus/>
+						<ci>t</ci>
+						<ci>&tau;</ci>
+					</apply>
+				</apply>
+				<apply>
+					<ci type="function">u</ci>
+					<ci>&tau;</ci>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p9">This is the convolution equation
+(<math xmlns="&mmlns;"><ci>h</ci><ci>&lowast;</ci><ci>u</ci></math>).</para>
+
+<para id="p10">For the scalar case, the solution to the output equation
+<math xmlns="&mmlns;"><apply><ci type="function">y</ci><ci>t</ci></apply></math>
+has the same basic form as the solution to the state equation:</para>
+
+<equation id="eq11">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">y</ci>
+				<ci>t</ci>
+			</apply>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<ci>c</ci>
+					<apply>
+					<exp/>
+						<apply>
+						<times/>
+							<ci>a</ci>
+							<apply>
+							<minus/>
+								<ci>t</ci>
+								<ci><msub><mi>t</mi><mn>0</mn></msub></ci>
+							</apply>
+						</apply>
+					</apply>
+					<apply>
+						<ci type="function">x</ci>
+						<ci><msub><mi>t</mi><mn>0</mn></msub></ci>
+					</apply>
+				</apply>
+				<apply>
+				<int/>
+					<bvar><ci>&tau;</ci></bvar>
+					<lowlimit><ci><msub><mi>t</mi><mn>0</mn></msub></ci></lowlimit>
+					<uplimit><ci>t</ci></uplimit>
+					<apply>
+					<times/>
+						<ci>c</ci>
+						<apply>
+						<exp/>
+							<apply>
+							<times/>
+								<ci>a</ci>
+								<apply>
+								<minus/>
+									<ci>t</ci>
+									<ci>&tau;</ci>
+								</apply>
+							</apply>
+						</apply>
+						<ci>b</ci>
+						<apply>
+							<ci type="function">u</ci>
+							<ci>&tau;</ci>
+						</apply>
+					</apply>
+				</apply>
+				<apply>
+				<times/>
+					<ci>d</ci>
+					<apply>
+						<ci type="function">u</ci>
+						<ci>t</ci>
+					</apply>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p11">Again, we can see the convolution in the second term.</para>
+
+<para id="p12">The general matrix forms of the solutions for the state and output equations follow the same pattern.  The only differences are that we use the matrix exponential instead of the scalar exponential, and that we use the matrices
+<math xmlns="&mmlns;"><ci>A</ci></math>,
+<math xmlns="&mmlns;"><ci>B</ci></math>,
+<math xmlns="&mmlns;"><ci>C</ci></math>,
+and
+<math xmlns="&mmlns;"><ci>D</ci></math>
+instead of the scalars
+<math xmlns="&mmlns;"><ci>a</ci></math>,
+<math xmlns="&mmlns;"><ci>b</ci></math>,
+<math xmlns="&mmlns;"><ci>c</ci></math>,
+and
+<math xmlns="&mmlns;"><ci>d</ci></math>.</para>
+
+<equation id="eq12">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">x</ci>
+				<ci>t</ci>
+			</apply>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<apply>
+					<exp/>
+						<apply>
+						<times/>
+							<ci>A</ci>
+							<ci>t</ci>
+						</apply>
+					</apply>
+					<apply>
+						<ci type="function">x</ci>
+						<cn>0</cn>
+					</apply>
+				</apply>
+				<apply>
+				<int/>
+					<bvar><ci>&tau;</ci></bvar>
+					<lowlimit><cn>0</cn></lowlimit>
+					<uplimit><ci>t</ci></uplimit>
+					<apply>
+					<times/>
+						<apply>
+						<exp/>
+							<apply>
+							<times/>
+								<ci>A</ci>
+								<apply>
+								<minus/>
+									<ci>t</ci>
+									<ci>&tau;</ci>
+								</apply>
+							</apply>
+						</apply>
+						<ci>B</ci>
+						<apply>
+							<ci type="function">u</ci>
+							<ci>&tau;</ci>
+						</apply>
+					</apply>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+
+<equation id="eq13">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">y</ci>
+				<ci>t</ci>
+			</apply>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<ci>C</ci>
+					<apply>
+					<exp/>
+						<apply>
+						<times/>
+							<ci>A</ci>
+							<ci>t</ci>
+						</apply>
+					</apply>
+					<apply>
+						<ci type="function">x</ci>
+						<cn>0</cn>
+					</apply>
+				</apply>
+				<apply>
+				<int/>
+					<bvar><ci>&tau;</ci></bvar>
+					<lowlimit><cn>0</cn></lowlimit>
+					<uplimit><ci>t</ci></uplimit>
+					<apply>
+					<times/>
+						<ci>C</ci>
+						<apply>
+						<exp/>
+							<apply>
+							<times/>
+								<ci>A</ci>
+								<apply>
+								<minus/>
+									<ci>t</ci>
+									<ci>&tau;</ci>
+								</apply>
+							</apply>
+						</apply>
+						<ci>B</ci>
+						<apply>
+							<ci type="function">u</ci>
+							<ci>&tau;</ci>
+						</apply>
+					</apply>
+				</apply>
+				<apply>
+				<times/>
+					<ci>D</ci>
+					<apply>
+						<ci type="function">u</ci>
+						<ci>t</ci>
+					</apply>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p13">The convolution term is easy to see in the solution for
+<math xmlns="&mmlns;"><apply><ci type="function">x</ci><ci>t</ci></apply></math>.
+However, it takes a little regrouping to find it in the solution for
+<math xmlns="&mmlns;"><apply><ci type="function">y</ci><ci>t</ci></apply></math>.
+If we pull the
+<math xmlns="&mmlns;"><ci>D</ci></math>
+matrix into the integral (by multiplying it by the impulse function,
+<math xmlns="&mmlns;"><ci>&delta;</ci></math>,
+we once again have the integral of a function of
+<math xmlns="&mmlns;"><apply><minus/><ci>t</ci><ci>&tau;</ci></apply></math>
+being multiplied by the input (convolution).</para>
+
+<equation id="eq14">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">y</ci>
+				<ci>t</ci>
+			</apply>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<ci>C</ci>
+					<apply>
+					<exp/>
+						<apply>
+						<times/>
+							<ci>A</ci>
+							<ci>t</ci>
+						</apply>
+					</apply>
+					<apply>
+						<ci type="function">x</ci>
+						<cn>0</cn>
+					</apply>
+				</apply>
+				<apply>
+				<int/>
+					<bvar><ci>&tau;</ci></bvar>
+					<lowlimit><cn>0</cn></lowlimit>
+					<uplimit><ci>t</ci></uplimit>
+					<apply>
+					<times/>
+						<apply>
+						<plus/>
+							<apply>
+							<times/>
+								<ci>C</ci>
+								<apply>
+								<exp/>
+									<apply>
+									<times/>
+										<ci>A</ci>
+										<apply>
+										<minus/>
+											<ci>t</ci>
+											<ci>&tau;</ci>
+										</apply>
+									</apply>
+								</apply>
+								<ci>B</ci>
+							</apply>
+							<apply>
+							<times/>
+								<ci>D</ci>
+								<apply>
+									<ci type="function">&delta;</ci>
+									<apply>
+									<minus/>
+										<ci>t</ci>
+										<ci>&tau;</ci>
+									</apply>
+								</apply>
+							</apply>
+						</apply>
+						<apply>
+							<ci type="function">u</ci>
+							<ci>&tau;</ci>
+						</apply>
+					</apply>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+</content>
+
+
+
+
+</module>
+
+
+
+
+

@@ -1,0 +1,579 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE module PUBLIC "-//CNX//DTD CNXML 0.3.5 plus MathML//EN" 
+              "http://cnx.rice.edu/cnxml/0.3.5/DTD/cnxml_mathml.dtd">
+
+<module 
+id="m2108" 
+levelmask="0" 
+created="2001-02-22" 
+revised="2001-10-09"
+version='2'>
+	<name>Laplace Domain Solutions to State and Output Equations</name>
+	
+<metadata>
+   <authorlist>
+	<author id="aca">
+	 	<honorific>Dr.</honorific>
+		<firstname>Thanos</firstname>
+		<surname>Antoulas</surname>
+		<email>aca@rice.edu</email>
+	</author>
+	<author id="jps">
+		<firstname>JP</firstname>
+		<surname>Slavinsky</surname>
+		<email>jps@rice.edu</email>
+	</author>
+  </authorlist>
+
+  <maintainerlist>
+        <maintainer id="lizychan">
+                <firstname>Elizabeth</firstname>
+                <othername></othername>
+                <surname>Chan</surname>
+                <email>lizychan@rice.edu</email>
+        </maintainer>
+  </maintainerlist>
+
+  <keywordlist>
+    <keyword>Laplace</keyword>
+    <keyword>state equation</keyword>
+    <keyword>output equation</keyword>
+	 <keyword>solution</keyword>
+  </keywordlist>
+
+	<abstract>This module covers the Laplace domain equations for state and output equation solutions.</abstract>
+
+</metadata>
+
+<content>
+
+<para id="p0">As always, it is useful to look at the solutions to the state and output equations from a Laplace domain perspective.  We start with the general forms of the state and output equations.</para>
+
+<equation id="eq1">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply other="dot">
+			<diff/>
+				<apply>
+					<ci type="function">x</ci>
+					<ci>t</ci>
+				</apply>
+			</apply>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<ci>A</ci>
+					<ci>x</ci>
+				</apply>
+				<apply>
+				<times/>
+					<ci>B</ci>
+					<ci>u</ci>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<equation id="eq2">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<ci>y</ci>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<ci>C</ci>
+					<ci>x</ci>
+				</apply>
+				<apply>
+				<times/>
+					<ci>D</ci>
+					<ci>u</ci>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+
+<para id="p1">Let's take a look at the state equation.  In the time-domain version of this analysis, we had to use a combination of derivatives and integrals to find the solution
+<math xmlns="&mmlns;"><apply><ci type="function">x</ci><ci>t</ci></apply></math>.
+Making an analogy to Laplace-domain equations, we know that derivatives and integrals in time equate to multiplies and divides in frequency.  So, we suspect that finding the Laplace-domain solution
+<math xmlns="&mmlns;"><apply><ci type="function">X</ci><ci>s</ci></apply></math>
+might be significantly easier.  We will start by taking the Laplace transform of the state equation.</para>
+
+<equation id="eq3">
+ 	<math xmlns="&mmlns;">
+		<apply>
+			<ci type="function">L</ci>
+			<apply>
+			<eq/>
+				<apply other="dot">
+				<diff/>
+					<apply>
+						<ci type="function">x</ci>
+						<ci>t</ci>
+					</apply>
+				</apply>
+				<apply>
+				<plus/>
+					<apply>
+					<times/>
+						<ci>A</ci>
+						<ci>x</ci>
+					</apply>
+					<apply>
+					<times/>
+						<ci>B</ci>
+						<ci>u</ci>
+					</apply>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<equation id="eq4">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+			<minus/>
+				<apply>
+				<times/>
+					<ci>s</ci>
+					<apply>
+						<ci type="function">X</ci>
+						<ci>s</ci>
+					</apply>
+				</apply>
+				<apply>
+					<ci type="function">x</ci>
+					<cn>0</cn>
+				</apply>
+			</apply>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<ci>A</ci>
+					<apply>
+						<ci type="function">X</ci>
+						<ci>s</ci>
+					</apply>
+				</apply>
+				<apply>
+				<times/>
+					<ci>B</ci>
+					<apply>
+						<ci type="function">U</ci>
+						<ci>s</ci>
+					</apply>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p2">If we collect the
+<math xmlns="&mmlns;"><apply><ci type="function">X</ci><ci>s</ci></apply></math>
+terms on the left-hand side, we can come up with</para>
+
+<equation id="eq5">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+			<times/>
+				<apply>
+				<minus/>
+					<apply>
+					<times/>
+						<ci>s</ci>
+						<ci>I</ci>
+					</apply>
+					<ci>A</ci>
+				</apply>
+				<apply>
+					<ci type="function">X</ci>
+					<ci>s</ci>
+				</apply>
+			</apply>
+			<apply>
+			<plus/>
+				<apply>
+					<ci type="function">x</ci>
+					<cn>0</cn>
+				</apply>
+				<apply>
+				<times/>
+					<ci>B</ci>
+					<apply>
+						<ci type="function">U</ci>
+						<ci>s</ci>
+					</apply>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p3">We see immediately that we the solution for
+<math xmlns="&mmlns;"><apply><ci type="function">X</ci><ci>s</ci></apply></math>
+is staring us in the face.  All we have to do is get the
+<math xmlns="&mmlns;"><apply><minus/><apply><times/><ci>s</ci><ci>I</ci></apply><ci>A</ci></apply></math>
+to the other side.  Remembering that this term is actually a matrix, we know we can't just divide through by it; instead, we left-multiply both sides of the equation with the inverse of this term.  This yields</para>
+
+<equation id="eq6">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">X</ci>
+				<ci>s</ci>
+			</apply>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<apply>
+					<inverse/>
+						<matrix><matrixrow>
+						<apply>
+						<minus/>
+							<apply>
+							<times/>
+								<ci>s</ci>
+								<ci>I</ci>
+							</apply>
+							<ci>A</ci>
+						</apply>
+						</matrixrow></matrix>
+					</apply>
+					<apply>
+						<ci type="function">x</ci>
+						<cn>0</cn>
+					</apply>
+				</apply>
+				<apply>
+				<times/>
+					<apply>
+					<inverse/>
+						<matrix><matrixrow>
+						<apply>
+						<minus/>
+							<apply>
+							<times/>
+								<ci>s</ci>
+								<ci>I</ci>
+							</apply>
+							<ci>A</ci>
+						</apply>
+						</matrixrow></matrix>
+					</apply>
+					<ci>B</ci>
+					<apply>
+						<ci type="function">U</ci>
+						<ci>s</ci>
+					</apply>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p4">If we take the time-domain solution for
+<math xmlns="&mmlns;"><apply><ci type="function">x</ci><ci>t</ci></apply></math>
+found before, we can take its Laplace transform and arrive at this same result.</para>
+
+<equation id="eq7">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">L</ci>
+				<apply>
+				<eq/>
+					<apply>
+						<ci type="function">x</ci>
+						<ci>t</ci>
+					</apply>
+					<apply>
+					<plus/>
+						<apply>
+						<times/>
+							<apply>
+							<exp/>
+								<apply>
+								<times/>
+									<ci>A</ci>
+									<ci>t</ci>
+								</apply>
+							</apply>
+							<apply>
+								<ci type="function">x</ci>
+								<cn>0</cn>
+							</apply>
+						</apply>
+						<apply>
+						<int/>
+							<bvar><ci>&tau;</ci></bvar>
+							<lowlimit><cn>0</cn></lowlimit>
+							<uplimit><ci>t</ci></uplimit>
+							<apply>
+							<times/>
+								<apply>
+								<exp/>
+									<apply>
+									<times/>
+										<ci>A</ci>
+										<apply>
+										<minus/>
+											<ci>t</ci>
+											<ci>&tau;</ci>
+										</apply>
+									</apply>
+								</apply>
+								<ci>B</ci>
+								<apply>
+									<ci type="function">u</ci>
+									<ci>&tau;</ci>
+								</apply>
+							</apply>
+						</apply>
+					</apply>
+				</apply>
+			</apply>
+			<apply>
+				<ci type="function">X</ci>
+				<ci>s</ci>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p5">You can see how this equation would transform into <cnxn strength="9" target="eq6"/>.  We know that the Laplace transform of the matrix exponential is
+<math xmlns="&mmlns;">
+<apply>
+<inverse/>
+	<matrix><matrixrow>
+	<apply>
+	<minus/>
+		<apply>
+		<times/>
+			<ci>s</ci>
+			<ci>I</ci>
+		</apply>
+		<ci>A</ci>
+	</apply>
+	</matrixrow></matrix>
+</apply>
+</math>.
+The first term is simply this quantity times the scalar
+<math xmlns="&mmlns;"><apply><ci type="function">x</ci><cn>0</cn></apply></math>.
+Since the integral term has the form of a convolution, the Laplace-domain equivalent is simple a multiplication.</para>
+
+<para id="p6">Finding the Laplace-domain output equation solution is just as easy.  Again, we start by taking the Laplace transform of the output equation.  This gives us</para>
+
+<equation id="eq8">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">Y</ci>
+				<ci>s</ci>
+			</apply>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<ci>C</ci>
+					<apply>
+						<ci type="function">X</ci>
+						<ci>s</ci>
+					</apply>
+				</apply>
+				<apply>
+				<times/>
+					<ci>D</ci>
+					<apply>
+						<ci type="function">U</ci>
+						<ci>s</ci>
+					</apply>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p7">You might be thinking that this is the end result: we have an expression for
+<math xmlns="&mmlns;"><apply><ci type="function">Y</ci><ci>s</ci></apply></math>.
+However, we must remember that we want these solutions to be in terms of known quantities.  Namely, these quantities are the initial conditions and the inputs.  So what we need to get rid of is the
+<math xmlns="&mmlns;"><apply><ci type="function">X</ci><ci>s</ci></apply></math>
+term.  Fortunately, we just found an expression for
+<math xmlns="&mmlns;"><apply><ci type="function">X</ci><ci>s</ci></apply></math>
+in terms of the initial conditions and the inputs.  Plugging in that equation into the output equation solution, we get</para>
+
+<equation id="eq9">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">Y</ci>
+				<ci>s</ci>
+			</apply>
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<ci>C</ci>
+					<apply>
+					<plus/>
+						<apply>
+						<times/>
+							<apply>
+							<inverse/>
+								<matrix><matrixrow>
+								<apply>
+								<minus/>
+									<apply>
+									<times/>
+										<ci>s</ci>
+										<ci>I</ci>
+									</apply>
+									<ci>A</ci>
+								</apply>
+								</matrixrow></matrix>
+							</apply>
+							<apply>
+								<ci type="function">x</ci>
+								<cn>0</cn>
+							</apply>
+						</apply>
+						<apply>
+						<times/>
+							<apply>
+							<inverse/>
+								<matrix><matrixrow>
+								<apply>
+								<minus/>
+									<apply>
+									<times/>
+										<ci>s</ci>
+										<ci>I</ci>
+									</apply>
+									<ci>A</ci>
+								</apply>
+								</matrixrow></matrix>
+							</apply>
+							<ci>B</ci>
+							<apply>
+								<ci type="function">U</ci>
+								<ci>s</ci>
+							</apply>
+						</apply>
+					</apply>
+				</apply>
+				<apply>
+				<times/>
+					<ci>D</ci>
+					<apply>
+						<ci type="function">U</ci>
+						<ci>s</ci>
+					</apply>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+<para id="p10">When we multiply the
+<math xmlns="&mmlns;"><ci>C</ci></math>
+through and collect the
+<math xmlns="&mmlns;"><apply><ci type="function">U</ci><ci>s</ci></apply></math>
+terms, we get a final expression for the output equation solution:</para>
+
+<equation id="eq10">
+ 	<math xmlns="&mmlns;">
+		<apply>
+		<eq/>
+			<apply>
+				<ci type="function">Y</ci>
+				<ci>s</ci>
+			</apply>
+
+			<apply>
+			<plus/>
+				<apply>
+				<times/>
+					<ci>C</ci>
+					<apply>
+					<times/>
+						<apply>
+						<inverse/>
+							<matrix><matrixrow>
+							<apply>
+							<minus/>
+								<apply>
+								<times/>
+									<ci>s</ci>
+									<ci>I</ci>
+								</apply>
+								<ci>A</ci>
+							</apply>
+							</matrixrow></matrix>
+						</apply>
+						<apply>
+							<ci type="function">x</ci>
+							<cn>0</cn>
+						</apply>
+					</apply>
+				</apply>
+
+				<apply>
+				<times/>
+					<apply>
+					<plus/>
+						<apply>
+						<times/>
+							<ci>C</ci>
+							<apply>
+							<inverse/>
+								<matrix><matrixrow>
+								<apply>
+								<minus/>
+									<apply>
+									<times/>
+										<ci>s</ci>
+										<ci>I</ci>
+									</apply>
+									<ci>A</ci>
+								</apply>
+								</matrixrow></matrix>
+							</apply>
+							<ci>B</ci>
+						</apply>
+						<ci>D</ci>
+					</apply>
+					<apply>
+						<ci type="function">U</ci>
+						<ci>s</ci>
+					</apply>
+				</apply>
+			</apply>
+		</apply>
+	</math>
+</equation>
+
+
+<para id="p11">It is interesting to note that the two addends in this equation represent the free response (the initial condition term) and the forced response (the input term) of the system.</para>
+
+
+</content>
+</module>
+
+

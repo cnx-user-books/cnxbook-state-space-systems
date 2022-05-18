@@ -1,0 +1,1757 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Partial Fraction Expansion</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>b2e3f8ad-9e60-4421-a343-97e64192ffce</md:uuid>
+</metadata>
+
+
+
+  
+  <content>
+    <para id="p1">
+      Splitting up a ratio of large polynomials into a sum of
+      ratios of small polynomials can be a useful tool, 
+      especially for many problems involving Laplace-like
+      transforms.  This technique is known as partial fraction
+      expansion.  Here's an example of one ratio being split 
+      into a sum of three simpler ratios:
+      
+      <equation id="eq1">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+            <m:apply>
+              <m:divide/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>8</m:cn>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>x</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>3</m:cn>
+		    <m:ci>x</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:cn>21</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>x</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>7</m:cn>
+		    <m:ci>x</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:cn>6</m:cn>
+	      </m:apply>
+            </m:apply>
+	    
+            <m:apply>
+              <m:plus/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>x</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>3</m:cn>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>x</m:ci>
+		  <m:cn>3</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply> 
+		<m:divide/>
+		<m:cn>4</m:cn>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>x</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+            </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+    </para>
+    
+    <para id="p2">
+      There are several methods for expanding a rational function
+      via partial fractions.  These include the method of clearing
+      fractions, the Heaviside "cover-up" method, and different
+      combinations of these two.  For many cases, the Heaviside
+      "cover-up" method is the easiest, and is therefore the method
+      that we will introduce here.  For a more complete discussion, 
+      see <cite><cite-title>Signal Processing and Linear Systems</cite-title></cite> by
+      B.P. Lathi, Berkeley-Cambridge Press, 1998, pp-24-33.  Some
+      of the material below is based upon this book.
+    </para>
+    
+    <section id="s1">
+      <title>Heaviside "Cover-Up" Method</title>
+      
+      <section id="s1_1">
+	<title>No Repeated Roots</title>
+	
+	<para id="p3">
+	  Let's say we have a proper function
+	  
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+                <m:ci type="fn">G</m:ci>
+                <m:ci>x</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:divide/>
+		<m:apply>
+		  <m:ci type="fn">N</m:ci>
+		  <m:ci>x</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">D</m:ci>
+		  <m:ci>x</m:ci>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	  
+        (by proper we mean that the degree <m:math><m:ci>m</m:ci></m:math> of the numerator
+	  
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">N</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:math>
+	  
+	  is less than the degree <m:math><m:ci>p</m:ci></m:math>  	  
+	  of denominator
+	  
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">D</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:math>
+	  
+	  ). In this section we assume that there are no repeated 
+	  roots of the polynomial
+	  
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">D</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:math>.
+	</para>
+	
+	<para id="p4">
+	  The first step is to factor the denominator
+	  
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">D</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:math>:
+	  
+	  <equation id="eq2">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:ci type="fn">G</m:ci>
+                  <m:ci>x</m:ci>
+                </m:apply>
+                <m:apply>
+                  <m:divide/>
+		  <m:apply>
+		    <m:ci type="fn">N</m:ci>
+		    <m:ci>x</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		    <m:ci>…</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mi>p</m:mi>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+	
+	<para id="p5">
+	  where
+	  <m:math><m:ci><m:msub><m:mi>a</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:math> … <m:math><m:ci><m:msub><m:mi>a</m:mi><m:mi>p</m:mi></m:msub></m:ci></m:math>
+	  are the roots of
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">D</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  We can then rewrite
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">G</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:math>
+	  as a sum of partial fractions:
+	  
+	  <equation id="eq3">
+ 	  <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:ci type="fn">G</m:ci>
+                  <m:ci>x</m:ci>
+                </m:apply>
+                <m:apply>
+                  <m:plus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>α</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>α</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+                    <m:ci>…</m:ci>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>α</m:mi>
+			<m:mi>p</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mi>p</m:mi>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+            </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+	
+	<para id="p6">where
+	  <m:math><m:ci><m:msub><m:mi>a</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:math> … <m:math><m:ci><m:msub><m:mi>a</m:mi><m:mi>p</m:mi></m:msub></m:ci></m:math>
+	  are constants.  Now, to complete the process, we must
+	  determine the values of these <m:math><m:ci>α</m:ci></m:math>
+	  coefficients.  Let's look at how to find
+	  <m:math>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>α</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	    </m:ci>
+	  </m:math>.
+	  If we multiply both sides of the <link target-id="eq3" strength="2">equation of G(x) as a sum of partial fractions</link>
+	  by
+	  <m:math>
+	    <m:apply>
+	      <m:minus/>
+              <m:ci>x</m:ci>
+              <m:ci>
+                <m:msub>
+                  <m:mi>a</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+              </m:ci>
+	    </m:apply>
+	  </m:math>
+	  and then let
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+              <m:ci>x</m:ci>
+              <m:ci>
+                <m:msub>
+                  <m:mi>a</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+              </m:ci>
+	    </m:apply>
+	  </m:math>,
+	  all of the terms on the right-hand side will go to zero
+	  except for
+	  <m:math>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>α</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	    </m:ci>
+	  </m:math>.
+	  Therefore, we'll be left over with:
+	  
+	  <equation id="eq4">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:ci>
+                  <m:msub>
+                    <m:mi>α</m:mi>
+                    <m:mn>1</m:mn>
+                  </m:msub>
+                </m:ci>
+
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+		  <m:bvar><m:ci>x</m:ci></m:bvar>
+		  <m:lowlimit> <m:ci><m:msub><m:mi>a</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:lowlimit>
+		  
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">G</m:ci>
+		      <m:ci>x</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+	
+	<para id="p7">
+	  We can easily generalize this to a solution for any one
+	  of the unknown coefficients:
+	  
+	  <equation id="eq5">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:ci>
+                  <m:msub>
+                    <m:mi>α</m:mi>
+                    <m:mi>r</m:mi>
+                  </m:msub>
+                </m:ci>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+		  <m:bvar><m:ci>x</m:ci></m:bvar>
+		  <m:lowlimit><m:ci><m:msub><m:mi>a</m:mi><m:mi>r</m:mi></m:msub></m:ci></m:lowlimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mi>r</m:mi>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">G</m:ci>
+		      <m:ci>x</m:ci>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+	
+	<para id="p8">
+	  This method is called the "cover-up" method because 
+	  multiplying both sides by
+        <m:math>
+	    <m:apply>
+	      <m:minus/>
+              <m:ci>x</m:ci>
+              <m:ci>
+                <m:msub>
+                  <m:mi>a</m:mi>
+                  <m:mi>r</m:mi>
+                </m:msub> 
+              </m:ci>
+          </m:apply>
+	  </m:math>
+	  can be thought of as simply using one's finger to cover
+	  up this term in the denominator of
+        <m:math>
+	    <m:apply>
+	      <m:ci type="fn">G</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  With a finger over the term that would be canceled by
+	  the multiplication, you can plug in the value
+	  <m:math>
+	    <m:apply>
+            <m:eq/>
+              <m:ci>x</m:ci>
+              <m:ci>
+                <m:msub>
+                  <m:mi>a</m:mi>
+                  <m:mi>r</m:mi>
+                </m:msub>
+              </m:ci>
+	    </m:apply>
+	  </m:math>
+	  and find the solution for
+	  <m:math>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>α</m:mi> 
+		<m:mi>r</m:mi>
+	      </m:msub>
+	    </m:ci>
+	  </m:math>.
+	</para>
+	
+	<example id="ex1">
+	  
+        <para id="p9">
+	    In this example, we'll work through the partial fraction
+	    expansion of the ratio of polynomials introduced above.  
+	    Before doing a partial fraction expansion, you must make
+	    sure that the ratio you are expanding is proper.  If it
+	    is not, you should do long division to turn it into the
+	    sum of a proper fraction and a polynomial.  Once this is
+          done, the first step is to factor the denominator of the
+	    function:
+
+	    <equation id="eq6">
+	      <m:math>
+		<m:apply>
+                <m:eq/>
+                  <m:apply>
+                    <m:divide/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>8</m:cn>
+			  <m:apply>
+			    <m:power/>
+			    <m:ci>x</m:ci>
+			    <m:cn>2</m:cn>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>3</m:cn>
+			  <m:ci>x</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:cn>21</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:minus/>
+                              <m:apply>
+			  <m:power/>
+			  <m:ci>x</m:ci>
+			  <m:cn>3</m:cn>
+			</m:apply>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>7</m:cn>
+			  <m:ci>x</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:cn>6</m:cn>
+		    </m:apply>
+                  </m:apply>
+		  
+                  <m:apply>
+                    <m:divide/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>8</m:cn>
+			  <m:apply>
+			    <m:power/>
+			    <m:ci>x</m:ci>
+			    <m:cn>2</m:cn>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>3</m:cn>
+			  <m:ci>x</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:cn>21</m:cn>
+		    </m:apply>
+		    
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>x</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>x</m:ci>
+			<m:cn>3</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>x</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	  </para>
+	  
+	  <para id="p10">
+	    Now, we set this factored function equal to a sum
+	    of smaller fractions, each of which has one of the
+	    factored terms for a denominator.
+	    
+	    <equation id="eq7">
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+                  <m:apply>
+                    <m:divide/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>8</m:cn>
+			  <m:apply>
+			    <m:power/>
+			    <m:ci>x</m:ci>
+			    <m:cn>2</m:cn>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>3</m:cn>
+			  <m:ci>x</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:cn>21</m:cn>
+		    </m:apply>
+		    
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>x</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>x</m:ci>
+			<m:cn>3</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>x</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+
+                  <m:apply>
+                    <m:plus/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>α</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>x</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:divide/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>α</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>x</m:ci>
+			<m:cn>3</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:divide/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>α</m:mi>
+			  <m:mn>3</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>x</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation> 
+	  </para>
+
+	  <para id="p11">
+	    To find the alpha terms, we just cover up the
+	    corresponding denominator terms in
+	    <m:math>
+            <m:apply>
+		<m:ci type="fn">G</m:ci>
+		<m:ci>x</m:ci>
+            </m:apply>
+	    </m:math>
+          and plug in the root associated with the alpha:
+	    
+	    <equation id="eq8">
+	      <m:math>
+		<m:apply>
+                <m:eq/>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>α</m:mi>
+                      <m:mn>1</m:mn>
+                    </m:msub>
+                  </m:ci>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+		    <m:bvar><m:ci>x</m:ci></m:bvar>
+		    <m:lowlimit><m:cn>-2</m:cn></m:lowlimit>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>x</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:apply>
+                        <m:ci type="fn">G</m:ci>
+			<m:ci>x</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+		    <m:bvar><m:ci>x</m:ci></m:bvar>
+		    <m:lowlimit><m:cn>-2</m:cn></m:lowlimit>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:divide/>
+			<m:apply>
+			  <m:minus/>
+			  <m:apply>
+			    <m:plus/>
+			    <m:apply>
+			      <m:times/>
+			      <m:cn>8</m:cn>
+			      <m:apply>
+				<m:power/>
+				<m:ci>x</m:ci>
+				<m:cn>2</m:cn>
+			      </m:apply>
+			    </m:apply>
+			    <m:apply>
+			      <m:times/>
+			      <m:cn>3</m:cn>
+			      <m:ci>x</m:ci>
+			    </m:apply>
+			  </m:apply>
+			  <m:cn>21</m:cn>
+			</m:apply>
+			
+			<m:apply>
+			  <m:times/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:ci>x</m:ci>
+			    <m:cn>3</m:cn>
+			  </m:apply>
+			  <m:apply>
+			    <m:plus/>
+			    <m:ci>x</m:ci>
+			    <m:cn>1</m:cn>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+
+                  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	    
+          <equation id="eq9">
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>α</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msub>
+                  </m:ci>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+		    <m:bvar><m:ci>x</m:ci></m:bvar>
+		    <m:lowlimit><m:cn>3</m:cn></m:lowlimit>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>x</m:ci>
+			<m:cn>3</m:cn>
+		      </m:apply>
+		      <m:apply>
+                        <m:ci type="fn">G</m:ci>
+			<m:ci>x</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+		    <m:bvar><m:ci>x</m:ci></m:bvar>
+		    <m:lowlimit><m:cn>3</m:cn></m:lowlimit>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:divide/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:apply>
+			      <m:plus/>
+			      <m:apply>
+				<m:times/>
+				<m:cn>8</m:cn>
+				<m:apply>
+				  <m:power/>
+				  <m:ci>x</m:ci>
+				  <m:cn>2</m:cn>
+				</m:apply>
+			      </m:apply>
+			      <m:apply>
+				<m:times/>
+				<m:cn>3</m:cn>
+				<m:ci>x</m:ci>
+			      </m:apply>
+			    </m:apply>
+			    <m:cn>21</m:cn>
+			  </m:apply>
+			  
+			  <m:apply>
+                            <m:times/>
+			    <m:apply>
+			      <m:plus/>
+			      <m:ci>x</m:ci>
+			      <m:cn>2</m:cn>
+			    </m:apply>
+			    <m:apply>
+			      <m:plus/>
+			      <m:ci>x</m:ci>
+			      <m:cn>1</m:cn>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+                  </m:apply>
+
+                  <m:cn>3</m:cn>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	    
+	    <equation id="eq10">
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>α</m:mi>
+                      <m:mn>3</m:mn>
+                    </m:msub>
+                  </m:ci>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+		    <m:bvar><m:ci>x</m:ci></m:bvar>
+		    <m:lowlimit><m:cn>-1</m:cn></m:lowlimit>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>x</m:ci>
+			<m:cn>3</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">G</m:ci>
+			<m:ci>x</m:ci>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+		  
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+		    <m:bvar><m:ci>x</m:ci></m:bvar>
+		    <m:lowlimit><m:cn>-1</m:cn></m:lowlimit>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:divide/>
+			<m:apply>
+			  <m:minus/>
+			  <m:apply>
+			    <m:plus/>
+			    <m:apply>
+			      <m:times/>
+			      <m:cn>8</m:cn>
+			      <m:apply>
+				<m:power/>
+				<m:ci>x</m:ci>
+				<m:cn>2</m:cn>
+			      </m:apply>
+			    </m:apply>
+			    <m:apply>
+			      <m:times/>
+			      <m:cn>3</m:cn>
+			      <m:ci>x</m:ci>
+			    </m:apply>
+			  </m:apply>
+			  <m:cn>21</m:cn>
+			</m:apply>
+			
+			<m:apply>
+			  <m:times/>
+			  <m:apply>
+			    <m:plus/>
+			    <m:ci>x</m:ci>
+			    <m:cn>2</m:cn>
+			  </m:apply>
+			  <m:apply>
+			    <m:minus/>
+			    <m:ci>x</m:ci>
+			    <m:cn>3</m:cn>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+                  <m:cn>4</m:cn>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	  </para>
+	  
+        <para id="p12">
+	    We now have our completed partial fraction expansion:
+	    
+	    <equation id="eq11">
+	      <m:math>
+              <m:apply>
+		  <m:eq/>
+                  <m:apply>
+                    <m:divide/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>8</m:cn>
+			  <m:apply>
+			    <m:power/>
+			    <m:ci>x</m:ci>
+			    <m:cn>2</m:cn>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>3</m:cn>
+			  <m:ci>x</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:cn>21</m:cn>
+		    </m:apply>
+		    
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>x</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>x</m:ci>
+			<m:cn>3</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>x</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+		  
+                  <m:apply>
+                    <m:plus/>
+                      <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>x</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>3</m:cn>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>x</m:ci>
+			<m:cn>3</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>4</m:cn>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>x</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	  </para>
+	</example>
+	
+      </section>
+
+      <section id="s1_2">
+	<title>Repeated Roots</title>
+	
+	<para id="p13">
+	  When the function
+	  <m:math>
+          <m:apply>
+	      <m:ci type="fn">G</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:math>
+	  has a repeated root in its denominator, as in
+
+	  <equation id="eq12">
+	    <m:math>
+            <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:ci type="fn">G</m:ci>
+                  <m:ci>x</m:ci>
+                </m:apply>
+                <m:apply>
+                  <m:divide/>
+		  <m:apply>
+		    <m:ci type="fn">N</m:ci>
+		    <m:ci>x</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>x</m:ci>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		      <m:ci>r</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		    <m:ci>…</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mi>j</m:mi>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+	
+	<para id="p14">
+	  Somewhat more special care must be taken to find the
+	  partial fraction expansion.  The non-repeated terms are
+	  expanded as before, but for the repeated root, an extra
+	  fraction is added for each instance of the repeated 
+	  root:
+
+	  <equation id="eq13">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:ci type="fn">G</m:ci>
+                  <m:ci>x</m:ci>
+                </m:apply> 
+                <m:apply>
+                  <m:plus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>β</m:mi>
+			<m:mn>0</m:mn>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>x</m:ci>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		      <m:ci>r</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>β</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>x</m:ci>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>r</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>…</m:ci>
+		  <m:apply>
+                      <m:divide/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>β</m:mi>
+			<m:mrow>
+			  <m:mi>r</m:mi>
+			  <m:mo>-</m:mo>
+			  <m:mn>1</m:mn>
+			</m:mrow>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>b</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>α</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>α</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub>
+		    </m:ci>
+                        <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+		  
+		  <m:ci>…</m:ci>
+		  
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>α</m:mi>
+			<m:mi>j</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mi>j</m:mi>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+	
+      <para id="p15">
+	  All of the alpha constants can be found using the 
+	  non-repeated roots method above.  Finding the beta
+	  coefficients (which are due to the repeated root) has
+	  the same Heaviside feel to it, except that this time we
+	  will add a twist by using the derivative to eliminate
+	  some unwanted terms.
+	</para>
+	
+	<para id="p16">
+        Starting off directly with the cover-up method, we can find
+	  <m:math>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>β</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub>
+	    </m:ci>
+	  </m:math>.
+	  By multiplying both sides by
+	  <m:math>
+	    <m:apply>
+	      <m:power/>
+              <m:apply>
+                <m:minus/>
+		<m:ci>x</m:ci>
+		<m:ci>b</m:ci>
+              </m:apply>
+              <m:ci>r</m:ci>
+          </m:apply>
+	  </m:math>,
+	  we'll get:
+	  
+	  <equation id="eq14">
+	    <m:math>
+	      <m:apply>
+              <m:eq/>
+                <m:apply>
+                  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>b</m:ci>
+		    </m:apply>
+		    <m:ci>r</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">G</m:ci>
+		    <m:ci>x</m:ci>
+		  </m:apply>
+                </m:apply>
+		
+                <m:apply>
+                  <m:plus/>
+		  
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>β</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub>
+		  </m:ci>
+
+		  <m:apply>
+                      <m:times/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>β</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>x</m:ci>
+		      <m:ci>b</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  
+		  <m:ci>…</m:ci>
+		  
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>β</m:mi>
+			<m:mrow>
+			  <m:mi>r</m:mi>
+			  <m:mo>-</m:mo>
+			  <m:mn>1</m:mn>
+			</m:mrow>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>x</m:ci>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>r</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>α</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:power/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>x</m:ci>
+			  <m:ci>b</m:ci>
+			</m:apply>
+			<m:ci>r</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>x</m:ci>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>a</m:mi>
+			    <m:mn>1</m:mn>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>α</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub>
+                        </m:ci>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:power/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>x</m:ci>
+			  <m:ci>b</m:ci>
+			</m:apply>
+			<m:ci>r</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>x</m:ci>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>a</m:mi>
+			    <m:mn>2</m:mn>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  
+		  <m:ci>…</m:ci>
+		  
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>α</m:mi>
+			<m:mi>j</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:power/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>x</m:ci>
+			  <m:ci>b</m:ci>
+			</m:apply>
+			<m:ci>r</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>x</m:ci>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>a</m:mi>
+			    <m:mi>j</m:mi>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+	
+	<para id="p17">
+	  Now that we have "covered up" the
+	  <m:math>
+	    <m:apply>
+	      <m:power/>
+              <m:apply>
+                <m:minus/>
+		<m:ci>x</m:ci>
+		<m:ci>b</m:ci>
+              </m:apply>
+              <m:ci>r</m:ci>
+	    </m:apply>
+	  </m:math>
+	  term in the denominator of
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">G</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:math>,
+	  we plug in
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+              <m:ci>x</m:ci>
+              <m:ci>b</m:ci>
+	    </m:apply>
+	  </m:math>
+	  to each side; this cancels every term on the right-hand side
+	  except for
+	  <m:math>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>β</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub>
+	    </m:ci>
+	  </m:math>,
+	  leaving the formula
+ 
+	  <equation id="eq15">
+	    <m:math>
+	      <m:apply>
+              <m:eq/>
+                <m:ci>
+                  <m:msub>
+                    <m:mi>β</m:mi>
+                    <m:mn>0</m:mn>
+                  </m:msub>
+                </m:ci>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+		  <m:bvar><m:ci>x</m:ci></m:bvar>
+		  <m:lowlimit><m:ci>b</m:ci></m:lowlimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>x</m:ci>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		      <m:ci>r</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">G</m:ci>
+		      <m:ci>x</m:ci>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+	
+	<para id="p18">
+	  To find the other values of the beta coefficients, we can
+	  take advantage of the derivative.  By taking the derivative 
+	  of the <link target-id="eq14" strength="3">equation after cover-up</link> (with respect to <m:math><m:ci>x</m:ci></m:math> 
+	  the right-hand side becomes
+	  <m:math>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>β</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub> 
+	    </m:ci>
+	  </m:math>
+	  plus terms containing an
+	  <m:math>
+	    <m:apply>
+	      <m:minus/>
+              <m:ci>x</m:ci>
+              <m:ci>b</m:ci>
+	    </m:apply>
+	  </m:math>
+	  in the numerator.  Again, plugging in
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+              <m:ci>x</m:ci>
+              <m:ci>b</m:ci>
+	    </m:apply>
+	  </m:math> 
+	  eliminates everything on the right-hand side except for
+	  <m:math>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>β</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+          </m:ci>
+	  </m:math>,
+	  leaving us with a formula for
+	  <m:math>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>β</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+          </m:ci>
+	  </m:math>:
+	  
+	  <equation id="eq16">
+	    <m:math>
+	      <m:apply>
+              <m:eq/>
+                <m:ci>
+                  <m:msub>
+                    <m:mi>β</m:mi>
+                    <m:mn>1</m:mn>
+                  </m:msub>
+                </m:ci>
+		<m:apply>
+		   <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+		  <m:bvar><m:ci>x</m:ci></m:bvar>
+		  <m:lowlimit><m:ci>b</m:ci></m:lowlimit>
+		  <m:apply>
+		    <m:times/>
+                    <m:apply>
+		      <m:diff/>
+		      <m:bvar>
+			<m:ci>x</m:ci>
+		      </m:bvar>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:power/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:ci>x</m:ci>
+			    <m:ci>b</m:ci>
+			  </m:apply>
+			  <m:ci>r</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">G</m:ci>
+			  <m:ci>x</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+        </equation>
+	</para>
+	
+
+	<para id="p19">
+	  Generalizing over this pattern, we can continue to take
+	  derivatives to find the other beta terms.  The solution
+	  for all beta terms is
+	  
+        <equation id="eq17">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:ci>
+                  <m:msub>
+                    <m:mi>β</m:mi>
+                    <m:mi>k</m:mi>
+                  </m:msub>
+                </m:ci>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+		  <m:bvar><m:ci>x</m:ci></m:bvar>
+		  <m:lowlimit><m:ci>b</m:ci></m:lowlimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:apply>
+			<m:factorial/>
+			<m:ci>k</m:ci>
+		      </m:apply>
+                    </m:apply>
+		    <m:apply>
+		      <m:diff/>
+		      <m:bvar>
+			<m:ci>x</m:ci>
+			<m:degree>
+			  <m:ci>k</m:ci>
+			</m:degree>
+		      </m:bvar>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:power/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:ci>x</m:ci>
+			    <m:ci>b</m:ci>
+			  </m:apply>
+			  <m:ci>r</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">G</m:ci>
+			  <m:ci>x</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+
+	<para id="p20">
+	  <note type="Hint" id="idp11780208"><label>Hint</label>To check if you've done the partial 
+	    fraction expansion correctly, just add all of the partial
+	    fractions together to see if their sum equals the original
+	    ratio of polynomials. </note>
+	</para>
+	
+      </section>
+      
+  </section>
+    
+    <section id="s2_2">
+    <title>Finding Partial Fractions in Matlab</title>
+      
+      <para id="p21">
+	Matlab can be a useful tool in finding partial fraction
+	expansions when the ratios become too unwieldy to expand by
+	hand.  It can handle symbolic variables.  For example, if
+	you type <code>syms s</code>, <m:math><m:ci>s</m:ci></m:math> will be treated as a symbolic variable.
+	You can then use it as such when you make function assignments.
+      </para>
+      
+    <para id="p22">
+	If you've done this and have then made a function, say <m:math><m:apply><m:ci type="fn">H</m:ci><m:ci>s</m:ci></m:apply></m:math>, 
+      which is a ratio of two polynomials in the symbolic variable <m:math><m:ci>s</m:ci></m:math>, 
+	there are two ways to get the partial fraction expansion of it.
+      A trick way is to say <code>diff(int(H))</code>.  When you use these 
+	functions together, Matlab gives back <m:math><m:ci>H</m:ci></m:math> expanded into partial
+	fractions. There's also a more formal way to do it using the
+	<code>residue</code> command.  Type <code>help residue</code> in Matlab for details. 
+      </para>
+    </section>
+    
+</content>
+  
+</document>

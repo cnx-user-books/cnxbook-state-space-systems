@@ -1,0 +1,641 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Laplace Properties and Transforms</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>88448a9d-3581-4f5a-a1e3-b702a9ae2a1a</md:uuid>
+</metadata>
+
+
+  <content>
+    <section id="s1"><title>Laplace Properties</title>
+      
+      <equation id="eqlaplace_transform">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	  
+	    <m:apply>
+<m:ci type="fn" class="discrete">ℒ</m:ci>
+	      <m:apply>
+		<m:ci type="fn">f</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:ci type="fn">F</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>t</m:ci></m:bvar>
+	      <m:lowlimit><m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci></m:lowlimit>
+	      <m:uplimit><m:infinity/></m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:ci type="fn">f</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>s</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      
+      <table frame="all" id="short" summary="">
+	  
+	  <tgroup cols="3" align="left" colsep="1" rowsep="1">
+	    <thead valign="top">
+	      <row>
+	
+		<entry>
+		  Property
+		</entry>
+		<entry align="center">
+		  Time-domain
+		</entry>
+		<entry align="center">
+		  Frequency-domain
+		</entry>
+	      </row>
+	    </thead>
+	    <tbody valign="top">
+	      <row>
+		<entry>
+		  Linearity
+		</entry>
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>a</m:ci>
+			<m:apply>
+			  <m:ci type="fn"><m:msub><m:mi>f</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:ci>b</m:ci>
+			<m:apply>
+			  <m:ci type="fn"><m:msub><m:mi>f</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+		
+		<entry align="center">	 
+		  <m:math>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>a</m:ci>
+			<m:apply>
+			  <m:ci type="fn"><m:msub><m:mi>F</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:ci>b</m:ci>
+			<m:apply>
+			  <m:ci type="fn"><m:msub><m:mi>F</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+	      </row>
+	      
+	      <row>
+		<entry>Shifting in <m:math><m:ci>s</m:ci></m:math>-domain</entry>
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:exp/>
+			<m:apply>
+			  <m:times/>
+			  <m:ci><m:msub><m:mi>s</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">f</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+		
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:ci type="fn">F</m:ci>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>s</m:ci>
+			<m:ci><m:msub><m:mi>s</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+	      </row>
+	      
+	      <row>
+		<entry>Time Scaling (<m:math><m:apply><m:gt/><m:ci>a</m:ci><m:cn>0</m:cn></m:apply></m:math>)</entry>
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:apply>
+			<m:times/>
+			<m:ci>a</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+		
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:minus/>
+			<m:cn>1</m:cn>
+			<m:ci>a</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">F</m:ci>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>s</m:ci>
+			  <m:ci>a</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+	      </row>
+	      
+	      <row>
+		<entry>Convolution (causal functions)</entry>
+<entry align="center">
+		  <m:math>
+		    <m:apply>
+	<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#convolve"/>
+		      <m:apply>
+			<m:ci type="fn"><m:msub><m:mi>f</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    
+		      <m:apply>
+			<m:ci type="fn"><m:msub><m:mi>f</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+		
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:ci type="fn"><m:msub><m:mi>F</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			<m:ci>s</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn"><m:msub><m:mi>F</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+			<m:ci>s</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+	      </row>
+	      
+	      <row>
+		<entry>Differentiation in Time</entry>
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:diff/>
+		      <m:bvar><m:ci>t</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		      <m:apply>
+			<m:ci type="fn">f</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+		
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>s</m:ci>
+			<m:apply>
+			  <m:ci type="fn">F</m:ci>
+			  <m:ci>s</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">f</m:ci>
+			<m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+	      </row>
+	      
+	      <row>
+		<entry>Differentiation in Freq.</entry>
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>t</m:ci>
+			<m:apply>
+			  <m:ci type="fn">f</m:ci>
+			  <m:ci>t</m:ci>
+		      </m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+		
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:diff/>
+		      <m:bvar><m:ci>s</m:ci><m:degree><m:cn>1</m:cn></m:degree></m:bvar>
+		      <m:apply>
+			<m:ci type="fn">F</m:ci>
+			<m:ci>s</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+	      </row>
+	      
+	      <row>
+		<entry>Integration in Time</entry>
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:int/>
+		      <m:bvar><m:ci>τ</m:ci></m:bvar>
+		      <m:lowlimit><m:ci><m:msup><m:mn>0</m:mn><m:mi>-</m:mi></m:msup></m:ci></m:lowlimit>
+		      <m:uplimit><m:ci>t</m:ci></m:uplimit>
+		      <m:apply>
+			<m:ci type="fn">f</m:ci>
+			<m:ci>τ</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+		
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:minus/>
+			<m:cn>1</m:cn>
+			<m:ci>s</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">F</m:ci>
+			<m:ci>s</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+	      </row>
+	      
+	    </tbody>
+	  </tgroup>
+	</table>
+    </section>
+    
+    
+    <section id="unilat_laplace_transforms"><title>Unilateral Laplace Transforms</title>
+      <para id="note">
+	Note: <m:math><m:apply><m:ci type="fn">I</m:ci><m:ci>t</m:ci></m:apply></m:math> is a step function.
+      </para>
+      
+      <table frame="all" id="short1" summary="">
+	  
+	  <tgroup cols="2" align="left" colsep="1" rowsep="1">
+	    <thead valign="top">
+	      <row>
+		<entry align="center">
+		  Time-domain
+		</entry>
+		<entry align="center">
+		  Frequency-domain
+		</entry>
+	      </row>
+	    </thead>
+	    <tbody valign="top">
+	      <row>
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:ci type="fn">δ</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:math>
+		</entry>
+		
+		<entry align="center">
+		  <m:math><m:cn>1</m:cn></m:math>
+		</entry>
+	      </row>
+	      
+	      <row>
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:ci type="fn">I</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:math>
+		</entry>
+		
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci>s</m:ci>
+		    </m:apply>
+		  </m:math>
+		</entry>
+	      </row>
+	      
+	      <row>
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>t</m:ci>
+		      <m:apply>
+			<m:ci type="fn">I</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+		
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:apply>
+			<m:power/>
+			<m:ci>s</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+	      </row>
+	      
+	      <row>
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>t</m:ci>
+			<m:ci>n</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">I</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+		
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply><m:factorial/><m:ci>n</m:ci></m:apply>
+		      <m:apply>
+			<m:power/>
+			<m:ci>s</m:ci>
+			<m:apply>
+			  <m:plus/>
+			  <m:ci>n</m:ci>
+			  <m:cn>1</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+	      </row>
+	      
+	      <row>
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:exp/>
+			<m:apply>
+			  <m:times/>
+			  <m:ci>a</m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">I</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+		
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>s</m:ci>
+			<m:ci>a</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+	      </row>
+	      
+	      <row>
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>t</m:ci>
+		      <m:apply>
+			<m:exp/>
+			<m:apply>
+			  <m:times/>
+			  <m:ci>a</m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">I</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+		
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:apply>
+			<m:power/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>s</m:ci>
+			  <m:ci>a</m:ci>
+			</m:apply>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+	      </row>
+	      
+	      <row>
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:cos/>
+			<m:apply>
+			  <m:times/>
+			  <m:ci>a</m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">I</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+		
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:divide/>
+		      <m:ci>s</m:ci>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>s</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>a</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+	      </row>
+	      
+	      <row>
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:sin/>
+			<m:apply>
+			  <m:times/>
+			  <m:ci>a</m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">I</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+		
+		<entry align="center">
+		  <m:math>
+		    <m:apply>
+		      <m:divide/>
+		      <m:ci>a</m:ci>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>s</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>a</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:math>
+		</entry>
+	      </row>
+	    </tbody>
+	  </tgroup>
+	</table>
+      
+      
+      
+    </section>
+  </content>
+</document>
